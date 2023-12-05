@@ -1,0 +1,9 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Sakina" parent="Theme.Material3.DayNight.NoActionBar">
+
+       <item name="colorPrimary">@color/appBlue</item>
+    </style>
+
+    <style name="Theme.Sakina" parent="Base.Theme.Sakina" />
+</resources>
