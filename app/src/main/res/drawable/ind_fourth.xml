@@ -3,6 +3,6 @@
     android:width="102dp" xmlns:android="http://schemas.android.com/apk/res/android">
     <path android:fillColor="#D9D9D9" android:pathData="M6,9m-6,0a6,6 0,1 1,12 0a6,6 0,1 1,-12 0"/>
     <path android:fillColor="#D9D9D9" android:pathData="M34,9m-6,0a6,6 0,1 1,12 0a6,6 0,1 1,-12 0"/>
-    <path android:fillColor="#0165FC" android:pathData="M74,9C74,13.97 69.97,18 65,18C60.03,18 56,13.97 56,9C56,4.03 60.03,0 65,0C69.97,0 74,4.03 74,9Z"/>
-    <path android:fillColor="#D9D9D9" android:pathData="M96,9m-6,0a6,6 0,1 1,12 0a6,6 0,1 1,-12 0"/>
+    <path android:fillColor="#D9D9D9" android:pathData="M62,9m-6,0a6,6 0,1 1,12 0a6,6 0,1 1,-12 0"/>
+    <path android:fillColor="#0165FC" android:pathData="M102,9C102,13.97 97.97,18 93,18C88.03,18 84,13.97 84,9C84,4.03 88.03,0 93,0C97.97,0 102,4.03 102,9Z"/>
 </vector>

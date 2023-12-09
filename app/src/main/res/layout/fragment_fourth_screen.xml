@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".feature_onboarding.ui.SecondScreenFragment">
+    tools:context=".feature_onboarding.ui.FourthScreenFragment">
+
 
     <ImageView
         android:id="@+id/imgSakina"
@@ -21,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:gravity="center"
-        android:text="@string/disease_diagnoses_with_sakina"
+        android:text="@string/your_health_journey_all_in_one_place"
         android:textColor="@color/appBlue"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -37,7 +38,7 @@
         android:layout_marginHorizontal="32dp"
         android:layout_marginTop="8dp"
         android:gravity="center"
-        android:text="@string/sakina_analysis_desc"
+        android:text="@string/sakina_med_history_desc"
         android:textColor="@color/darkGray"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"

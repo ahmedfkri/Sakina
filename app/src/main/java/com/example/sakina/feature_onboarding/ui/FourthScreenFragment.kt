@@ -5,18 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.sakina.databinding.FragmentFirstScreenBinding
+import com.example.sakina.R
 
-class FirstScreenFragment : Fragment() {
 
-    lateinit var binding: FragmentFirstScreenBinding
+class FourthScreenFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentFirstScreenBinding.inflate(inflater, container, false)
-        return binding.root
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_fourth_screen, container, false)
     }
 
 

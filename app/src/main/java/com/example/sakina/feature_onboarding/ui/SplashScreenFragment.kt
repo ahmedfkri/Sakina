@@ -34,7 +34,7 @@ class SplashScreenFragment : Fragment() {
                 if (isUserSigned()) {
                     findNavController().navigate(R.id.action_splashScreenFragment_to_homeFragment)
                 } else {
-                    findNavController().navigate(R.id.action_splashScreenFragment_to_signUpFragment)
+                    findNavController().navigate(R.id.action_splashScreenFragment_to_loginFragment)
                 }
             } else {
                 findNavController().navigate(R.id.action_splashScreenFragment_to_onBoardingFragment)

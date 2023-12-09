@@ -12,4 +12,16 @@
     <string name="enter_your_password">enter your password</string>
     <string name="already_have_an_account">Already have an account?</string>
     <string name="log_in">log in</string>
+    <string name="sakina_intro">your dedicated health companion powered by advanced AI , I\'m here to help you take control of your health.</string>
+    <string name="welcome_i_m_sakina">Welcome, I\'m \nSakina</string>
+    <string name="disease_diagnoses_with_sakina">Disease diagnoses with \nSakina</string>
+    <string name="sakina_analysis_desc">I can analyze your symptoms and provide accurate disease diagnoses. Just describe how you\'re feeling</string>
+    <string name="stay_on_track_with_medications">Stay on Track with \nMedications</string>
+    <string name="sakina_med_desc">I will keep track of your prescribed drugs and remind you when it\'s time to take them. Say goodbye to missed doses and hello to a healthier you!</string>
+    <string name="your_health_journey_all_in_one_place">Your Health Journey, All in One Place</string>
+    <string name="sakina_med_history_desc">I can also Track your symptoms, store medical information, and build a comprehensive medical history for you.</string>
+    <string name="sign_up">Sign up</string>
+    <string name="welcome_back">Welcome back!</string>
+    <string name="login">Login</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
 </resources>

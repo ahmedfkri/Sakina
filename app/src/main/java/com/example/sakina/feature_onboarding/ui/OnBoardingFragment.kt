@@ -34,7 +34,10 @@ class OnBoardingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         fragmentList = arrayListOf(
-            FirstScreenFragment(), SecondScreenFragment(), ThirdScreenFragment()
+            FirstScreenFragment(),
+            SecondScreenFragment(),
+            ThirdScreenFragment(),
+            FourthScreenFragment()
         )
 
         setupAdapter()
@@ -58,7 +61,7 @@ class OnBoardingFragment : Fragment() {
                 updateView()
             }
             btnGetStarted.setOnClickListener {
-                MySharedPref.putBool(Constant.ON_BOARDING,true)
+                MySharedPref.putBool(Constant.ON_BOARDING, true)
                 findNavController().navigate(R.id.action_onBoardingFragment_to_signUpFragment)
             }
         }
@@ -71,14 +74,25 @@ class OnBoardingFragment : Fragment() {
             0 -> displayFirstScreen()
             1 -> displaySecondScreen()
             2 -> displayThirdScreen()
+            3 -> displayFourthScreen()
+        }
+    }
+
+
+    private fun displayFourthScreen() {
+        binding.apply {
+            leftArrow.isVisible = false
+            rightArrow.isVisible = false
+            btnGetStarted.isVisible = true
+            indicator.setImageResource(R.drawable.ind_fourth)
         }
     }
 
     private fun displayThirdScreen() {
         binding.apply {
-            leftArrow.isVisible = false
-            rightArrow.isVisible = false
-            btnGetStarted.isVisible = true
+            leftArrow.isVisible = true
+            rightArrow.isVisible = true
+            btnGetStarted.isVisible = false
             indicator.setImageResource(R.drawable.ind_third)
         }
     }
@@ -88,7 +102,7 @@ class OnBoardingFragment : Fragment() {
             leftArrow.isVisible = true
             rightArrow.isVisible = true
             btnGetStarted.isVisible = false
-            indicator.setImageResource(R.drawable.ind_second_page)
+            indicator.setImageResource(R.drawable.ind_second)
         }
     }
 
