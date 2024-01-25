@@ -18,6 +18,7 @@ class ThirdScreenFragment : Fragment() {
     ): View? {
         binding = FragmentThirdScreenBinding.inflate(inflater, container, false)
         return binding.root
+
     }
 
 }

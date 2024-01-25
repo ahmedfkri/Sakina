@@ -21,4 +21,14 @@ object MySharedPref {
     fun getBool(key: String, default: Boolean): Boolean {
         return preferences.getBoolean(key, default)
     }
+
+    fun putString(key: String, value: String) {
+        preferences.edit().putString(key, value).apply()
+    }
+
+    fun getString(key: String, default: String): String {
+        return preferences.getString(key,default)!!
+    }
+
+
 }
