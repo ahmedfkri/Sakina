@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.sakina.R
 import com.example.sakina.databinding.FragmentLoginBinding
+import com.example.sakina.feature_authentication.domain.mode.AuthenticateResponse
 
 
 class LoginFragment : Fragment() {

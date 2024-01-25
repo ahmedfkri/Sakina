@@ -26,7 +26,7 @@ object MySharedPref {
         preferences.edit().putString(key, value).apply()
     }
 
-    fun getToken(key: String, default: String): String {
+    fun getString(key: String, default: String): String {
         return preferences.getString(key,default)!!
     }
 

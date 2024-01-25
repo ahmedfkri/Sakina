@@ -9,7 +9,7 @@ class AuthenticateInterceptor :Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
         val originalRequest = chain.request()
-        val accessToken = MySharedPref.getToken(Constant.JWT_TOKEN,"NON")
+        val accessToken = MySharedPref.getString(Constant.JWT_TOKEN,"NON")
 
         val newRequest = originalRequest.newBuilder()
             .header("Authorization", "Bearer $accessToken")

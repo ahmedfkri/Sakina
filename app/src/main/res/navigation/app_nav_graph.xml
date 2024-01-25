@@ -39,6 +39,9 @@
         <action
             android:id="@+id/action_splashScreenFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
+        <action
+            android:id="@+id/action_splashScreenFragment_to_confirmEmailFragment"
+            app:destination="@id/confirmEmailFragment" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
@@ -51,6 +54,9 @@
         <action
             android:id="@+id/action_signUpFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_signUpFragment_to_confirmEmailFragment"
+            app:destination="@id/confirmEmailFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -69,4 +75,9 @@
         android:name="com.example.sakina.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/confirmEmailFragment"
+        android:name="com.example.sakina.feature_authentication.presentation.ui.ConfirmEmailFragment"
+        android:label="fragment_confirm_email"
+        tools:layout="@layout/fragment_confirm_email" />
 </navigation>
