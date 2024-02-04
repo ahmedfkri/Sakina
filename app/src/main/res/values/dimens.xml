@@ -2,4 +2,5 @@
 <resources>
     <dimen name="button_height">56dp</dimen>
     <dimen name="margin_hor">16dp</dimen>
+    <dimen name="margin_top_s">24dp</dimen>
 </resources>

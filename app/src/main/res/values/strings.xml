@@ -24,4 +24,14 @@
     <string name="welcome_back">Welcome back!</string>
     <string name="login">Login</string>
     <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="profile">Profile</string>
+    <string name="home">Home</string>
+    <string name="settings">Settings</string>
+    <string name="welcome">Welcome,</string>
+    <string name="diagnosis">Diagnosis</string>
+    <string name="do_you_have_anything_worrying_you">Do you have anything \nworrying you?</string>
+    <string name="skin_diagnosis">Skin Diagnosis</string>
+    <string name="heart_diagnosis">Heart Diagnosis</string>
+    <string name="today_s_health_tip">Today\'s health tip</string>
+    <string name="find_sakina">Find Sakina</string>
 </resources>

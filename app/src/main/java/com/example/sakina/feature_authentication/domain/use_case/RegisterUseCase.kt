@@ -17,7 +17,10 @@ class RegisterUseCase(private val repository: AuthRepository) {
 
         try {
             emit(Resource.Loading())
+
             repository.register(registerRequest)
+
+
             MySharedPref.putBool(Constant.SIGNED_UP, true)
             MySharedPref.putString(Constant.USER_EMAIL, registerRequest.email)
             MySharedPref.putString(Constant.USER_PASS, registerRequest.password)
@@ -27,7 +30,8 @@ class RegisterUseCase(private val repository: AuthRepository) {
             emit(Resource.Error("Registration failed: ${e.message}", code = e.code()))
         } catch (e: IOException) {
             emit(Resource.Error("Registration failed: ${e.message}", code = 1))
-
+        } catch (e: Exception) {
+            emit(Resource.Error("Registration failed: ${e.message}", code = 2))
         }
 
     }

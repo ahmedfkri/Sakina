@@ -5,13 +5,11 @@ import com.example.sakina.feature_authentication.domain.mode.AuthenticateRespons
 import com.example.sakina.feature_authentication.domain.mode.RegisterRequest
 import retrofit2.Response
 import retrofit2.http.Body
-import retrofit2.http.GET
 import retrofit2.http.POST
-import retrofit2.http.Query
 
 interface AuthApi {
 
-    @POST("register")
+    @POST("registerUser")
     suspend fun register(@Body request: RegisterRequest): Response<Unit>
 
     @POST("sendEmailConfirmation")
@@ -20,8 +18,8 @@ interface AuthApi {
     @POST("authenticate")
     suspend fun authenticate(@Body request: AuthenticateRequest): AuthenticateResponse
 
-    @GET("isEmailDuplicated")
-    suspend fun isEmailDuplicated(@Query("Email") email: String): Boolean
+    @POST("isEmailDuplicated")
+    suspend fun isEmailDuplicated(@Body email: String): Boolean
 
 
 }

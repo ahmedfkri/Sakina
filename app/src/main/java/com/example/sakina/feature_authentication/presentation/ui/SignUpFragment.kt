@@ -103,9 +103,9 @@ class SignUpFragment : Fragment() {
                 when (resource) {
                     is Resource.Success -> {
                         if(resource.data==true){
-                            viewModel.sendEmailConfirmation(registerRequest.email)
+                            //viewModel.sendEmailConfirmation(registerRequest.email)
                             Toast.makeText(requireContext(), "done", Toast.LENGTH_SHORT).show()
-                            //findNavController().navigate(R.id.action_signUpFragment_to_confirmEmailFragment)
+                            findNavController().navigate(R.id.action_signUpFragment_to_confirmEmailFragment)
                         }else{
                             Toast.makeText(
                                 requireContext(),
@@ -125,11 +125,11 @@ class SignUpFragment : Fragment() {
                     }
 
                     else -> {
-                        Toast.makeText(
+                        /*Toast.makeText(
                             requireContext(),
                             "Registration else branch: ${resource.message}",
                             Toast.LENGTH_SHORT
-                        ).show()
+                        ).show()*/
                     }
 
                 }
@@ -156,7 +156,8 @@ class SignUpFragment : Fragment() {
                     Log.d("alooooo", errors.values.toString())
 
                 } else {
-                    checkEmailDuplication()
+                   // checkEmailDuplication()
+                    registerUser()
                 }
             }
         }
