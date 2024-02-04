@@ -14,7 +14,7 @@ class AuthRetrofitClient {
 
         private val retrofit by lazy{
             Retrofit.Builder()
-                .baseUrl("https://b72f-197-35-114-242.ngrok-free.app/api/account/")
+                .baseUrl("https://c6c1-197-35-104-217.ngrok-free.app/api/account/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient)
                 .build()

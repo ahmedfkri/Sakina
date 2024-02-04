@@ -49,6 +49,7 @@ class SplashScreenFragment : Fragment() {
 
         Handler().postDelayed({
             if (isOnBoardingFinished()) {
+
                 if (isUserSignedUp()) {
                     lifecycleScope.launch {
                         authViewModel.authenticateUser(
@@ -59,6 +60,7 @@ class SplashScreenFragment : Fragment() {
                         ).collect { resource ->
                             when (resource) {
                                 is Resource.Success -> {
+                                    Log.d("Splashsss", "onViewCreated: Resource.Success ")
                                     val authResponse = resource.data
                                     MySharedPref.putBool(LOGGED_IN, true)
                                     MySharedPref.putString(
@@ -73,6 +75,7 @@ class SplashScreenFragment : Fragment() {
                                 }
 
                                 is Resource.Error -> {
+                                    Log.d("Splashsss", "onViewCreated: Resource.Error ")
                                     when (resource.message.toString()) {
                                         EMAIL_IS_NOT_CONFIRMED -> findNavController().navigate(
                                             R.id.action_splashScreenFragment_to_confirmEmailFragment
@@ -81,16 +84,20 @@ class SplashScreenFragment : Fragment() {
                                         EMAIL_OR_PASSWORD_IS_NOT_CORRECT -> findNavController().navigate(
                                             R.id.action_splashScreenFragment_to_loginFragment
                                         )
+
+                                        else -> Log.d("Splashsss", "onViewCreated: Resource.Error  else ${resource.message.toString()} ")
+
                                     }
-                                    Log.d("aloooo", resource.message.toString())
+                                    Log.d("Splashsss", resource.message.toString())
                                 }
+
                                 else -> {
                                 }
                             }
                         }
                     }
-                }else{
-                    findNavController().navigate(R.id.action_splashScreenFragment_to_loginFragment)
+                } else {
+                    findNavController().navigate(R.id.action_splashScreenFragment_to_signUpFragment)
                 }
             } else {
                 findNavController().navigate(R.id.action_splashScreenFragment_to_onBoardingFragment)

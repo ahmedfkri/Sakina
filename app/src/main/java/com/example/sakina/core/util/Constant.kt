@@ -17,8 +17,8 @@ object Constant {
     const val REFRESH_TOKEN = "refresh_token"
 
     //Server Errors
-    const val EMAIL_OR_PASSWORD_IS_NOT_CORRECT="email or password is not correct"
-    const val EMAIL_IS_NOT_CONFIRMED="email is not confirmed"
+    const val EMAIL_OR_PASSWORD_IS_NOT_CORRECT="Email or password is not correct"
+    const val EMAIL_IS_NOT_CONFIRMED="Email is not confirmed"
 
 
     //Errors
