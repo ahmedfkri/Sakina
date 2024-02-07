@@ -14,13 +14,9 @@ import com.example.sakina.R
 import com.example.sakina.core.util.Constant
 import com.example.sakina.core.util.Resource
 import com.example.sakina.databinding.FragmentSignUpBinding
-import com.example.sakina.feature_authentication.domain.mode.AuthenticateRequest
-import com.example.sakina.feature_authentication.domain.mode.RegisterRequest
+import com.example.sakina.feature_authentication.domain.model.RegisterRequest
 import com.example.sakina.feature_authentication.presentation.view_model.AuthViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 
 
 class SignUpFragment : Fragment() {

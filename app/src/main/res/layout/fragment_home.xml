@@ -90,6 +90,17 @@
                     android:layout_marginEnd="24dp"
                     android:src="@drawable/ic_notification" />
 
+                <TextView
+                    android:id="@+id/txtAdviceTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@id/txtHealthTip"
+                    android:layout_alignTop="@id/txtHealthTip"
+                    android:layout_marginTop="32dp"
+                    android:textColor="@color/appBlue"
+                    android:textSize="24sp"
+                    tools:text="Title title title title"/>
+
             </RelativeLayout>
 
         </com.google.android.material.card.MaterialCardView>
@@ -149,10 +160,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="16dp"
-                    android:textStyle="bold"
                     android:layout_marginHorizontal="24dp"
-                    android:text="@string/find_sakina" />
+                    android:layout_marginTop="16dp"
+                    android:text="@string/find_sakina"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 

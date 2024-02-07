@@ -1,8 +1,8 @@
 package com.example.sakina.feature_authentication.domain.repository
 
-import com.example.sakina.feature_authentication.domain.mode.AuthenticateRequest
-import com.example.sakina.feature_authentication.domain.mode.AuthenticateResponse
-import com.example.sakina.feature_authentication.domain.mode.RegisterRequest
+import com.example.sakina.feature_authentication.domain.model.AuthenticateRequest
+import com.example.sakina.feature_authentication.domain.model.AuthenticateResponse
+import com.example.sakina.feature_authentication.domain.model.RegisterRequest
 
 interface AuthRepository {
 

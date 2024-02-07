@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.example.sakina.databinding.ActivityMainBinding
+import com.example.sakina.feature_advice.presentation.ui.view_model.AdviceViewModel
 import com.example.sakina.feature_authentication.data.repository.AuthRepositoryImpl
 import com.example.sakina.feature_authentication.domain.use_case.AuthUseCases
 import com.example.sakina.feature_authentication.domain.use_case.AuthenticateUserUseCase
@@ -52,6 +53,7 @@ class MainActivity : AppCompatActivity() {
         }, 1)
 
 
+        //Authentication
         val authRepository = AuthRepositoryImpl()
 
         val authenticateUserUseCase = AuthenticateUserUseCase(authRepository)
@@ -72,6 +74,9 @@ class MainActivity : AppCompatActivity() {
             this,
             AuthViewModelFactory(authUseCases)
         ).get(AuthViewModel::class.java)
+
+
+
     }
 
 

@@ -3,15 +3,14 @@ package com.example.sakina.feature_authentication.presentation.view_model
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.sakina.core.util.Resource
-import com.example.sakina.feature_authentication.domain.mode.AuthenticateRequest
-import com.example.sakina.feature_authentication.domain.mode.AuthenticateResponse
-import com.example.sakina.feature_authentication.domain.mode.RegisterRequest
+import com.example.sakina.feature_authentication.domain.model.AuthenticateRequest
+import com.example.sakina.feature_authentication.domain.model.AuthenticateResponse
+import com.example.sakina.feature_authentication.domain.model.RegisterRequest
 import com.example.sakina.feature_authentication.domain.use_case.AuthUseCases
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import retrofit2.Response
 
 class AuthViewModel(private val authUseCases: AuthUseCases) : ViewModel() {
 

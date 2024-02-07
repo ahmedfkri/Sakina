@@ -1,4 +1,4 @@
-package com.example.sakina.feature_authentication.data.remote
+package com.example.sakina.core.data.remote
 
 import com.example.sakina.core.data.MySharedPref
 import com.example.sakina.core.util.Constant

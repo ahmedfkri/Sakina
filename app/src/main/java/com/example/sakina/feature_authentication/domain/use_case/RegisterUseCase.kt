@@ -4,7 +4,7 @@ package com.example.sakina.feature_authentication.domain.use_case
 import com.example.sakina.core.data.MySharedPref
 import com.example.sakina.core.util.Constant
 import com.example.sakina.core.util.Resource
-import com.example.sakina.feature_authentication.domain.mode.RegisterRequest
+import com.example.sakina.feature_authentication.domain.model.RegisterRequest
 import com.example.sakina.feature_authentication.domain.repository.AuthRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/todo2" />
+        />
 
     <TextView
         android:id="@+id/txtWelcome"
@@ -136,7 +136,7 @@
         android:src="@drawable/cool_circle_bottom_left"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:contentDescription="@string/todo" />
+        />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -145,6 +145,6 @@
         android:src="@drawable/cool_circle_up_right"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/todo1" />
+         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
