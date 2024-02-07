@@ -1,10 +1,11 @@
-package com.example.sakina.feature_authentication.data.remote
+package com.example.sakina.core.data.remote
 
+import com.example.sakina.core.util.Constant.BASE_URL
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class AuthRetrofitClient {
+class RetrofitClient {
 
     companion object{
 
@@ -14,14 +15,14 @@ class AuthRetrofitClient {
 
         private val retrofit by lazy{
             Retrofit.Builder()
-                .baseUrl("https://c6c1-197-35-104-217.ngrok-free.app/api/account/")
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient)
                 .build()
         }
 
         val api by lazy{
-            retrofit.create(AuthApi::class.java)
+            retrofit.create(SakinaAPI::class.java)
         }
     }
 }

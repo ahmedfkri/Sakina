@@ -22,11 +22,9 @@ import com.example.sakina.core.util.Constant.USER_EMAIL
 import com.example.sakina.core.util.Constant.USER_PASS
 import com.example.sakina.core.util.Resource
 import com.example.sakina.databinding.FragmentSplashScreenBinding
-import com.example.sakina.feature_authentication.domain.mode.AuthenticateRequest
+import com.example.sakina.feature_authentication.domain.model.AuthenticateRequest
 import com.example.sakina.feature_authentication.presentation.view_model.AuthViewModel
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import retrofit2.Response
 
 class SplashScreenFragment : Fragment() {
 
@@ -49,7 +47,6 @@ class SplashScreenFragment : Fragment() {
 
         Handler().postDelayed({
             if (isOnBoardingFinished()) {
-
                 if (isUserSignedUp()) {
                     lifecycleScope.launch {
                         authViewModel.authenticateUser(

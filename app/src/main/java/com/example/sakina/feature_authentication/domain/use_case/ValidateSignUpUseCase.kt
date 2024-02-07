@@ -1,7 +1,7 @@
 package com.example.sakina.feature_authentication.domain.use_case
 
 import com.example.sakina.core.util.Constant
-import com.example.sakina.feature_authentication.domain.mode.RegisterRequest
+import com.example.sakina.feature_authentication.domain.model.RegisterRequest
 
 class ValidateSignUpUseCase {
 

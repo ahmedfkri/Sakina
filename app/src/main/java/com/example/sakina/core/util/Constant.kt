@@ -5,6 +5,8 @@ object Constant {
     const val SIGNED_UP = "signed_up"
     const val LOGGED_IN = "logged_up"
 
+    const val BASE_URL = "https://c6c1-197-35-104-217.ngrok-free.app/api/"
+
     //field Names
     const val FIRST_NAME_FIELD = "first name"
     const val LAST_NAME_FIELD = "last name"
@@ -17,8 +19,8 @@ object Constant {
     const val REFRESH_TOKEN = "refresh_token"
 
     //Server Errors
-    const val EMAIL_OR_PASSWORD_IS_NOT_CORRECT="Email or password is not correct"
-    const val EMAIL_IS_NOT_CONFIRMED="Email is not confirmed"
+    const val EMAIL_OR_PASSWORD_IS_NOT_CORRECT = "Email or password is not correct"
+    const val EMAIL_IS_NOT_CONFIRMED = "Email is not confirmed"
 
 
     //Errors

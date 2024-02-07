@@ -1,20 +1,16 @@
 package com.example.sakina.feature_authentication.domain.use_case
 
-import android.util.Log
 import com.example.sakina.core.util.Resource
-import com.example.sakina.feature_authentication.domain.mode.AuthErrorResponse
-import com.example.sakina.feature_authentication.domain.mode.AuthenticateRequest
-import com.example.sakina.feature_authentication.domain.mode.AuthenticateResponse
+import com.example.sakina.feature_authentication.domain.model.AuthErrorResponse
+import com.example.sakina.feature_authentication.domain.model.AuthenticateRequest
+import com.example.sakina.feature_authentication.domain.model.AuthenticateResponse
 import com.example.sakina.feature_authentication.domain.repository.AuthRepository
 import com.google.gson.Gson
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.FlowCollector
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
-import okhttp3.ResponseBody
 import retrofit2.HttpException
-import retrofit2.Response
-import java.io.IOException
 
 class AuthenticateUserUseCase(
     private val repository: AuthRepository

@@ -11,7 +11,7 @@ import com.example.sakina.R
 import com.example.sakina.core.data.MySharedPref
 import com.example.sakina.core.util.Constant
 import com.example.sakina.databinding.FragmentLoginBinding
-import com.example.sakina.feature_authentication.domain.mode.AuthenticateRequest
+import com.example.sakina.feature_authentication.domain.model.AuthenticateRequest
 import com.example.sakina.feature_authentication.presentation.view_model.AuthViewModel
 
 
