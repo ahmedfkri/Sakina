@@ -21,7 +21,7 @@ class RetrofitClient {
                 .build()
         }
 
-        val api by lazy{
+        val api: SakinaAPI by lazy{
             retrofit.create(SakinaAPI::class.java)
         }
     }
