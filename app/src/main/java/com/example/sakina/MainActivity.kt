@@ -8,8 +8,13 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import com.example.sakina.core.data.MySharedPref
 import com.example.sakina.databinding.ActivityMainBinding
-import com.example.sakina.feature_advice.presentation.ui.view_model.AdviceViewModel
+import com.example.sakina.feature_advice.data.repository.AdviceRepositoryImpl
+import com.example.sakina.feature_advice.domain.use_case.GetAdviceByIdUseCase
+import com.example.sakina.feature_advice.domain.use_case.GetTotalAdvicesCountUseCase
+import com.example.sakina.feature_advice.presentation.view_model.AdviceViewModel
+import com.example.sakina.feature_advice.presentation.view_model.AdviceViewModelFactory
 import com.example.sakina.feature_authentication.data.repository.AuthRepositoryImpl
 import com.example.sakina.feature_authentication.domain.use_case.AuthUseCases
 import com.example.sakina.feature_authentication.domain.use_case.AuthenticateUserUseCase
@@ -25,6 +30,7 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
     lateinit var authViewModel: AuthViewModel
+    lateinit var adviceViewModel: AdviceViewModel
     lateinit var navController: NavController
     lateinit var bottomNavigationView: BottomNavigationView
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -75,8 +81,23 @@ class MainActivity : AppCompatActivity() {
             AuthViewModelFactory(authUseCases)
         ).get(AuthViewModel::class.java)
 
+        //Advice
+        val adviceRepository = AdviceRepositoryImpl()
+
+        val getTotalAdvicesCountUseCase = GetTotalAdvicesCountUseCase(adviceRepository)
+
+        val getAdviceByIdUseCase = GetAdviceByIdUseCase(adviceRepository)
+
+        adviceViewModel = ViewModelProvider(
+            this, AdviceViewModelFactory(getTotalAdvicesCountUseCase, getAdviceByIdUseCase)
+        ).get(AdviceViewModel::class.java)
 
 
+    }
+
+    override fun onDestroy() {
+        MySharedPref.clearValue("advice")
+        super.onDestroy()
     }
 
 

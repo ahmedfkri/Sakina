@@ -68,16 +68,30 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <ImageView
+                    android:id="@+id/imgAdvice"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:scaleType="centerCrop"
+                    tools:src="@drawable/ic_launcher_background" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gradient_overlay" />
+
                 <TextView
                     android:id="@+id/txtHealthTip"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="32dp"
+                    android:layout_marginTop="16dp"
                     android:layout_marginEnd="32dp"
                     android:layout_marginBottom="32dp"
                     android:text="@string/today_s_health_tip"
-                    android:textColor="@color/appBlue"
+                    android:textColor="@color/white"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -88,7 +102,8 @@
                     android:layout_alignParentEnd="true"
                     android:layout_gravity="end"
                     android:layout_marginEnd="24dp"
-                    android:src="@drawable/ic_notification" />
+                    android:src="@drawable/ic_notification"
+                    app:tint="@color/white" />
 
                 <TextView
                     android:id="@+id/txtAdviceTitle"
@@ -97,9 +112,12 @@
                     android:layout_alignStart="@id/txtHealthTip"
                     android:layout_alignTop="@id/txtHealthTip"
                     android:layout_marginTop="32dp"
-                    android:textColor="@color/appBlue"
-                    android:textSize="24sp"
-                    tools:text="Title title title title"/>
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    tools:text="Title title title title" />
+
+
+
 
             </RelativeLayout>
 

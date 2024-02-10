@@ -27,7 +27,11 @@ object MySharedPref {
     }
 
     fun getString(key: String, default: String): String {
-        return preferences.getString(key,default)!!
+        return preferences.getString(key, default)!!
+    }
+
+    fun clearValue(key: String) {
+        preferences.edit().remove(key).apply()
     }
 
 
