@@ -6,6 +6,7 @@ object Constant {
     const val LOGGED_IN = "logged_up"
 
     const val BASE_URL = "https://c6c1-197-35-104-217.ngrok-free.app/api/"
+    const val ADVICE_BASE_URL = "https://c6c1-197-35-104-217.ngrok-free.app/api/advices/"
 
     //field Names
     const val FIRST_NAME_FIELD = "first name"

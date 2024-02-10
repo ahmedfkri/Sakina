@@ -1,4 +1,4 @@
-package com.example.sakina.feature_advice.presentation.ui.view_model
+package com.example.sakina.feature_advice.presentation.view_model
 
 import androidx.lifecycle.ViewModel
 import com.example.sakina.core.util.Resource

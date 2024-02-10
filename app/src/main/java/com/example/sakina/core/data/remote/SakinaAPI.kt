@@ -9,6 +9,7 @@ import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface SakinaAPI {
@@ -32,8 +33,8 @@ interface SakinaAPI {
     @GET("advices")
     suspend fun getAllAdvices(): Advices
 
-    @GET("advices")
-    suspend fun getAdviceById(@Query("Id") id: Int): Advice
+    @GET("advices/{Id}")
+    suspend fun getAdviceById(@Path("Id") id: Int): Advice
 
 
 }
