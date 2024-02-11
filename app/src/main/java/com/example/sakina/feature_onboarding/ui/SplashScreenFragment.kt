@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.example.sakina.MainActivity
 import com.example.sakina.R
 import com.example.sakina.core.data.MySharedPref
@@ -23,14 +24,20 @@ import com.example.sakina.core.util.Constant.USER_EMAIL
 import com.example.sakina.core.util.Constant.USER_PASS
 import com.example.sakina.core.util.Resource
 import com.example.sakina.databinding.FragmentSplashScreenBinding
+import com.example.sakina.feature_advice.domain.model.Advice
+import com.example.sakina.feature_advice.presentation.view_model.AdviceViewModel
 import com.example.sakina.feature_authentication.domain.model.AuthenticateRequest
 import com.example.sakina.feature_authentication.presentation.view_model.AuthViewModel
+import com.google.gson.Gson
 import kotlinx.coroutines.launch
 
 class SplashScreenFragment : Fragment() {
 
     private lateinit var binding: FragmentSplashScreenBinding
     private lateinit var authViewModel: AuthViewModel
+    private lateinit var adviceViewModel: AdviceViewModel
+    lateinit var bundle: Bundle
+    private var count = 1
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,8 +52,11 @@ class SplashScreenFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         authViewModel = (activity as MainActivity).authViewModel
+        adviceViewModel = (activity as MainActivity).adviceViewModel
 
         Handler().postDelayed({
+            //getAdvicesCount()
+            getRandomAdviceData(12)
             if (isOnBoardingFinished()) {
                 if (isUserSignedUp()) {
                     lifecycleScope.launch {
@@ -69,7 +79,9 @@ class SplashScreenFragment : Fragment() {
                                         Constant.REFRESH_TOKEN,
                                         authResponse?.refreshToken ?: ""
                                     )
-                                    findNavController().navigate(R.id.action_splashScreenFragment_to_homeFragment)
+                                    findNavController().navigate(
+                                        R.id.action_splashScreenFragment_to_homeFragment
+                                    )
                                 }
 
                                 is Resource.Error -> {
@@ -83,7 +95,10 @@ class SplashScreenFragment : Fragment() {
                                             R.id.action_splashScreenFragment_to_loginFragment
                                         )
 
-                                        else -> Log.d("Splashsss", "onViewCreated: Resource.Error  else ${resource.message.toString()} ")
+                                        else -> Log.d(
+                                            "Splashsss",
+                                            "onViewCreated: Resource.Error  else ${resource.message.toString()} "
+                                        )
 
                                     }
                                     Log.d("Splashsss", resource.message.toString())
@@ -103,6 +118,57 @@ class SplashScreenFragment : Fragment() {
         }, 2000)
 
 
+    }
+
+    private fun getRandomAdviceData(count: Int) {
+        val adviceId = (1..count).random()
+        lifecycleScope.launch {
+            adviceViewModel.getAdvicesById(adviceId).collect { resource ->
+                when (resource) {
+                    is Resource.Success -> {
+                        val gson = Gson()
+                        val serializedObject = gson.toJson(resource.data)
+                        MySharedPref.putString("advice", serializedObject)
+                    }
+
+                    is Resource.Error -> {
+                        Toast.makeText(requireContext(), resource.message, Toast.LENGTH_SHORT)
+                            .show()
+                        Log.d("Advices test", "getAdvice: ${resource.message} ")
+                    }
+
+                    else -> {
+                    }
+                }
+            }
+        }
+    }
+
+
+    private fun getAdvicesCount() {
+        lifecycleScope.launch {
+            adviceViewModel.getTotalAdvicesCount().collect { resource ->
+                when (resource) {
+                    is Resource.Success -> {
+                        count = resource.data ?: 1
+                        getRandomAdviceData(count)
+
+                    }
+
+                    is Resource.Error -> {
+                        Toast.makeText(requireContext(), resource.message, Toast.LENGTH_SHORT)
+                            .show()
+                        Log.d("Advices test", "getAdvice: ${resource.message} ")
+                    }
+
+                    else -> {
+
+                    }
+
+                }
+
+            }
+        }
     }
 
     private fun isUserSignedUp() = MySharedPref.getBool(SIGNED_UP, false)

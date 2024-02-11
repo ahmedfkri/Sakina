@@ -1,5 +1,7 @@
 package com.example.sakina.feature_advice.domain.model
 
+import java.io.Serializable
+
 data class Advice(
     val author: Author,
     val content: String,
@@ -7,4 +9,4 @@ data class Advice(
     val imageUrl: String,
     val publishedOn: String,
     val title: String
-)
+) : Serializable
