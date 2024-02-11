@@ -14,6 +14,7 @@ import com.example.sakina.R
 import com.example.sakina.core.util.Constant
 import com.example.sakina.core.util.Resource
 import com.example.sakina.databinding.FragmentSignUpBinding
+import com.example.sakina.feature_authentication.domain.model.EmailRequest
 import com.example.sakina.feature_authentication.domain.model.RegisterRequest
 import com.example.sakina.feature_authentication.presentation.view_model.AuthViewModel
 import kotlinx.coroutines.launch
@@ -58,18 +59,17 @@ class SignUpFragment : Fragment() {
 
 
     private fun checkEmailDuplication() {
+        val emailDuplicationRequest = EmailRequest(registerRequest.email)
         lifecycleScope.launch {
-            viewModel.checkEmailDuplication(registerRequest.email).collect { resource ->
+            viewModel.checkEmailDuplication(emailDuplicationRequest).collect { resource ->
                 when (resource) {
                     is Resource.Success -> {
-                        if (resource.data == false) {
-                            Toast.makeText(requireContext(), "not dublicated", Toast.LENGTH_SHORT)
-                                .show()
+                        if (resource.data != true) {
                             registerUser()
                         } else {
                             Toast.makeText(
                                 requireContext(),
-                                "Email is already signed up",
+                                "Email is already registered try logging in",
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
@@ -98,17 +98,9 @@ class SignUpFragment : Fragment() {
             viewModel.registerUser(registerRequest).collect { resource ->
                 when (resource) {
                     is Resource.Success -> {
-                        if(resource.data==true){
-                            //viewModel.sendEmailConfirmation(registerRequest.email)
-                            Toast.makeText(requireContext(), "done", Toast.LENGTH_SHORT).show()
-                            findNavController().navigate(R.id.action_signUpFragment_to_confirmEmailFragment)
-                        }else{
-                            Toast.makeText(
-                                requireContext(),
-                                "Registration failed: ${resource.message}",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
+                       //sendEmailConfirmation()
+                        Toast.makeText(requireContext(), "done", Toast.LENGTH_SHORT).show()
+                        findNavController().navigate(R.id.action_signUpFragment_to_confirmEmailFragment)
                     }
 
                     is Resource.Error -> {
@@ -133,6 +125,26 @@ class SignUpFragment : Fragment() {
         }
     }
 
+    private fun sendEmailConfirmation() {
+        val emailRequest = EmailRequest(registerRequest.email)
+        lifecycleScope.launch {
+            viewModel.sendEmailConfirmation(emailRequest).collect{resouce->
+                when(resouce){
+                    is Resource.Success->{
+                        Log.d("EmailConfirmation", "sendEmailConfirmation: Done ")
+                    }
+                    is Resource.Error->{
+                        Log.d("EmailConfirmation", "sendEmailConfirmation: Error ")
+                    }
+                    else->{
+
+                    }
+                }
+
+            }
+        }
+    }
+
 
     private fun validateRequest() {
         viewModel.validateSignUp(registerRequest)
@@ -152,8 +164,8 @@ class SignUpFragment : Fragment() {
                     Log.d("alooooo", errors.values.toString())
 
                 } else {
-                   // checkEmailDuplication()
-                    registerUser()
+                    checkEmailDuplication()
+                    //registerUser()
                 }
             }
         }
