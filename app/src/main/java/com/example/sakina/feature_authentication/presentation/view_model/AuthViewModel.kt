@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.sakina.core.util.Resource
 import com.example.sakina.feature_authentication.domain.model.AuthenticateRequest
 import com.example.sakina.feature_authentication.domain.model.AuthenticateResponse
+import com.example.sakina.feature_authentication.domain.model.EmailRequest
 import com.example.sakina.feature_authentication.domain.model.RegisterRequest
 import com.example.sakina.feature_authentication.domain.use_case.AuthUseCases
 import kotlinx.coroutines.flow.Flow
@@ -19,8 +20,8 @@ class AuthViewModel(private val authUseCases: AuthUseCases) : ViewModel() {
     val validationErrors: StateFlow<Map<String, String?>> = _validationErrors
 
 
-    fun checkEmailDuplication(email: String)  : Flow<Resource<Boolean>>{
-        return authUseCases.checkEmailDuplicationUseCase(email)
+    fun checkEmailDuplication(emailDuplicationRequest: EmailRequest): Flow<Resource<Boolean>> {
+        return authUseCases.checkEmailDuplicationUseCase(emailDuplicationRequest)
     }
 
     fun validateSignUp(registerRequest: RegisterRequest) {
@@ -29,18 +30,17 @@ class AuthViewModel(private val authUseCases: AuthUseCases) : ViewModel() {
         }
     }
 
-    fun registerUser(registerRequest: RegisterRequest): Flow<Resource<Boolean>>{
+    fun registerUser(registerRequest: RegisterRequest): Flow<Resource<Unit>> {
         return authUseCases.registerUseCase(registerRequest)
     }
+
     fun authenticateUser(request: AuthenticateRequest): Flow<Resource<AuthenticateResponse>> {
         return authUseCases.authenticateUserUseCase(request)
     }
 
-    fun sendEmailConfirmation(email: String) {
-        viewModelScope.launch {
-            authUseCases.sendEmailConfirmationUseCase(email)
-        }
+    fun sendEmailConfirmation(email: EmailRequest): Flow<Resource<Unit>> {
+        return authUseCases.sendEmailConfirmationUseCase(email)
     }
 
-
 }
+
