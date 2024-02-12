@@ -53,6 +53,9 @@
         <argument
             android:name="advice"
             app:argType="com.example.sakina.feature_advice.domain.model.Advice" />
+        <action
+            android:id="@+id/action_homeFragment_to_chatWithSakinaFragment"
+            app:destination="@id/chatWithSakinaFragment" />
     </fragment>
 
         <fragment
@@ -147,6 +150,23 @@
             android:name="adviceURL"
             app:argType="string"
             android:defaultValue='""' />
+    </fragment>
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.example.sakina.feature_onboarding.ui.ChatFragment"
+        android:label="fragment_chat"
+        tools:layout="@layout/fragment_chat" />
+    <fragment
+        android:id="@+id/chatWithSakinaFragment"
+        android:name="com.example.sakina.feature_onboarding.ui.ChatWithSakinaFragment"
+        android:label="fragment_chat_with_sakina"
+        tools:layout="@layout/fragment_chat_with_sakina" >
+        <action
+            android:id="@+id/action_chatWithSakinaFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_chatWithSakinaFragment_to_chatFragment"
+            app:destination="@id/chatFragment" />
     </fragment>
 
 </navigation>
