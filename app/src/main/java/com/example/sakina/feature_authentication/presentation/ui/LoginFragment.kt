@@ -69,6 +69,10 @@ class LoginFragment : Fragment() {
                             Constant.REFRESH_TOKEN,
                             authResponse?.refreshToken ?: ""
                         )
+                        MySharedPref.putString(
+                            USER_EMAIL,
+                            authResponse?.email ?: ""
+                        )
                         findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
                     }
 

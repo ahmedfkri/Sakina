@@ -1,11 +1,11 @@
-package com.example.sakina.core.data.remote
+package com.example.sakina.core.data.remote.main_api
 
 import com.example.sakina.core.util.Constant.BASE_URL
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class RetrofitClient {
+class MainRetrofitClient {
 
     companion object{
 
@@ -21,8 +21,8 @@ class RetrofitClient {
                 .build()
         }
 
-        val api: SakinaAPI by lazy{
-            retrofit.create(SakinaAPI::class.java)
+        val api: MainAPI by lazy{
+            retrofit.create(MainAPI::class.java)
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.example.sakina.core.data.remote
+package com.example.sakina.core.data.remote.main_api
 
 import com.example.sakina.feature_advice.domain.model.Advice
 import com.example.sakina.feature_advice.domain.model.Advices
@@ -12,7 +12,7 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
 
-interface SakinaAPI {
+interface MainAPI {
 
     //Authentication
 
