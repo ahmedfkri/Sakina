@@ -1,4 +1,4 @@
-package com.example.sakina.core.data.remote
+package com.example.sakina.core.data.remote.main_api
 
 import com.example.sakina.core.data.MySharedPref
 import com.example.sakina.core.util.Constant

@@ -1,6 +1,6 @@
 package com.example.sakina.feature_authentication.data.repository
 
-import com.example.sakina.core.data.remote.RetrofitClient
+import com.example.sakina.core.data.remote.main_api.MainRetrofitClient
 import com.example.sakina.feature_authentication.domain.repository.AuthRepository
 import com.example.sakina.feature_authentication.domain.model.AuthenticateRequest
 import com.example.sakina.feature_authentication.domain.model.AuthenticateResponse
@@ -11,18 +11,18 @@ import retrofit2.Response
 class AuthRepositoryImpl : AuthRepository {
 
     override suspend fun register(request: RegisterRequest) : Response<Unit>{
-        return RetrofitClient.api.register(request)
+        return MainRetrofitClient.api.register(request)
     }
 
     override suspend fun sendEmailConfirmation(email: EmailRequest): Response<Unit>{
-        return RetrofitClient.api.sendEmailConfirmation(email)
+        return MainRetrofitClient.api.sendEmailConfirmation(email)
     }
 
     override suspend fun authenticate(request: AuthenticateRequest): AuthenticateResponse {
-        return RetrofitClient.api.authenticate(request)
+        return MainRetrofitClient.api.authenticate(request)
     }
 
     override suspend fun isEmailDuplicated(emailDuplicationRequest: EmailRequest): Response<Boolean> {
-        return RetrofitClient.api.isEmailDuplicated(emailDuplicationRequest)
+        return MainRetrofitClient.api.isEmailDuplicated(emailDuplicationRequest)
     }
 }
