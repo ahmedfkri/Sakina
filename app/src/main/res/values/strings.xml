@@ -34,4 +34,5 @@
     <string name="heart_diagnosis">Heart Diagnosis</string>
     <string name="today_s_health_tip">Today\'s health tip</string>
     <string name="find_sakina">Find Sakina</string>
+    <string name="diagnose">Diagnose</string>
 </resources>
