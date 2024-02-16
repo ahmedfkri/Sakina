@@ -52,10 +52,13 @@
             app:destination="@id/adviceFragment" />
         <argument
             android:name="advice"
-            app:argType="com.example.sakina.feature_advice.domain.model.Advice" />
+            app:argType="com.example.sakina.feature_advice.domain.model.Advice"/>
         <action
             android:id="@+id/action_homeFragment_to_chatWithSakinaFragment"
             app:destination="@id/chatWithSakinaFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_heartCheckingFragment"
+            app:destination="@id/heartCheckingFragment" />
     </fragment>
 
         <fragment
@@ -168,5 +171,10 @@
             android:id="@+id/action_chatWithSakinaFragment_to_chatFragment"
             app:destination="@id/chatFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/heartCheckingFragment"
+        android:name="com.example.sakina.feature_heartChecking.presentation.ui.HeartCheckingFragment"
+        android:label="fragment_heart_checking"
+        tools:layout="@layout/fragment_heart_checking" />
 
 </navigation>
