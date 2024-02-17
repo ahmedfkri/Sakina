@@ -53,6 +53,9 @@ class HomeFragment : Fragment() {
         binding.cardHealthTip.setOnClickListener {
             openAdviceWebView()
         }
+        binding.cardSkin.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_skinFragment)
+        }
 
         showAdviceData()
 

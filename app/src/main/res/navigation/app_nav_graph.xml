@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/app_nav_graph"
-    app:startDestination="@id/splashScreenFragment">
+    app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/splashScreenFragment"
@@ -59,6 +59,9 @@
         <action
             android:id="@+id/action_homeFragment_to_heartCheckingFragment"
             app:destination="@id/heartCheckingFragment" />
+            android:id="@+id/action_homeFragment_to_skinFragment"
+            app:destination="@id/skinFragment" />
+
     </fragment>
 
         <fragment
@@ -177,4 +180,8 @@
         android:label="fragment_heart_checking"
         tools:layout="@layout/fragment_heart_checking" />
 
+        android:id="@+id/skinFragment"
+        android:name="com.example.sakina.feature_skin_checking.presentation.ui.SkinFragment"
+        android:label="fragment_skin"
+        tools:layout="@layout/fragment_skin" />
 </navigation>

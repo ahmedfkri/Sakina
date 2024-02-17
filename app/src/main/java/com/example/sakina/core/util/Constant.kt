@@ -1,14 +1,21 @@
 package com.example.sakina.core.util
 
 object Constant {
+
+    const val TAG = "MYTag"
+
+
     const val ON_BOARDING = "finished"
     const val SIGNED_UP = "signed_up"
     const val LOGGED_IN = "logged_up"
 
-    const val MAIN_API_BASE_URL = "https://6206-197-43-6-200.ngrok-free.app/api/"
-    const val ADVICE_BASE_URL = "https://6206-197-43-6-200.ngrok-free.app/api/advices/"
+    const val MAIN_API_BASE_URL = "https://1753-197-35-96-126.ngrok-free.app/api/"
+    const val ADVICE_BASE_URL = "https://1753-197-35-96-126.ngrok-free.app/api/advices/"
 
-    const val  MODELS_API_BASE_URL="http://127.0.0.1:8000/"
+    const val MODELS_API_BASE_URL = "https://67fe-197-35-96-126.ngrok-free.app/"
+
+    const val REQUEST_CODE_PICK_IMAGE = 1000
+    const val REQUEST_CODE_PERMISSION = 1001
 
     //field Names
     const val FIRST_NAME_FIELD = "first name"
