@@ -12,7 +12,7 @@ object Constant {
     const val MAIN_API_BASE_URL = "https://1753-197-35-96-126.ngrok-free.app/api/"
     const val ADVICE_BASE_URL = "https://1753-197-35-96-126.ngrok-free.app/api/advices/"
 
-    const val MODELS_API_BASE_URL = "https://67fe-197-35-96-126.ngrok-free.app/"
+    const val MODELS_API_BASE_URL = "https://ahmedelkhayy-5000.theianext-0-labs-prod-misc-tools-us-east-0.proxy.cognitiveclass.ai/"
 
     const val REQUEST_CODE_PICK_IMAGE = 1000
     const val REQUEST_CODE_PERMISSION = 1001

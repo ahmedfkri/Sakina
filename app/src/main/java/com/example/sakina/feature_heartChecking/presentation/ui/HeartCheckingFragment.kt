@@ -1,7 +1,11 @@
 package com.example.sakina.feature_heartChecking.presentation.ui
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.ContentValues.TAG
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -9,6 +13,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.net.toFile
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -41,8 +47,8 @@ class HeartCheckingFragment : Fragment() {
         return binding.root
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         val repo = HeartCheckingRepo()
         val heartVoiceUseCase = HeartCheckingVoiceUseCase(repo)
@@ -50,17 +56,12 @@ class HeartCheckingFragment : Fragment() {
             requireActivity(), HeartViewModelFactory(heartVoiceUseCase)
         )[HeartViewModel::class.java]
 
-        binding.addVoice.setOnClickListener {
-            val option = arrayOf<CharSequence>("Add", "Delete")
-            val builder = AlertDialog.Builder(requireContext())
-            builder.setTitle("Send as a file")
-            builder.setItems(option) { dialog, item ->
-                if (option[item] == "Add") {
-                    "".uploadVoiceFile(voiceFile)
-                } else {
-                    dialog.dismiss()
-                }
+        binding.line.setOnClickListener {
+            val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
+                addCategory(Intent.CATEGORY_OPENABLE)
+                type = "audio/*"
             }
+            pickSoundFileContract.launch(intent)
         }
         binding.check.setOnClickListener {
             if (this::voiceFile.isInitialized) {
@@ -72,48 +73,63 @@ class HeartCheckingFragment : Fragment() {
         }
     }
 
-    private fun String.uploadVoiceFile(file: File) {
-        val client = OkHttpClient.Builder()
-            .connectTimeout(60, java.util.concurrent.TimeUnit.SECONDS)
-            .build()
-
-        val requestBuilder = Request.Builder()
-            .url(this)
-
-        val requestBody = MultipartBody.Builder()
-            .setType(MultipartBody.FORM)
-            .addFormDataPart(
-                "voiceFile",
-                file.name,
-                file.asRequestBody("voice/*".toMediaTypeOrNull())
-            )
-            .build()
-
-        val request = requestBuilder
-            .post(requestBody)
-            .build()
-
-        val response = client.newCall(request).execute()
-        if (response.isSuccessful) {
-            println("File uploaded successfully.")
-        } else {
-            println("File upload failed. Error: ${response.code}")
+    private val pickSoundFileContract =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                result.data?.data?.let { uri ->
+                    voiceFile = uri.toFile(requireContext())!!
+                }
+            }
         }
-    }
+
+
+    /*    private fun uploadVoiceFile(file: File) {
+            val client = OkHttpClient.Builder()
+                .connectTimeout(60, java.util.concurrent.TimeUnit.SECONDS)
+                .build()
+
+            val requestBuilder = Request.Builder()
+                .url(this)
+
+            val requestBody = MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart(
+                    "voiceFile",
+                    file.name,
+                    file.asRequestBody("voice/*".toMediaTypeOrNull())
+                )
+                .build()
+
+            val request = requestBuilder
+                .post(requestBody)
+                .build()
+
+            val response = client.newCall(request).execute()
+            if (response.isSuccessful) {
+                println("File uploaded successfully.")
+            } else {
+                println("File upload failed. Error: ${response.code}")
+            }
+        }
+        */
+     */
 
     private fun check() {
         lifecycleScope.launch {
-            viewModel.heartVoice(voiceFile).collect{resource ->
-                when(resource){
-                    is Resource.Success ->{
-                        Log.d(TAG,"Check:" + resource.data!!.label)
+            viewModel.heartVoice(voiceFile).collect { resource ->
+                when (resource) {
+                    is Resource.Success -> {
+                        Log.d(TAG, "Check:" + resource.data!!.description)
                         activateResponse(resource.data)
                     }
+
                     is Resource.Error -> {
+                        binding.progressBar.isVisible = false
                         Log.d(TAG, "error: " + resource.message)
                     }
 
                     else -> {
+                        binding.progressBar.isVisible = true
 
                     }
                 }
@@ -121,12 +137,30 @@ class HeartCheckingFragment : Fragment() {
 
         }
     }
+
+    private fun Uri.toFile(context: Context): File? {
+        val inputStream = context.contentResolver.openInputStream(this)
+        val tempFile = File.createTempFile("temp", ".wav")
+        return try {
+            tempFile.outputStream().use { fileOut ->
+                inputStream?.copyTo(fileOut)
+            }
+            tempFile.deleteOnExit()
+            inputStream?.close()
+            tempFile
+        } catch (e: Exception) {
+            null
+        }
+    }
+
     private fun activateResponse(response: HeartResponse) {
         binding.apply {
-            responseLine.isVisible=true
-            labelTv.text=response.label
-            descTv.text=response.description
-            adviceTv.text=response.advice
+            progressBar.isVisible = false
+            responseLine.isVisible = true
+            image.isVisible=false
+            labelTv.text = response.label
+            descTv.text = response.description
+            adviceTv.text = response.advice
         }
     }
 }

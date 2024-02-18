@@ -33,7 +33,7 @@ class UploadImageUseCase(val repository: SkinRepository) {
 
     }
 
-    fun getImageReadyForUpload(file: File): MultipartBody.Part {
+    private fun getImageReadyForUpload(file: File): MultipartBody.Part {
 
         val image: RequestBody = RequestBody.create(
             "image/*".toMediaTypeOrNull(),

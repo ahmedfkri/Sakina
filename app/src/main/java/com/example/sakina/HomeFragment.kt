@@ -56,9 +56,11 @@ class HomeFragment : Fragment() {
         binding.cardSkin.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_skinFragment)
         }
+        binding.cardHeart.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_heartCheckingFragment)
+        }
 
         showAdviceData()
-
 
 
     }
@@ -85,7 +87,7 @@ class HomeFragment : Fragment() {
             advice?.let {
                 adviceURL += it.id
             }
-        },1000)
+        }, 1000)
 
         binding.txtAdviceTitle.text = advice?.title ?: "None"
         Glide.with(this@HomeFragment).load(advice?.imageUrl)

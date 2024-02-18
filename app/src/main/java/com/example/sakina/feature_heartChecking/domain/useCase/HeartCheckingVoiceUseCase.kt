@@ -13,7 +13,7 @@ import retrofit2.HttpException
 import java.io.File
 import java.io.IOException
 
-class HeartCheckingVoiceUseCase(private val heartRepo: HeartRepo ) {
+class HeartCheckingVoiceUseCase(private val heartRepo: HeartRepo) {
     operator fun invoke(file: File): Flow<Resource<HeartResponse>> = flow {
         try {
             emit(Resource.Loading())
@@ -30,9 +30,10 @@ class HeartCheckingVoiceUseCase(private val heartRepo: HeartRepo ) {
         }
     }
 }
-fun addHeartVoice(file: File):MultipartBody.Part{
-    val voiceDetails :RequestBody = RequestBody.create(
-        "voice/*".toMediaTypeOrNull(),
+
+fun addHeartVoice(file: File): MultipartBody.Part {
+    val voiceDetails: RequestBody = RequestBody.create(
+        "audio/wav".toMediaTypeOrNull(),
         file
     )
     return MultipartBody.Part.createFormData(
