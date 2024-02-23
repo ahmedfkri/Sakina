@@ -56,14 +56,14 @@ class HeartCheckingFragment : Fragment() {
             requireActivity(), HeartViewModelFactory(heartVoiceUseCase)
         )[HeartViewModel::class.java]
 
-        binding.line.setOnClickListener {
+        binding.btnAddVoice.setOnClickListener {
             val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
                 addCategory(Intent.CATEGORY_OPENABLE)
                 type = "audio/*"
             }
             pickSoundFileContract.launch(intent)
         }
-        binding.check.setOnClickListener {
+        binding.btnDiagnoseHeart.setOnClickListener {
             if (this::voiceFile.isInitialized) {
                 check()
             } else {
@@ -125,6 +125,7 @@ class HeartCheckingFragment : Fragment() {
 
                     is Resource.Error -> {
                         binding.progressBar.isVisible = false
+                        activateResponse2()
                         Log.d(TAG, "error: " + resource.message)
                     }
 
@@ -155,12 +156,25 @@ class HeartCheckingFragment : Fragment() {
 
     private fun activateResponse(response: HeartResponse) {
         binding.apply {
+            txtDiagDesc.isVisible = false
+            btnAddVoice.isVisible = false
+            btnDiagnoseHeart.isVisible = false
             progressBar.isVisible = false
             responseLine.isVisible = true
-            image.isVisible=false
+            imgHeart.isVisible = false
             labelTv.text = response.label
             descTv.text = response.description
             adviceTv.text = response.advice
+        }
+    }
+
+    private fun activateResponse2() {
+        binding.apply {
+            txtDiagDesc.isVisible = false
+            btnDiagnoseHeart.isVisible = false
+            btnAddVoice.isVisible = false
+            progressBar.isVisible = false
+            responseLine.isVisible = true
         }
     }
 }

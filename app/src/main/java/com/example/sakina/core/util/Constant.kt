@@ -9,10 +9,11 @@ object Constant {
     const val SIGNED_UP = "signed_up"
     const val LOGGED_IN = "logged_up"
 
-    const val MAIN_API_BASE_URL = "https://1753-197-35-96-126.ngrok-free.app/api/"
-    const val ADVICE_BASE_URL = "https://1753-197-35-96-126.ngrok-free.app/api/advices/"
+    const val MAIN_API_BASE_URL = "https://34a3-197-35-76-176.ngrok-free.app/api/"
+    const val ADVICE_BASE_URL = "https://34a3-197-35-76-176.ngrok-free.app/api/advices/"
 
-    const val MODELS_API_BASE_URL = "https://ahmedelkhayy-5000.theianext-0-labs-prod-misc-tools-us-east-0.proxy.cognitiveclass.ai/"
+    const val MODELS_API_BASE_URL =
+        "https://ahmedelkhayy-5000.theianext-1-labs-prod-misc-tools-us-east-0.proxy.cognitiveclass.ai/"
 
     const val REQUEST_CODE_PICK_IMAGE = 1000
     const val REQUEST_CODE_PERMISSION = 1001
