@@ -13,10 +13,7 @@ import com.example.sakina.MainActivity
 import com.example.sakina.R
 import com.example.sakina.core.data.MySharedPref
 import com.example.sakina.core.util.Constant
-import com.example.sakina.core.util.Constant.EMAIL_FIELD
-import com.example.sakina.core.util.Constant.PASS_FIELD
 import com.example.sakina.core.util.Constant.USER_EMAIL
-import com.example.sakina.core.util.Constant.USER_PASS
 import com.example.sakina.core.util.Resource
 import com.example.sakina.databinding.FragmentLoginBinding
 import com.example.sakina.feature_authentication.domain.model.AuthenticateRequest
@@ -42,13 +39,13 @@ class LoginFragment : Fragment() {
         viewModel = (activity as MainActivity).authViewModel
 
         binding.btnLogin.setOnClickListener {
-           isUserLoggedIn()
+           userLogIn()
         }
         binding.txtSignUp.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_signUpFragment)
         }
 }
-    private fun isUserLoggedIn() {
+    private fun userLogIn() {
         lifecycleScope.launch {
             viewModel.authenticateUser(
                 AuthenticateRequest(
@@ -61,6 +58,7 @@ class LoginFragment : Fragment() {
                         Log.d("login", "onViewCreated: Resource.Success ")
                         val authResponse = resource.data
                         MySharedPref.putBool(Constant.LOGGED_IN, true)
+                        MySharedPref.putBool(Constant.SIGNED_UP, true)
                         MySharedPref.putString(
                             Constant.JWT_TOKEN,
                             authResponse?.jwtToken ?: ""
