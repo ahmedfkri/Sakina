@@ -13,10 +13,13 @@ object Constant {
     const val ADVICE_BASE_URL = "https://34a3-197-35-76-176.ngrok-free.app/api/advices/"
 
     const val MODELS_API_BASE_URL =
-        "https://ahmedelkhayy-5000.theianext-1-labs-prod-misc-tools-us-east-0.proxy.cognitiveclass.ai/"
+        "https://2713-197-35-121-1.ngrok-free.app/"
 
     const val REQUEST_CODE_PICK_IMAGE = 1000
     const val REQUEST_CODE_PERMISSION = 1001
+
+    const val USER_MESSAGE_TYPE = 1
+    const val BOT_MESSAGE_TYPE = 2
 
     //field Names
     const val FIRST_NAME_FIELD = "first name"

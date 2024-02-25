@@ -1,4 +1,4 @@
-package com.example.sakina.feature_onboarding.ui
+package com.example.sakina.feature_chat.presentation.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -22,8 +22,8 @@ class ChatWithSakinaFragment : Fragment() {
         return binding.root
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         binding.click.setOnClickListener {
             findNavController().navigate(R.id.action_chatWithSakinaFragment_to_homeFragment)
         }
@@ -31,4 +31,5 @@ class ChatWithSakinaFragment : Fragment() {
             findNavController().navigate(R.id.action_chatWithSakinaFragment_to_chatFragment)
         }
     }
+
 }

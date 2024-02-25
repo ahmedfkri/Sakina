@@ -37,4 +37,6 @@ interface MainAPI {
     suspend fun getAdviceById(@Path("Id") id: Int): Advice
 
 
+
+
 }
