@@ -1,5 +1,7 @@
 package com.example.sakina.core.data.remote.main_api
 
+import com.example.sakina.feature_account.domain.model.ChangeNameRequest
+import com.example.sakina.feature_account.domain.model.ChangePasswordRequest
 import com.example.sakina.feature_advice.domain.model.Advice
 import com.example.sakina.feature_advice.domain.model.Advices
 import com.example.sakina.feature_authentication.domain.model.AuthenticateRequest
@@ -10,6 +12,7 @@ import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Path
 
 interface MainAPI {
@@ -28,6 +31,12 @@ interface MainAPI {
     @POST("account/isEmailDuplicated")
     suspend fun isEmailDuplicated(@Body emailDuplicationRequest: EmailRequest): Response<Boolean>
 
+    @POST("account/changePassword")
+    suspend fun changePassword(@Body password:ChangePasswordRequest):Response<Unit>
+
+    @PUT("account/user")
+    suspend fun changeName(@Body name:ChangeNameRequest):Response<Unit>
+
 
     //Advice
     @GET("advices")
@@ -35,6 +44,8 @@ interface MainAPI {
 
     @GET("advices/{Id}")
     suspend fun getAdviceById(@Path("Id") id: Int): Advice
+
+
 
 
 }
