@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.Flow
 import retrofit2.Response
 
 class AccountViewModel(private val accountUseCase:AccountUseCase):ViewModel() {
+
     var accountData:MutableLiveData<Response<Unit>> = MutableLiveData()
     fun changePassword(password: ChangePasswordRequest): Flow<Resource<Unit>> {
         return accountUseCase.changePasswordUseCase(password)

@@ -28,33 +28,50 @@ class ChangePasswordFragment : Fragment() {
         return binding.root
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        viewModel = (activity as MainActivity).accountViewModel
+
+        binding.confirmBtn.setOnClickListener {
+            val oldPassword = binding.oldPassTxt.text.toString()
+            val newPassword = binding.newPassTxt.text.toString()
+            val changePasswordRequest = ChangePasswordRequest(oldPassword, newPassword)
+            changePassword(changePasswordRequest)
+        }
     }
+
+    private fun changePassword(request: ChangePasswordRequest) {
+        lifecycleScope.launch {
+            viewModel.changePassword(request)
+                .collect { resource ->
+                    when (resource) {
+                        is Resource.Success -> {
+                            Toast.makeText(requireContext(), "Changed", Toast.LENGTH_SHORT)
+                                .show()
+
+                        }
+
+                        is Resource.Error -> {
+                            Toast.makeText(
+                                requireContext(),
+                                "Please Enter Your Name First ",
+                                Toast.LENGTH_LONG
+                            )
+                                .show()
+                        }
+
+                        else -> {
+
+                        }
+                    }
+
+                }
+        }
+    }
+
 }
 
 
-//        viewModel= (activity as MainActivity).accountViewModel
-//        binding.confirmBtn.setOnClickListener {
-//            val oldPassword=binding.oldPassTxt.text.toString()
-//            val newPassword = binding.newPassTxt.text.toString()
-//            val changePasswordRequest = ChangePasswordRequest(oldPassword,newPassword)
-//                viewModel.changePassword(changePasswordRequest)
-//                    .collect { resource ->
-//                        when(resource){
-//                            is Resource.Success ->{
-//
-//                            }
-//                            is Resource.Error ->{
-//                                Toast.makeText(requireContext(), "Please Enter Your Name First ", Toast.LENGTH_LONG)
-//                                    .show()
-//                            }
-//                            else ->{
-//
-//                            }
-//                        }
-//
-//                    }
-//            }
-//        }
-//    }
+
+

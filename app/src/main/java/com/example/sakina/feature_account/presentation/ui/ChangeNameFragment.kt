@@ -44,6 +44,7 @@ class ChangeNameFragment : Fragment() {
 
         binding.confirmBtn.setOnClickListener {
 
+
         }
         binding.reverseBtn.setOnClickListener {
             findNavController().navigate(R.id.action_changeNameFragment_to_accountFragment)
