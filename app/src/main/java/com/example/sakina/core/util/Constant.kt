@@ -9,15 +9,20 @@ object Constant {
     const val SIGNED_UP = "signed_up"
     const val LOGGED_IN = "logged_up"
 
-    const val MAIN_API_BASE_URL = "https://34a3-197-35-76-176.ngrok-free.app/api/"
-    const val ADVICE_BASE_URL = "https://34a3-197-35-76-176.ngrok-free.app/api/advices/"
+    const val MAIN_API_BASE_URL = " https://2a39-197-43-7-43.ngrok-free.app/api/"
+    const val ADVICE_BASE_URL = " https://2a39-197-43-7-43.ngrok-free.app/api/advices/"
 
-    const val MODELS_API_BASE_URL =
-        "https://2713-197-35-121-1.ngrok-free.app/"
+    const val MODELS_API_BASE_URL = " https://d39a-197-43-196-107.ngrok-free.app"
+
 
     const val REQUEST_CODE_PICK_IMAGE = 1000
     const val REQUEST_CODE_PERMISSION = 1001
 
+
+    const val FIRST_NAME = "first name"
+    const val LAST_NAME = "last name"
+    const val CURRENT_PASSWORD= "old password"
+    const val NEW_PASSWORD= "new password"
     const val USER_MESSAGE_TYPE = 1
     const val BOT_MESSAGE_TYPE = 2
 

@@ -10,6 +10,12 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.example.sakina.core.data.MySharedPref
 import com.example.sakina.databinding.ActivityMainBinding
+import com.example.sakina.feature_account.data.repository.AccountRepo
+import com.example.sakina.feature_account.domain.use_case.AccountUseCase
+import com.example.sakina.feature_account.domain.use_case.ChangeAccountNameUseCase
+import com.example.sakina.feature_account.domain.use_case.ChangeAccountPasswordUseCase
+import com.example.sakina.feature_account.presentation.view_model.AccountViewModel
+import com.example.sakina.feature_account.presentation.view_model.AccountViewModelFactory
 import com.example.sakina.feature_advice.data.repository.AdviceRepositoryImpl
 import com.example.sakina.feature_advice.domain.use_case.GetAdviceByIdUseCase
 import com.example.sakina.feature_advice.domain.use_case.GetTotalAdvicesCountUseCase
@@ -33,6 +39,9 @@ class MainActivity : AppCompatActivity() {
     lateinit var adviceViewModel: AdviceViewModel
     lateinit var navController: NavController
     lateinit var bottomNavigationView: BottomNavigationView
+
+
+    lateinit var accountViewModel: AccountViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -75,11 +84,23 @@ class MainActivity : AppCompatActivity() {
             sendEmailConfirmationUseCase = sendEmailConfirmationUseCase,
             validateSignUpUseCase = validateSignUpUseCase
         )
-
         authViewModel = ViewModelProvider(
             this,
             AuthViewModelFactory(authUseCases)
         ).get(AuthViewModel::class.java)
+
+
+        val repo=AccountRepo()
+        val changeAccountNameUseCase=ChangeAccountNameUseCase(repo)
+        val changeAccountPasswordUseCase=ChangeAccountPasswordUseCase(repo)
+        val accountUseCase = AccountUseCase(
+            changeNameUseCase = changeAccountNameUseCase,
+            changePasswordUseCase = changeAccountPasswordUseCase
+        )
+        accountViewModel = ViewModelProvider(
+            this,
+            AccountViewModelFactory(accountUseCase)
+        )[AccountViewModel::class.java]
 
         //Advice
         val adviceRepository = AdviceRepositoryImpl()

@@ -10,79 +10,86 @@
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:elevation="15dp"
-        android:foregroundTint="@color/appBlue"
-        android:progressTint="@color/appBlue"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imgBack"
+    <ImageButton
+        android:id="@+id/reverse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/white"
         android:contentDescription="heart"
         android:src="@drawable/left_arrow"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/txtHeartDiag"
+        android:id="@+id/tv1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="75dp"
         android:text="Heart Diagnosis"
         android:textColor="@color/appBlue"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/imgHeart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imgBack" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imgHeart"
+        android:id="@+id/img_heart"
         android:layout_width="200dp"
         android:layout_height="200dp"
+        android:layout_marginTop="40dp"
         android:src="@drawable/il_heart"
-        app:layout_constraintBottom_toTopOf="@id/txtDiagDesc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtHeartDiag"
-        app:layout_constraintVertical_weight="1" />
+        app:layout_constraintTop_toTopOf="@id/tv1" />
 
     <TextView
-        android:id="@+id/txtDiagDesc"
+        android:id="@+id/tv_sentence1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/diagnose_your_heart"
-        android:textAlignment="center"
+        android:layout_marginTop="10dp"
+        android:text="Diagnosis your heart by adding an audio"
         android:textColor="@color/darkGray"
         android:textSize="15sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/btnAddVoice"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imgHeart" />
+        app:layout_constraintTop_toBottomOf="@id/img_heart" />
 
+    <TextView
+        android:id="@+id/tv_sentence2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="recording of heartbeat"
+        android:textColor="@color/darkGray"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_sentence1" />
 
     <LinearLayout
-        android:id="@+id/btnAddVoice"
+        android:id="@+id/line"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="15dp"
         android:background="@drawable/oval"
         android:backgroundTint="@color/appBlue"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@id/btnDiagnoseHeart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtDiagDesc">
+        app:layout_constraintTop_toBottomOf="@id/tv_sentence2">
 
         <ImageView
             android:id="@+id/icon"
@@ -92,7 +99,7 @@
             android:src="@drawable/ic_mic_24" />
 
         <TextView
-            android:id="@+id/txtAddVoice"
+            android:id="@+id/add_voice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
@@ -103,32 +110,30 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/btnDiagnoseHeart"
+        android:id="@+id/check"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="15dp"
         android:background="@drawable/oval"
-        android:text="Diagnose"
-        android:textSize="20sp"
+        android:text="Diagnosis"
+        android:textSize="20dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/response_line"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnAddVoice" />
+        app:layout_constraintTop_toBottomOf="@id/line" />
 
     <LinearLayout
         android:id="@+id/response_line"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center_vertical"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnDiagnoseHeart"
-        app:layout_constraintVertical_weight="3">
+        app:layout_constraintTop_toBottomOf="@id/check">
 
         <TextView
             android:id="@+id/label_tv"
@@ -136,11 +141,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:text="label"
             android:textAlignment="center"
             android:textColor="@color/appBlue"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:text="label" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -157,24 +162,24 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
-                    android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                    android:textColor="@color/appBlue"
+                    android:textColor="@color/lightGray"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="descreption" />
 
                 <TextView
                     android:id="@+id/advice_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
-                    android:text="@tools:sample/lorem/random"
                     android:textColor="@color/lightGray"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/desc_tv" />
+                    app:layout_constraintTop_toBottomOf="@id/desc_tv"
+                    tools:text="Advice" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
     </LinearLayout>

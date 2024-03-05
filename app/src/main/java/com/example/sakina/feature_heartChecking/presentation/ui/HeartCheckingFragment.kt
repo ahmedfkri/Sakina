@@ -18,6 +18,8 @@ import androidx.core.net.toFile
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import com.example.sakina.R
 import com.example.sakina.core.util.Resource
 import com.example.sakina.databinding.FragmentHeartCheckingBinding
 import com.example.sakina.feature_heartChecking.data.repository.HeartCheckingRepo
@@ -56,20 +58,23 @@ class HeartCheckingFragment : Fragment() {
             requireActivity(), HeartViewModelFactory(heartVoiceUseCase)
         )[HeartViewModel::class.java]
 
-        binding.btnAddVoice.setOnClickListener {
+        binding.addVoice.setOnClickListener {
             val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
                 addCategory(Intent.CATEGORY_OPENABLE)
                 type = "audio/*"
             }
             pickSoundFileContract.launch(intent)
         }
-        binding.btnDiagnoseHeart.setOnClickListener {
+        binding.check.setOnClickListener {
             if (this::voiceFile.isInitialized) {
                 check()
             } else {
                 Toast.makeText(requireContext(), "Please Add File ", Toast.LENGTH_LONG)
                     .show()
             }
+        }
+        binding.reverse.setOnClickListener {
+            findNavController().navigate(R.id.action_heartCheckingFragment_to_homeFragment)
         }
     }
 
@@ -125,7 +130,7 @@ class HeartCheckingFragment : Fragment() {
 
                     is Resource.Error -> {
                         binding.progressBar.isVisible = false
-                        activateResponse2()
+                        //activateResponse2()
                         Log.d(TAG, "error: " + resource.message)
                     }
 
@@ -156,11 +161,11 @@ class HeartCheckingFragment : Fragment() {
 
     private fun activateResponse(response: HeartResponse) {
         binding.apply {
-            txtDiagDesc.isVisible = false
-            btnAddVoice.isVisible = false
-            btnDiagnoseHeart.isVisible = false
+            descTv.isVisible = false
+            addVoice.isVisible = false
+            check.isVisible = false
             progressBar.isVisible = false
-            responseLine.isVisible = true
+            responseLine.visibility = View.VISIBLE
             imgHeart.isVisible = false
             labelTv.text = response.label
             descTv.text = response.description
@@ -168,13 +173,12 @@ class HeartCheckingFragment : Fragment() {
         }
     }
 
-    private fun activateResponse2() {
-        binding.apply {
-            txtDiagDesc.isVisible = false
-            btnDiagnoseHeart.isVisible = false
-            btnAddVoice.isVisible = false
-            progressBar.isVisible = false
-            responseLine.isVisible = true
-        }
-    }
+//    private fun activateResponse2() {
+//        binding.apply {
+//            txtDiagDesc.isVisible = false
+//            check.isVisible = false
+//            addVoice.isVisible = false
+//            progressBar.isVisible = false
+//            responseLine.isVisible = true
+//        }
 }

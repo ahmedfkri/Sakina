@@ -43,6 +43,10 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
+        binding.heartCheck.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_heartCheckingFragment)
+        }
+
         val callback = object : OnBackPressedCallback(false) {
             override fun handleOnBackPressed() {
 
@@ -56,7 +60,7 @@ class HomeFragment : Fragment() {
         binding.cardSkin.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_skinFragment)
         }
-        binding.cardHeart.setOnClickListener {
+        binding.cardSkin.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_heartCheckingFragment)
         }
 
