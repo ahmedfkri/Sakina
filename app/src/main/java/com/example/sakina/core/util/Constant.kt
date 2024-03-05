@@ -14,6 +14,7 @@ object Constant {
 
     const val MODELS_API_BASE_URL = " https://d39a-197-43-196-107.ngrok-free.app"
 
+
     const val REQUEST_CODE_PICK_IMAGE = 1000
     const val REQUEST_CODE_PERMISSION = 1001
 
@@ -22,6 +23,8 @@ object Constant {
     const val LAST_NAME = "last name"
     const val CURRENT_PASSWORD= "old password"
     const val NEW_PASSWORD= "new password"
+    const val USER_MESSAGE_TYPE = 1
+    const val BOT_MESSAGE_TYPE = 2
 
     //field Names
     const val FIRST_NAME_FIELD = "first name"

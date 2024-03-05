@@ -36,4 +36,7 @@
     <string name="find_sakina">Find Sakina</string>
     <string name="diagnose">Diagnose</string>
     <string name="diagnose_your_heart">Diagnose your heart by adding an audio \nof heartbeat recording</string>
+    <string name="sakina">Sakina</string>
+    <string name="today">Today</string>
+    <string name="how_are_you_feeling">How are You feeling?</string>
 </resources>

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/app_nav_graph"
-    app:startDestination="@id/splashScreenFragment">
+    app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/splashScreenFragment"
@@ -175,12 +175,12 @@
     </fragment>
     <fragment
         android:id="@+id/chatFragment"
-        android:name="com.example.sakina.feature_onboarding.ui.ChatFragment"
+        android:name="com.example.sakina.feature_chat.presentation.ui.ChatFragment"
         android:label="fragment_chat"
         tools:layout="@layout/fragment_chat" />
     <fragment
         android:id="@+id/chatWithSakinaFragment"
-        android:name="com.example.sakina.feature_onboarding.ui.ChatWithSakinaFragment"
+        android:name="com.example.sakina.feature_chat.presentation.ui.ChatWithSakinaFragment"
         android:label="fragment_chat_with_sakina"
         tools:layout="@layout/fragment_chat_with_sakina" >
         <action
