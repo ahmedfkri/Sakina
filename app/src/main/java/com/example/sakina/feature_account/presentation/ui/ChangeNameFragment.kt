@@ -16,6 +16,7 @@ import com.example.sakina.MainActivity
 import com.example.sakina.R
 import com.example.sakina.core.data.MySharedPref
 import com.example.sakina.core.util.Constant
+import com.example.sakina.core.util.Constant.TAG
 import com.example.sakina.core.util.Resource
 import com.example.sakina.databinding.FragmentChangeNameBinding
 import com.example.sakina.feature_account.domain.model.ChangeNameRequest
@@ -44,10 +45,37 @@ class ChangeNameFragment : Fragment() {
 
         binding.confirmBtn.setOnClickListener {
 
+            val firstName = binding.fstNamTxt.text.toString()
+            val lastName = binding.lastNamTxt.text.toString()
+            val changeNameRequest = ChangeNameRequest(firstName, lastName)
+            changeName(changeNameRequest)
+
 
         }
         binding.reverseBtn.setOnClickListener {
             findNavController().navigate(R.id.action_changeNameFragment_to_accountFragment)
         }
+    }
+
+    private fun changeName(request: ChangeNameRequest) {
+        lifecycleScope.launch {
+            viewModel.changeName(request).collect{ resource->
+
+                when(resource){
+                    is Resource.Success ->{
+                        Log.d(TAG, "changeName: success "+ resource.data)
+
+                    }
+                    is Resource.Error ->{
+                        Log.d(TAG, "changeName: ERROR "+ resource.message)
+
+                    }
+                    else ->{
+                        Log.d(TAG, "changeName: else branch")
+                    }
+                }
+            }
+        }
+
     }
 }

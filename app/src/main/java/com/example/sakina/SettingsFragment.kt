@@ -6,6 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.example.sakina.core.data.MySharedPref
+import com.example.sakina.core.util.Constant.EXP_ON
+import com.example.sakina.core.util.Constant.JWT_TOKEN
+import com.example.sakina.core.util.Constant.LOGGED_IN
+import com.example.sakina.core.util.Constant.REFRESH_TOKEN
+import com.example.sakina.core.util.Constant.SIGNED_UP
+import com.example.sakina.core.util.Constant.USER_EMAIL
 import com.example.sakina.databinding.FragmentChangeNameBinding
 import com.example.sakina.databinding.FragmentSettingsBinding
 
@@ -20,13 +27,23 @@ class SettingsFragment : Fragment() {
         binding = FragmentSettingsBinding.inflate(inflater, container, false)
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.line1.setOnClickListener{
+        binding.line1.setOnClickListener {
             findNavController().navigate(R.id.action_settingsFragment_to_accountFragment)
         }
         binding.reverse.setOnClickListener {
             findNavController().navigate(R.id.action_settingsFragment_to_homeFragment)
+        }
+
+        binding.line5.setOnClickListener {
+            MySharedPref.clearValue(USER_EMAIL)
+            MySharedPref.clearValue(JWT_TOKEN)
+            MySharedPref.clearValue(REFRESH_TOKEN)
+            MySharedPref.clearValue(EXP_ON)
+            MySharedPref.putBool(LOGGED_IN, false)
+            findNavController().navigate(R.id.action_settingsFragment_to_loginFragment)
         }
     }
 }

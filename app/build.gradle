@@ -73,4 +73,7 @@ dependencies {
     implementation 'com.github.dhaval2404:imagepicker:1.8'
     implementation 'com.karumi:dexter:6.2.3'
 
+    implementation "androidx.datastore:datastore-preferences:1.0.0"
+
+
 }

@@ -9,13 +9,15 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.sakina.MainActivity
 import com.example.sakina.R
+import com.example.sakina.core.data.MySharedPref
+import com.example.sakina.core.util.Constant.USER_EMAIL
 import com.example.sakina.databinding.FragmentAccountBinding
 import com.example.sakina.feature_account.presentation.view_model.AccountViewModel
 
 
 class AccountFragment : Fragment() {
-   lateinit var binding: FragmentAccountBinding
-   lateinit var viewModel: AccountViewModel
+    lateinit var binding: FragmentAccountBinding
+    lateinit var viewModel: AccountViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,8 +26,11 @@ class AccountFragment : Fragment() {
         binding = FragmentAccountBinding.inflate(inflater, container, false)
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.txtEmail.text = MySharedPref.getString(USER_EMAIL, "")
 
 
         binding.nameImg.setOnClickListener {
