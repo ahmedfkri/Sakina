@@ -14,6 +14,8 @@ import com.example.sakina.feature_account.data.repository.AccountRepo
 import com.example.sakina.feature_account.domain.use_case.AccountUseCase
 import com.example.sakina.feature_account.domain.use_case.ChangeAccountNameUseCase
 import com.example.sakina.feature_account.domain.use_case.ChangeAccountPasswordUseCase
+import com.example.sakina.feature_account.domain.use_case.GetInformationUseCase
+import com.example.sakina.feature_account.domain.use_case.PersonalInfoUseCase
 import com.example.sakina.feature_account.presentation.view_model.AccountViewModel
 import com.example.sakina.feature_account.presentation.view_model.AccountViewModelFactory
 import com.example.sakina.feature_advice.data.repository.AdviceRepositoryImpl
@@ -93,9 +95,14 @@ class MainActivity : AppCompatActivity() {
         val repo=AccountRepo()
         val changeAccountNameUseCase=ChangeAccountNameUseCase(repo)
         val changeAccountPasswordUseCase=ChangeAccountPasswordUseCase(repo)
+        val personalInfoUseCase=PersonalInfoUseCase(repo)
+        val getInfoUseCase=GetInformationUseCase(repo)
         val accountUseCase = AccountUseCase(
             changeNameUseCase = changeAccountNameUseCase,
-            changePasswordUseCase = changeAccountPasswordUseCase
+            changePasswordUseCase = changeAccountPasswordUseCase,
+            personalInfoUseCase = personalInfoUseCase,
+            getInformationUseCase = getInfoUseCase
+
         )
         accountViewModel = ViewModelProvider(
             this,
