@@ -9,10 +9,11 @@ object Constant {
     const val SIGNED_UP = "signed_up"
     const val LOGGED_IN = "logged_up"
 
-    const val MAIN_API_BASE_URL = " https://2a39-197-43-7-43.ngrok-free.app/api/"
-    const val ADVICE_BASE_URL = " https://2a39-197-43-7-43.ngrok-free.app/api/advices/"
+    const val MAIN_API_BASE_URL = "https://272d-197-35-77-212.ngrok-free.app/api/"
+    const val ADVICE_BASE_URL = "https://272d-197-35-77-212.ngrok-free.app/api/advices/"
 
-    const val MODELS_API_BASE_URL = " https://d39a-197-43-196-107.ngrok-free.app"
+    const val MODELS_API_BASE_URL = "https://5d6e-107-178-214-84.ngrok-free.app/"
+
 
     const val REQUEST_CODE_PICK_IMAGE = 1000
     const val REQUEST_CODE_PERMISSION = 1001
@@ -20,8 +21,21 @@ object Constant {
 
     const val FIRST_NAME = "first name"
     const val LAST_NAME = "last name"
-    const val CURRENT_PASSWORD= "old password"
-    const val NEW_PASSWORD= "new password"
+    const val CURRENT_PASSWORD = "old password"
+    const val NEW_PASSWORD = "new password"
+    const val USER_MESSAGE_TYPE = 1
+    const val BOT_MESSAGE_TYPE = 2
+
+    const val Height = "height"
+    const val Weight = "weight"
+    const val Age = "age"
+    const val Diabetic = "diabetic"
+    const val Hypertension = "hypertension"
+    const val Hypotension = "hypotension"
+    const val Smoker = "smoker"
+
+
+
 
     //field Names
     const val FIRST_NAME_FIELD = "first name"
@@ -33,6 +47,7 @@ object Constant {
     const val USER_PASS = "pass"
     const val JWT_TOKEN = "jwt_token"
     const val REFRESH_TOKEN = "refresh_token"
+    const val EXP_ON = "exp_on"
 
     //Server Errors
     const val EMAIL_OR_PASSWORD_IS_NOT_CORRECT = "Email or password is not correct"

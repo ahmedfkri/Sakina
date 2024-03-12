@@ -29,6 +29,13 @@ object MySharedPref {
     fun getString(key: String, default: String): String {
         return preferences.getString(key, default)!!
     }
+    fun putInt(key: String, value: Int) {
+        preferences.edit().putInt(key, value).apply()
+    }
+
+    fun getInt(key: String, default: Int): Int {
+        return preferences.getInt(key, default)
+    }
 
     fun clearValue(key: String) {
         preferences.edit().remove(key).apply()

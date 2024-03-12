@@ -2,6 +2,7 @@ package com.example.sakina.core.data.remote.main_api
 
 import com.example.sakina.feature_account.domain.model.ChangeNameRequest
 import com.example.sakina.feature_account.domain.model.ChangePasswordRequest
+import com.example.sakina.feature_account.domain.model.PersonalInfoRequest
 import com.example.sakina.feature_advice.domain.model.Advice
 import com.example.sakina.feature_advice.domain.model.Advices
 import com.example.sakina.feature_authentication.domain.model.AuthenticateRequest
@@ -36,6 +37,12 @@ interface MainAPI {
 
     @PUT("account/user")
     suspend fun changeName(@Body name:ChangeNameRequest):Response<Unit>
+
+    @PUT("medicalInfos")
+    suspend fun personalInfo(@Body information:PersonalInfoRequest):Response<Unit>
+
+    @GET("medicalInfos")
+    suspend fun getInformation(): PersonalInfoRequest
 
 
     //Advice

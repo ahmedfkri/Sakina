@@ -27,6 +27,13 @@ class AccountFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.currentName.observe(viewLifecycleOwner) { name ->
+            binding.nameTxt.text = name
+        }
+        viewModel.currentPass.observe(viewLifecycleOwner){ password->
+            binding.passwordTxt.text=password
+        }
+
 
         binding.nameImg.setOnClickListener {
             findNavController().navigate(R.id.action_accountFragment_to_changeNameFragment)

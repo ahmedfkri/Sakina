@@ -37,8 +37,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
     lateinit var authViewModel: AuthViewModel
     lateinit var adviceViewModel: AdviceViewModel
-    lateinit var navController: NavController
-    lateinit var bottomNavigationView: BottomNavigationView
+    private lateinit var navController: NavController
+    private lateinit var bottomNavigationView: BottomNavigationView
 
 
     lateinit var accountViewModel: AccountViewModel
@@ -87,7 +87,7 @@ class MainActivity : AppCompatActivity() {
         authViewModel = ViewModelProvider(
             this,
             AuthViewModelFactory(authUseCases)
-        ).get(AuthViewModel::class.java)
+        )[AuthViewModel::class.java]
 
 
         val repo=AccountRepo()
