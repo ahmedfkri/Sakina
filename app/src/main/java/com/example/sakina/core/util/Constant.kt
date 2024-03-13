@@ -36,7 +36,6 @@ object Constant {
 
 
 
-
     //field Names
     const val FIRST_NAME_FIELD = "first name"
     const val LAST_NAME_FIELD = "last name"

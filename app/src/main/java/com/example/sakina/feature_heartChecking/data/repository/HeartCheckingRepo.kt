@@ -7,6 +7,6 @@ import okhttp3.MultipartBody
 
 class HeartCheckingRepo:HeartRepo {
     override suspend fun heartChecking(file: MultipartBody.Part): HeartResponse {
-        return ModelsRetrofitClient.api.heartChecking(file)
+        return ModelsRetrofitClient.api.checkHeart(file)
     }
 }

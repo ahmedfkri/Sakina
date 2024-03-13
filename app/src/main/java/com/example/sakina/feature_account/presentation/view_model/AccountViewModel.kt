@@ -14,8 +14,12 @@ import retrofit2.Response
 
 class AccountViewModel(private val accountUseCase:AccountUseCase):ViewModel() {
 
+
     val currentName: MutableLiveData<String> = MutableLiveData()
     val currentPass:MutableLiveData<String> = MutableLiveData()
+
+
+    var accountData:MutableLiveData<Response<Unit>> = MutableLiveData()
 
     fun changePassword(password: ChangePasswordRequest): Flow<Resource<Unit>> {
         currentPass.value=MySharedPref.getString(Constant.CURRENT_PASSWORD,"")+ " " + MySharedPref.getString(Constant.NEW_PASSWORD,"")

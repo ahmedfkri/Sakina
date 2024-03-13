@@ -99,7 +99,7 @@ class SignUpFragment : Fragment() {
                 when (resource) {
                     is Resource.Success -> {
                        //sendEmailConfirmation()
-                        Toast.makeText(requireContext(), "done", Toast.LENGTH_SHORT).show()
+                        //Toast.makeText(requireContext(), "done", Toast.LENGTH_SHORT).show()
                         findNavController().navigate(R.id.action_signUpFragment_to_confirmEmailFragment)
                     }
 
