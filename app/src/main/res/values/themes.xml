@@ -3,10 +3,26 @@
     <style name="Base.Theme.Sakina" parent="Theme.Material3.DayNight.NoActionBar">
 
        <item name="colorPrimary">@color/appBlue</item>
+        <item name="colorAccent">@color/appBlue</item>
+        <item name="colorOnPrimary">@color/appBlue</item>
+        <item name="colorSecondary">@color/appBlue</item>
         <item name="fontFamily">@font/poppins</item>
         <item name="android:navigationBarColor">@color/appBlue</item>
 
     </style>
+
+    <style name="ThemeButtonColorToggle" parent="Base.Theme.Sakina">
+        <item name="colorPrimary">@color/appBlue</item>
+        <item name="android:backgroundTint">@color/appBlue</item>
+        <item name="colorOnPrimary">@color/appBlue</item>
+        <item name="colorOnPrimarySurface">@color/appBlue</item>
+    </style>
+
+    <style name="ButtonStyle" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/bottom_nav_selector</item>
+        ...
+    </style>
+
 
     <style name="Theme.Sakina" parent="Base.Theme.Sakina" />
 </resources>

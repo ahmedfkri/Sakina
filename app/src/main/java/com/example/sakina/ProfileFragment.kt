@@ -25,5 +25,9 @@ class ProfileFragment : Fragment() {
         binding.reverseBtn.setOnClickListener {
             findNavController().navigate(R.id.action_profileFragment_to_homeFragment)
         }
+
+        binding.medicalInformBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragment_to_medicalInfoFragment)
+        }
     }
 }
