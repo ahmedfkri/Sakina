@@ -26,6 +26,16 @@ object Constant {
     const val USER_MESSAGE_TYPE = 1
     const val BOT_MESSAGE_TYPE = 2
 
+    const val Height = "height"
+    const val Weight = "weight"
+    const val Age = "age"
+    const val Diabetic = "diabetic"
+    const val Hypertension = "hypertension"
+    const val Hypotension = "hypotension"
+    const val Smoker = "smoker"
+
+
+
     //field Names
     const val FIRST_NAME_FIELD = "first name"
     const val LAST_NAME_FIELD = "last name"

@@ -5,5 +5,7 @@ import com.example.sakina.feature_authentication.domain.use_case.RegisterUseCase
 
 data class AccountUseCase (
     val changePasswordUseCase: ChangeAccountPasswordUseCase,
-    val changeNameUseCase: ChangeAccountNameUseCase
+    val changeNameUseCase: ChangeAccountNameUseCase,
+    val personalInfoUseCase: PersonalInfoUseCase,
+    val getInformationUseCase:GetInformationUseCase
 )
