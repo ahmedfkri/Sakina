@@ -1,5 +1,6 @@
 package com.example.sakina.feature_advice.presentation.ui
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -17,12 +18,13 @@ class AdviceFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentAdviceBinding.inflate(inflater, container, false)
         return binding.root
     }
 
 
+    @SuppressLint("SetJavaScriptEnabled")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val url = arguments?.getString("adviceURL", "NON")
         binding.adviceWebView.apply {

@@ -166,8 +166,13 @@
                 app:popUpTo="@id/profileFragment"
                 app:popUpToInclusive="true" />
             <action
+
+                android:id="@+id/action_profileFragment_to_personalInformationFragment"
+                app:destination="@id/personalInformationFragment" />
+
                 android:id="@+id/action_profileFragment_to_medicalInfoFragment"
                 app:destination="@id/medicalInfoFragment" />
+
         </fragment>
     <fragment
         android:id="@+id/adviceFragment"

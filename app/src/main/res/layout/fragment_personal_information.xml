@@ -39,6 +39,7 @@
         android:layout_marginEnd="10dp"
         android:hint="Height"
         android:textSize="20sp"
+        android:inputType="number"
         android:background="@color/lightGray"/>
     <EditText
         android:id="@+id/weight_et"
@@ -52,6 +53,7 @@
         android:layout_marginEnd="10dp"
         android:hint="Weight"
         android:textSize="20sp"
+        android:inputType="number"
         android:background="@color/lightGray"/>
     <EditText
         android:id="@+id/age_et"
@@ -65,6 +67,7 @@
         android:layout_marginEnd="10dp"
         android:hint="Age"
         android:textSize="20sp"
+        android:inputType="number"
         android:background="@color/lightGray"/>
     <Button
         android:id="@+id/save_btn"
