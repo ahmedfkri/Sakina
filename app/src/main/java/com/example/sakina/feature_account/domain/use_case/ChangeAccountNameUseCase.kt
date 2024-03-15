@@ -22,11 +22,11 @@ class ChangeAccountNameUseCase(private val repo:AccountRepository) {
             emit(Resource.Success(null))
 
         } catch (e: HttpException) {
-            emit(Resource.Error("Registration failed: $e", code = e.code()))
+            emit(Resource.Error("change name $e", code = e.code()))
         } catch (e: IOException) {
-            emit(Resource.Error("Registration failed: $e", code = 1))
+            emit(Resource.Error("change name: $e", code = 1))
         } catch (e: Exception) {
-            emit(Resource.Error("Registration failed: $e", code = 2))
+            emit(Resource.Error("change name: $e", code = 2))
         }
 
     }

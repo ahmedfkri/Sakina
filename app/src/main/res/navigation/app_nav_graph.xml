@@ -146,6 +146,9 @@
             <action
                 android:id="@+id/action_settingsFragment_to_changePasswordFragment"
                 app:destination="@id/changePasswordFragment" />
+            <action
+                android:id="@+id/action_settingsFragment_to_loginFragment"
+                app:destination="@id/loginFragment" />
         </fragment>
         <fragment
             android:id="@+id/profileFragment"
@@ -178,12 +181,12 @@
     </fragment>
     <fragment
         android:id="@+id/chatFragment"
-        android:name="com.example.sakina.feature_onboarding.ui.ChatFragment"
+        android:name="com.example.sakina.feature_chat.presentation.ui.ChatFragment"
         android:label="fragment_chat"
         tools:layout="@layout/fragment_chat" />
     <fragment
         android:id="@+id/chatWithSakinaFragment"
-        android:name="com.example.sakina.feature_onboarding.ui.ChatWithSakinaFragment"
+        android:name="com.example.sakina.feature_chat.presentation.ui.ChatWithSakinaFragment"
         android:label="fragment_chat_with_sakina"
         tools:layout="@layout/fragment_chat_with_sakina" >
         <action

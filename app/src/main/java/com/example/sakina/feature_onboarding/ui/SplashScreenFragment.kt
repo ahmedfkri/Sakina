@@ -59,55 +59,14 @@ class SplashScreenFragment : Fragment() {
             getRandomAdviceData(12)
             if (isOnBoardingFinished()) {
                 if (isUserSignedUp()) {
-                    lifecycleScope.launch {
-                        authViewModel.authenticateUser(
-                            AuthenticateRequest(
-                                MySharedPref.getString(USER_EMAIL, ""),
-                                MySharedPref.getString(USER_PASS, "")
-                            )
-                        ).collect { resource ->
-                            when (resource) {
-                                is Resource.Success -> {
-                                    Log.d("Splashsss", "onViewCreated: Resource.Success ")
-                                    val authResponse = resource.data
-                                    MySharedPref.putBool(LOGGED_IN, true)
-                                    MySharedPref.putString(
-                                        Constant.JWT_TOKEN,
-                                        authResponse?.jwtToken ?: ""
-                                    )
-                                    MySharedPref.putString(
-                                        Constant.REFRESH_TOKEN,
-                                        authResponse?.refreshToken ?: ""
-                                    )
-                                    findNavController().navigate(
-                                        R.id.action_splashScreenFragment_to_homeFragment
-                                    )
-                                }
-
-                                is Resource.Error -> {
-                                    Log.d("Splashsss", "onViewCreated: Resource.Error ")
-                                    when (resource.message.toString()) {
-                                        EMAIL_IS_NOT_CONFIRMED -> findNavController().navigate(
-                                            R.id.action_splashScreenFragment_to_confirmEmailFragment
-                                        )
-
-                                        EMAIL_OR_PASSWORD_IS_NOT_CORRECT -> findNavController().navigate(
-                                            R.id.action_splashScreenFragment_to_loginFragment
-                                        )
-
-                                        else -> Log.d(
-                                            "Splashsss",
-                                            "onViewCreated: Resource.Error  else ${resource.message.toString()} "
-                                        )
-
-                                    }
-                                    Log.d("Splashsss", resource.message.toString())
-                                }
-
-                                else -> {
-                                }
-                            }
-                        }
+                    if (isUserLoggedIn()) {
+                        findNavController().navigate(
+                            R.id.action_splashScreenFragment_to_homeFragment
+                        )
+                    } else {
+                        findNavController().navigate(
+                            R.id.action_splashScreenFragment_to_loginFragment
+                        )
                     }
                 } else {
                     findNavController().navigate(R.id.action_splashScreenFragment_to_signUpFragment)

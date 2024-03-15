@@ -15,6 +15,7 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.sakina.core.data.MySharedPref
 import com.example.sakina.core.util.Constant.ADVICE_BASE_URL
+import com.example.sakina.core.util.Constant.FIRST_NAME
 import com.example.sakina.core.util.Resource
 import com.example.sakina.databinding.FragmentHomeBinding
 import com.example.sakina.feature_advice.data.repository.AdviceRepositoryImpl
@@ -57,11 +58,16 @@ class HomeFragment : Fragment() {
         binding.cardHealthTip.setOnClickListener {
             openAdviceWebView()
         }
+        binding.txtUserName.text = MySharedPref.getString(FIRST_NAME, "User")
         binding.cardSkin.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_skinFragment)
         }
         binding.cardSkin.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_heartCheckingFragment)
+            findNavController().navigate(R.id.action_homeFragment_to_skinFragment)
+        }
+
+        binding.imgSakina.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_chatWithSakinaFragment)
         }
 
         showAdviceData()
