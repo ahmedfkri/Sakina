@@ -39,4 +39,11 @@
     <string name="sakina">Sakina</string>
     <string name="today">Today</string>
     <string name="how_are_you_feeling">How are You feeling?</string>
+    <string name="hypertension_question">Have Your ever been diagnosed with Hypertension ?</string>
+    <string name="hypotension_question">Have Your ever been diagnosed with Hypotension ?</string>
+    <string name="medical_information">Medical information</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="do_you_have_diabetes">Do you have diabetes ?</string>
+    <string name="are_you_smoker">Are you smoker ?</string>
 </resources>

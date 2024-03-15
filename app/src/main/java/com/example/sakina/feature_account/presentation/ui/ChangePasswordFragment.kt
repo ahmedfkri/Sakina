@@ -71,13 +71,3 @@ class ChangePasswordFragment : Fragment() {
 }
 
 
-                    }
-                    else ->{
-                        Log.d(Constant.TAG, "changePassword: else branch")
-                    }
-                }
-            }
-        }
-
-    }
-}
