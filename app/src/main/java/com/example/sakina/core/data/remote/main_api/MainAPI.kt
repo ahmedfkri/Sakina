@@ -38,6 +38,8 @@ interface MainAPI {
     @PUT("account/user")
     suspend fun changeName(@Body name:ChangeNameRequest):Response<Unit>
 
+
+    //MedicalInformation
     @PUT("medicalInfos")
     suspend fun personalInfo(@Body information:PersonalInfoRequest):Response<Unit>
 

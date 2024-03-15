@@ -52,7 +52,7 @@
         android:clickable="true"/>
 
     <LinearLayout
-        android:id="@+id/linear1"
+        android:id="@+id/personal_info_line"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
@@ -88,7 +88,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linear1"
+        app:layout_constraintTop_toBottomOf="@+id/personal_info_line"
         android:layout_marginTop="20dp"
         android:layout_marginStart="15dp"
         android:gravity="center_vertical"

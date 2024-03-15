@@ -3,7 +3,6 @@ package com.example.sakina.feature_account.domain.use_case
 import com.example.sakina.core.data.MySharedPref
 import com.example.sakina.core.util.Constant
 import com.example.sakina.core.util.Resource
-import com.example.sakina.feature_account.domain.model.ChangeNameRequest
 import com.example.sakina.feature_account.domain.model.PersonalInfoRequest
 import com.example.sakina.feature_account.domain.repositoy.AccountRepository
 import kotlinx.coroutines.flow.Flow

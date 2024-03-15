@@ -5,9 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.example.sakina.MainActivity
 import com.example.sakina.R
 import com.example.sakina.databinding.FragmentAccountBinding
 import com.example.sakina.feature_account.presentation.view_model.AccountViewModel
