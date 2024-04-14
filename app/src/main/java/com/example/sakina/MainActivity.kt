@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.example.sakina.core.data.MySharedPref
+import com.example.sakina.core.util.Constant.ADVICE
 import com.example.sakina.databinding.ActivityMainBinding
 import com.example.sakina.feature_account.data.repository.AccountRepo
 import com.example.sakina.feature_account.domain.use_case.AccountUseCase
@@ -50,10 +51,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
+
+
         Handler().postDelayed({
             navController = findNavController(R.id.fragmentContainerView)
             bottomNavigationView = binding.bottomNav
+
+            // Listen for destination changes to update bottom nav state
             navController.addOnDestinationChangedListener { _, destination, _ ->
+
                 when (destination.id) {
                     R.id.homeFragment, R.id.profileFragment, R.id.settingsFragment -> {
                         setupBottomBarNavigation()
@@ -61,9 +67,10 @@ class MainActivity : AppCompatActivity() {
 
                     else -> {
                         bottomNavigationView.isVisible = false
-                        binding.shadow.isVisible = false
                     }
                 }
+
+                updateBottomNavigationState(destination.id)
             }
 
 
@@ -87,16 +94,15 @@ class MainActivity : AppCompatActivity() {
             validateSignUpUseCase = validateSignUpUseCase
         )
         authViewModel = ViewModelProvider(
-            this,
-            AuthViewModelFactory(authUseCases)
+            this, AuthViewModelFactory(authUseCases)
         )[AuthViewModel::class.java]
 
 
-        val repo=AccountRepo()
-        val changeAccountNameUseCase=ChangeAccountNameUseCase(repo)
-        val changeAccountPasswordUseCase=ChangeAccountPasswordUseCase(repo)
-        val personalInfoUseCase=PersonalInfoUseCase(repo)
-        val getInfoUseCase=GetInformationUseCase(repo)
+        val repo = AccountRepo()
+        val changeAccountNameUseCase = ChangeAccountNameUseCase(repo)
+        val changeAccountPasswordUseCase = ChangeAccountPasswordUseCase(repo)
+        val personalInfoUseCase = PersonalInfoUseCase(repo)
+        val getInfoUseCase = GetInformationUseCase(repo)
         val accountUseCase = AccountUseCase(
             changeNameUseCase = changeAccountNameUseCase,
             changePasswordUseCase = changeAccountPasswordUseCase,
@@ -105,8 +111,7 @@ class MainActivity : AppCompatActivity() {
 
         )
         accountViewModel = ViewModelProvider(
-            this,
-            AccountViewModelFactory(accountUseCase)
+            this, AccountViewModelFactory(accountUseCase)
         )[AccountViewModel::class.java]
 
         //Advice
@@ -124,17 +129,21 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
-        MySharedPref.clearValue("advice")
+        MySharedPref.clearValue(ADVICE)
         super.onDestroy()
     }
 
+    override fun onBackPressed() {
+        if (navController.currentDestination?.id == R.id.profileFragment || navController.currentDestination?.id == R.id.settingsFragment) {
+            navController.navigate(R.id.homeFragment)
+        } else {
+            super.onBackPressed()
+        }
+    }
 
     private fun setupBottomBarNavigation() {
-
-        bottomNavigationView.menu.findItem(R.id.homeFragment).isChecked = true
         bottomNavigationView.visibility = View.VISIBLE
-        binding.shadow.isVisible = true
-        bottomNavigationView.selectedItemId
+        updateBottomNavigationState(navController.currentDestination?.id ?: R.id.homeFragment)
 
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
@@ -156,8 +165,23 @@ class MainActivity : AppCompatActivity() {
                 else -> false
             }
         }
-
     }
 
+    private fun updateBottomNavigationState(destinationId: Int) {
+        when (destinationId) {
+            R.id.homeFragment -> {
+                bottomNavigationView.menu.findItem(R.id.homeFragment)?.isChecked = true
+            }
 
+            R.id.settingsFragment -> {
+                bottomNavigationView.menu.findItem(R.id.settingsFragment)?.isChecked = true
+            }
+
+            R.id.profileFragment -> {
+                bottomNavigationView.menu.findItem(R.id.profileFragment)?.isChecked = true
+            }
+        }
+    }
 }
+
+

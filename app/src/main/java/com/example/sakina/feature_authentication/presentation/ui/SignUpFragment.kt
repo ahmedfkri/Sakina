@@ -98,8 +98,7 @@ class SignUpFragment : Fragment() {
             viewModel.registerUser(registerRequest).collect { resource ->
                 when (resource) {
                     is Resource.Success -> {
-                       //sendEmailConfirmation()
-                        //Toast.makeText(requireContext(), "done", Toast.LENGTH_SHORT).show()
+                        sendEmailConfirmation()
                         findNavController().navigate(R.id.action_signUpFragment_to_confirmEmailFragment)
                     }
 
@@ -128,15 +127,17 @@ class SignUpFragment : Fragment() {
     private fun sendEmailConfirmation() {
         val emailRequest = EmailRequest(registerRequest.email)
         lifecycleScope.launch {
-            viewModel.sendEmailConfirmation(emailRequest).collect{resouce->
-                when(resouce){
-                    is Resource.Success->{
+            viewModel.sendEmailConfirmation(emailRequest).collect { resouce ->
+                when (resouce) {
+                    is Resource.Success -> {
                         Log.d("EmailConfirmation", "sendEmailConfirmation: Done ")
                     }
-                    is Resource.Error->{
+
+                    is Resource.Error -> {
                         Log.d("EmailConfirmation", "sendEmailConfirmation: Error ")
                     }
-                    else->{
+
+                    else -> {
 
                     }
                 }

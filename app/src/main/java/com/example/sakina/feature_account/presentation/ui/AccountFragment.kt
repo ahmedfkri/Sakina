@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.sakina.MainActivity
 import com.example.sakina.R
 import com.example.sakina.core.data.MySharedPref
 import com.example.sakina.core.util.Constant.USER_EMAIL
@@ -21,6 +22,7 @@ class AccountFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        viewModel = (activity as MainActivity).accountViewModel
         binding = FragmentAccountBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -30,23 +32,23 @@ class AccountFragment : Fragment() {
 
 
         viewModel.currentName.observe(viewLifecycleOwner) { name ->
-            binding.nameTxt.text = name
+            binding.edtName.setText(name)
         }
-        viewModel.currentPass.observe(viewLifecycleOwner){ password->
-            binding.passwordTxt.text=password
+      /*  viewModel.currentPass.observe(viewLifecycleOwner) { password ->
+            binding.edtPass.setText(password)
         }
-
+        */
         binding.txtEmail.text = MySharedPref.getString(USER_EMAIL, "")
 
 
 
-        binding.nameImg.setOnClickListener {
+        binding.loName.setEndIconOnClickListener {
             findNavController().navigate(R.id.action_accountFragment_to_changeNameFragment)
         }
-        binding.passImg.setOnClickListener {
+        binding.loPassword.setEndIconOnClickListener {
             findNavController().navigate(R.id.action_accountFragment_to_changePasswordFragment)
         }
-        binding.reverse.setOnClickListener {
+        binding.btnBack.setOnClickListener {
             findNavController().navigate(R.id.action_accountFragment_to_settingsFragment)
         }
 

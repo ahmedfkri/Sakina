@@ -46,4 +46,25 @@
     <string name="no">No</string>
     <string name="do_you_have_diabetes">Do you have diabetes ?</string>
     <string name="are_you_smoker">Are you smoker ?</string>
+    <string name="personal_information">Personal Information</string>
+    <string name="save">Save</string>
+    <string name="height">Height</string>
+    <string name="weight">Weight</string>
+    <string name="age">Age</string>
+    <string name="diagnostic_history">Diagnostic history</string>
+    <string name="account">Account</string>
+    <string name="name">Name</string>
+    <string name="password">Password</string>
+    <string name="change_name">Change name</string>
+    <string name="confirm">Confirm</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+    <string name="change_password">Change password</string>
+    <string name="to_set_a_new_password">To set a new password, please enter \nyour current password</string>
+    <string name="current_password">Current password</string>
+    <string name="new_password">New password</string>
+    <string name="language">Language</string>
+    <string name="theme">Theme</string>
+    <string name="contact_us">Contact us</string>
+    <string name="log_out">Log out</string>
 </resources>

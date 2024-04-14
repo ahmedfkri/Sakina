@@ -14,6 +14,7 @@ import com.example.sakina.R
 import com.example.sakina.core.data.MySharedPref
 import com.example.sakina.core.util.Constant
 import com.example.sakina.core.util.Constant.EXP_ON
+import com.example.sakina.core.util.Constant.TAG
 import com.example.sakina.core.util.Constant.USER_EMAIL
 import com.example.sakina.core.util.Resource
 import com.example.sakina.databinding.FragmentLoginBinding
@@ -57,7 +58,7 @@ class LoginFragment : Fragment() {
             ).collect { resource ->
                 when (resource) {
                     is Resource.Success -> {
-                        Log.d("login", "onViewCreated: Resource.Success ")
+                        Log.d(TAG, "onViewCreated: Resource.Success ")
                         val authResponse = resource.data
                         MySharedPref.putBool(Constant.LOGGED_IN, true)
                         MySharedPref.putBool(Constant.SIGNED_UP, true)

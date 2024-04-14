@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.example.sakina.core.data.MySharedPref
+import com.example.sakina.core.util.Constant.FIRST_NAME
 import com.example.sakina.databinding.FragmentProfileBinding
 
 
@@ -20,17 +22,22 @@ class ProfileFragment : Fragment() {
         return binding.root
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.reverseBtn.setOnClickListener {
+
+        binding.btnBack.setOnClickListener {
             findNavController().navigate(R.id.action_profileFragment_to_homeFragment)
         }
-        
-        binding.personalInfoLine.setOnClickListener {
+
+        binding.txtUserName.text = MySharedPref.getString(FIRST_NAME, "")
+
+        binding.btnPersonalInfo.setOnClickListener {
             findNavController().navigate(R.id.action_profileFragment_to_personalInformationFragment)
 
+        }
 
-        binding.medicalInformBtn.setOnClickListener {
+        binding.btnMedicalInfo.setOnClickListener {
             findNavController().navigate(R.id.action_profileFragment_to_medicalInfoFragment)
 
         }

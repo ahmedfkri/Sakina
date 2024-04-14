@@ -11,7 +11,8 @@ import androidx.navigation.fragment.findNavController
 import com.example.sakina.MainActivity
 import com.example.sakina.R
 import com.example.sakina.core.data.MySharedPref
-import com.example.sakina.core.util.Constant
+import com.example.sakina.core.util.Constant.FIRST_NAME
+import com.example.sakina.core.util.Constant.LAST_NAME
 import com.example.sakina.core.util.Constant.TAG
 import com.example.sakina.core.util.Resource
 import com.example.sakina.databinding.FragmentChangeNameBinding
@@ -37,19 +38,26 @@ class ChangeNameFragment : Fragment() {
 
         viewModel = (activity as MainActivity).accountViewModel
 
+        showData()
+
 
         binding.confirmBtn.setOnClickListener {
 
-            val firstName = binding.fstNamTxt.text.toString()
-            val lastName = binding.lastNamTxt.text.toString()
+            val firstName = binding.edtFirstName.text.toString()
+            val lastName = binding.edtLastName.text.toString()
             val changeNameRequest = ChangeNameRequest(firstName, lastName)
             changeName(changeNameRequest)
 
 
         }
-        binding.reverseBtn.setOnClickListener {
+        binding.btnBack.setOnClickListener {
             findNavController().navigate(R.id.action_changeNameFragment_to_accountFragment)
         }
+    }
+
+    private fun showData() {
+        binding.edtFirstName.setText(MySharedPref.getString(FIRST_NAME,""))
+        binding.edtLastName.setText(MySharedPref.getString(LAST_NAME,""))
     }
 
     private fun changeName(request: ChangeNameRequest) {

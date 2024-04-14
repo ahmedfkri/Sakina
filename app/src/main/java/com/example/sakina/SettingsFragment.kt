@@ -11,9 +11,7 @@ import com.example.sakina.core.util.Constant.EXP_ON
 import com.example.sakina.core.util.Constant.JWT_TOKEN
 import com.example.sakina.core.util.Constant.LOGGED_IN
 import com.example.sakina.core.util.Constant.REFRESH_TOKEN
-import com.example.sakina.core.util.Constant.SIGNED_UP
 import com.example.sakina.core.util.Constant.USER_EMAIL
-import com.example.sakina.databinding.FragmentChangeNameBinding
 import com.example.sakina.databinding.FragmentSettingsBinding
 
 
@@ -30,14 +28,15 @@ class SettingsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.line1.setOnClickListener {
+
+        binding.loAccount.setOnClickListener {
             findNavController().navigate(R.id.action_settingsFragment_to_accountFragment)
         }
-        binding.reverse.setOnClickListener {
+        binding.btnBack.setOnClickListener {
             findNavController().navigate(R.id.action_settingsFragment_to_homeFragment)
         }
 
-        binding.line5.setOnClickListener {
+        binding.loLogout.setOnClickListener {
             MySharedPref.clearValue(USER_EMAIL)
             MySharedPref.clearValue(JWT_TOKEN)
             MySharedPref.clearValue(REFRESH_TOKEN)

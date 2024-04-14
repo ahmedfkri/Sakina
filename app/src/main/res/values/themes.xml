@@ -4,10 +4,8 @@
 
        <item name="colorPrimary">@color/appBlue</item>
         <item name="colorAccent">@color/appBlue</item>
-        <item name="colorOnPrimary">@color/appBlue</item>
-        <item name="colorSecondary">@color/appBlue</item>
         <item name="fontFamily">@font/poppins</item>
-        <item name="android:navigationBarColor">@color/appBlue</item>
+        <item name="android:navigationBarColor">@color/white</item>
 
     </style>
 

@@ -9,14 +9,14 @@ object Constant {
     const val SIGNED_UP = "signed_up"
     const val LOGGED_IN = "logged_up"
 
-    const val MAIN_API_BASE_URL = " https://d96f-197-43-37-77.ngrok-free.app/api/"
-    const val ADVICE_BASE_URL = " https://d96f-197-43-37-77.ngrok-free.app/api/advices/"
+    const val MAIN_API_BASE_URL = "https://258a-197-35-50-248.ngrok-free.app/api/"
+    const val ADVICE_BASE_URL = "https://258a-197-35-50-248.ngrok-free.app/api/"
 
     const val MODELS_API_BASE_URL = "https://5d6e-107-178-214-84.ngrok-free.app/"
 
 
-    const val REQUEST_CODE_PICK_IMAGE = 1000
-    const val REQUEST_CODE_PERMISSION = 1001
+    /*const val REQUEST_CODE_PICK_IMAGE = 1000
+    const val REQUEST_CODE_PERMISSION = 1001*/
 
 
     const val FIRST_NAME = "first name"
@@ -25,15 +25,15 @@ object Constant {
     const val NEW_PASSWORD = "new password"
     const val USER_MESSAGE_TYPE = 1
     const val BOT_MESSAGE_TYPE = 2
+    const val ADVICE = "advice"
 
-    const val Height = "height"
-    const val Weight = "weight"
-    const val Age = "age"
-    const val Diabetic = "diabetic"
-    const val Hypertension = "hypertension"
-    const val Hypotension = "hypotension"
-    const val Smoker = "smoker"
-
+    const val HEIGHT = "height"
+    const val WEIGHT = "weight"
+    const val AGE = "age"
+    const val DIABETIC = "diabetic"
+    const val HYPERTENSION = "hypertension"
+    const val HYPOTENSION = "hypotension"
+    const val IS_SMOKER = "smoker"
 
 
     //field Names

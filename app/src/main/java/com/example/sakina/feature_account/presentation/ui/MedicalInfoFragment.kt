@@ -1,4 +1,4 @@
-package com.example.sakina
+package com.example.sakina.feature_account.presentation.ui
 
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.sakina.MainActivity
+import com.example.sakina.R
 import com.example.sakina.core.util.Constant.TAG
 import com.example.sakina.core.util.Resource
 import com.example.sakina.databinding.FragmentMedicalInfoBinding
@@ -27,9 +29,11 @@ class MedicalInfoFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         viewModel = (activity as MainActivity).accountViewModel
+
+        getData()
 
         binding = FragmentMedicalInfoBinding.inflate(inflater, container, false)
         return binding.root
@@ -39,14 +43,14 @@ class MedicalInfoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         request = PersonalInfoRequest(
-            1, 2, 3, false,
+            null, null, null,
+            diabetic = false,
             hypertension = false,
             hypotension = false,
             smoker = false
         )
 
 
-        getData()
 
         binding.btnBack.setOnClickListener {
 
@@ -55,9 +59,14 @@ class MedicalInfoFragment : Fragment() {
                     when (resourse) {
                         is Resource.Success -> {
                             Log.d(TAG, "info: done")
-                            findNavController().navigate(R.id.action_medicalInfoFragment_to_profileFragment)
+                            findNavController().navigateUp()
                         }
-                        is Resource.Error -> Log.d(TAG, "info:" + resourse.message.toString())
+
+                        is Resource.Error -> {
+                            Log.d(TAG, "info:" + resourse.message.toString())
+                            findNavController().navigateUp()
+                        }
+
                         else -> Log.d(TAG, "info: loading")
                     }
                 }
@@ -162,22 +171,22 @@ class MedicalInfoFragment : Fragment() {
     private fun showData() {
 
         binding.apply {
-            if (request.diabetic) {
+            if (request.diabetic!!) {
                 toggleDiabetes.check(diabetesTrue.id)
             } else {
                 toggleDiabetes.check(diabetesFalse.id)
             }
-            if (request.hypertension) {
+            if (request.hypertension!!) {
                 toggleHypertension.check(hypertensionTrue.id)
             } else {
                 toggleHypertension.check(hypertensionFalse.id)
             }
-            if (request.hypotension) {
+            if (request.hypotension!!) {
                 toggleHypotension.check(hypotensionTrue.id)
             } else {
                 toggleHypotension.check(hypotensionFalse.id)
             }
-            if (request.smoker) {
+            if (request.smoker!!) {
                 toggleSmoker.check(smokerTrue.id)
             } else {
                 toggleSmoker.check(smokerFalse.id)

@@ -23,6 +23,8 @@ class RegisterUseCase(private val repository: AuthRepository) {
             MySharedPref.putBool(Constant.SIGNED_UP, true)
             MySharedPref.putString(Constant.USER_EMAIL, registerRequest.email)
             MySharedPref.putString(Constant.USER_PASS, registerRequest.password)
+            MySharedPref.putString(Constant.FIRST_NAME, registerRequest.firstName)
+            MySharedPref.putString(Constant.LAST_NAME, registerRequest.lastName)
             emit(Resource.Success(null))
 
         } catch (e: HttpException) {

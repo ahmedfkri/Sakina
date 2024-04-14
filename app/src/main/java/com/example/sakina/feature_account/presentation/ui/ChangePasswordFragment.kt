@@ -5,12 +5,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import com.example.sakina.MainActivity
-import com.example.sakina.R
-import com.example.sakina.core.util.Constant
 import com.example.sakina.core.util.Constant.TAG
 import com.example.sakina.core.util.Resource
 import com.example.sakina.databinding.FragmentChangePasswordBinding
@@ -37,9 +35,9 @@ class ChangePasswordFragment : Fragment() {
         viewModel = (activity as MainActivity).accountViewModel
 
         binding.confirmBtn.setOnClickListener {
-          
-            val oldPassword = binding.oldPassTxt.text.toString()
-            val newPassword = binding.newPassTxt.text.toString()
+
+            val oldPassword = binding.edtOldPass.text.toString()
+            val newPassword = binding.edtNewPass.text.toString()
             val changePasswordRequest = ChangePasswordRequest(oldPassword, newPassword)
             changePassword(changePasswordRequest)
 
@@ -52,11 +50,18 @@ class ChangePasswordFragment : Fragment() {
                 .collect { resource ->
                     when (resource) {
                         is Resource.Success -> {
-                            Log.d(TAG, "changePassword: "+ resource.message)
+                            Log.d(TAG, "changePassword: " + resource.message)
+                            Toast.makeText(
+                                requireContext(),
+                                "Password changed Successfully",
+                                Toast.LENGTH_SHORT
+                            ).show()
 
                         }
+
                         is Resource.Error -> {
-                            Log.d(TAG, "changePassword: "+ resource.message)
+                            Toast.makeText(requireContext(), resource.message, Toast.LENGTH_SHORT)
+                                .show()
                         }
 
                         else -> {

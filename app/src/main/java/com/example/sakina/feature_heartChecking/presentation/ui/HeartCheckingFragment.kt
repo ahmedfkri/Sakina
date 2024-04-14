@@ -1,7 +1,6 @@
 package com.example.sakina.feature_heartChecking.presentation.ui
 
 import android.app.Activity
-import android.app.AlertDialog
 import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
@@ -14,7 +13,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.net.toFile
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -28,11 +26,6 @@ import com.example.sakina.feature_heartChecking.domain.useCase.HeartCheckingVoic
 import com.example.sakina.feature_heartChecking.presentation.viewModel.HeartViewModel
 import com.example.sakina.feature_heartChecking.presentation.viewModel.HeartViewModelFactory
 import kotlinx.coroutines.launch
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.MultipartBody
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
 
 class HeartCheckingFragment : Fragment() {
@@ -73,7 +66,7 @@ class HeartCheckingFragment : Fragment() {
                     .show()
             }
         }
-        binding.reverse.setOnClickListener {
+        binding.btnBack.setOnClickListener {
             findNavController().navigate(R.id.action_heartCheckingFragment_to_homeFragment)
         }
     }
