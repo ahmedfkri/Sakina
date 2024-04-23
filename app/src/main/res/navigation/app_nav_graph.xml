@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/app_nav_graph"
-    app:startDestination="@id/splashScreenFragment">
+    app:startDestination="@id/medicineListFragment">
 
     <fragment
         android:id="@+id/splashScreenFragment"
@@ -269,6 +269,32 @@
         <action
             android:id="@+id/action_personalInformationFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/medicineListFragment"
+        android:name="com.example.sakina.feature_medicine.presentation.ui.MedicineListFragment"
+        android:label="fragment_medicine_list"
+        tools:layout="@layout/fragment_medicine_list" >
+        <action
+            android:id="@+id/action_medicineListFragment_to_addMedicineFragment"
+            app:destination="@id/addMedicineFragment" />
+        <action
+            android:id="@+id/action_medicineListFragment_to_medicineDetailsFragment"
+            app:destination="@id/medicineDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addMedicineFragment"
+        android:name="com.example.sakina.feature_medicine.presentation.ui.AddMedicineFragment"
+        android:label="fragment_add_medicine"
+        tools:layout="@layout/fragment_add_medicine" />
+    <fragment
+        android:id="@+id/medicineDetailsFragment"
+        android:name="com.example.sakina.feature_medicine.presentation.ui.MedicineDetailsFragment"
+        android:label="fragment_medicine_details"
+        tools:layout="@layout/fragment_medicine_details" >
+        <argument
+            android:name="medicineId"
+            app:argType="long" />
     </fragment>
 
 

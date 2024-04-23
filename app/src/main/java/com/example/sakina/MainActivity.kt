@@ -33,6 +33,14 @@ import com.example.sakina.feature_authentication.domain.use_case.SendEmailConfir
 import com.example.sakina.feature_authentication.domain.use_case.ValidateSignUpUseCase
 import com.example.sakina.feature_authentication.presentation.view_model.AuthViewModel
 import com.example.sakina.feature_authentication.presentation.view_model.AuthViewModelFactory
+import com.example.sakina.feature_medicine.data.local.MedicineDataBase
+import com.example.sakina.feature_medicine.data.repository.MedicineRepositoryImpl
+import com.example.sakina.feature_medicine.domain.use_case.DeleteMedicineUseCase
+import com.example.sakina.feature_medicine.domain.use_case.GetMedicineByIdUseCase
+import com.example.sakina.feature_medicine.domain.use_case.GetMedicinesUseCase
+import com.example.sakina.feature_medicine.domain.use_case.MedicineUseCases
+import com.example.sakina.feature_medicine.domain.use_case.UpsertMedicineUseCase
+import com.example.sakina.feature_medicine.presentation.view_model.MedicineViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -45,6 +53,8 @@ class MainActivity : AppCompatActivity() {
 
 
     lateinit var accountViewModel: AccountViewModel
+
+    lateinit var medicineViewModel: MedicineViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -124,6 +134,23 @@ class MainActivity : AppCompatActivity() {
         adviceViewModel = ViewModelProvider(
             this, AdviceViewModelFactory(getTotalAdvicesCountUseCase, getAdviceByIdUseCase)
         ).get(AdviceViewModel::class.java)
+
+
+        // Medicine
+
+        val repository = MedicineRepositoryImpl(MedicineDataBase(this))
+
+        val getMedicinesUseCase = GetMedicinesUseCase(repository)
+        val upsertMedicineUseCase = UpsertMedicineUseCase(repository)
+        val deleteMedicineUseCase = DeleteMedicineUseCase(repository)
+        val getMedicineByIdUseCase = GetMedicineByIdUseCase(repository)
+        val medicineUseCases = MedicineUseCases(
+            getMedicinesUseCase,
+            deleteMedicineUseCase,
+            upsertMedicineUseCase,
+            getMedicineByIdUseCase
+        )
+        medicineViewModel = MedicineViewModel(medicineUseCases)
 
 
     }
