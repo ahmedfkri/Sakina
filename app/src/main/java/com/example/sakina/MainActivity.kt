@@ -3,6 +3,7 @@ package com.example.sakina
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
@@ -10,6 +11,7 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.example.sakina.core.data.MySharedPref
 import com.example.sakina.core.util.Constant.ADVICE
+import com.example.sakina.core.util.Constant.TAG
 import com.example.sakina.databinding.ActivityMainBinding
 import com.example.sakina.feature_account.data.repository.AccountRepo
 import com.example.sakina.feature_account.domain.use_case.AccountUseCase
@@ -33,6 +35,16 @@ import com.example.sakina.feature_authentication.domain.use_case.SendEmailConfir
 import com.example.sakina.feature_authentication.domain.use_case.ValidateSignUpUseCase
 import com.example.sakina.feature_authentication.presentation.view_model.AuthViewModel
 import com.example.sakina.feature_authentication.presentation.view_model.AuthViewModelFactory
+import com.example.sakina.feature_medicine.data.local.MedicineDataBase
+import com.example.sakina.feature_medicine.data.repository.MedicineRepositoryImpl
+import com.example.sakina.feature_medicine.domain.use_case.DeleteMedicineUseCase
+import com.example.sakina.feature_medicine.domain.use_case.GetLastMedicineUseCase
+import com.example.sakina.feature_medicine.domain.use_case.GetMedicineByIdUseCase
+import com.example.sakina.feature_medicine.domain.use_case.GetMedicinesUseCase
+import com.example.sakina.feature_medicine.domain.use_case.MedicineUseCases
+import com.example.sakina.feature_medicine.domain.use_case.SetRemindersUseCase
+import com.example.sakina.feature_medicine.domain.use_case.UpsertMedicineUseCase
+import com.example.sakina.feature_medicine.presentation.view_model.MedicineViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -45,6 +57,8 @@ class MainActivity : AppCompatActivity() {
 
 
     lateinit var accountViewModel: AccountViewModel
+
+    lateinit var medicineViewModel: MedicineViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -61,7 +75,7 @@ class MainActivity : AppCompatActivity() {
             navController.addOnDestinationChangedListener { _, destination, _ ->
 
                 when (destination.id) {
-                    R.id.homeFragment, R.id.profileFragment, R.id.settingsFragment -> {
+                    R.id.homeFragment, R.id.profileFragment, R.id.settingsFragment, R.id.medicineListFragment -> {
                         setupBottomBarNavigation()
                     }
 
@@ -73,8 +87,15 @@ class MainActivity : AppCompatActivity() {
                 updateBottomNavigationState(destination.id)
             }
 
+            val fragmentArgs = intent?.getBundleExtra("medicineId")
+            if (fragmentArgs != null) {
+                val medicineId = fragmentArgs.getLong("medicineId", 0)
+                Log.d(TAG, "Opening MedicineDetailsFragment with medicineId: $medicineId")
+                navController.navigate(R.id.medicineDetailsFragment, fragmentArgs)
+            }
 
-        }, 1)
+
+        }, 100)
 
 
         //Authentication
@@ -123,7 +144,28 @@ class MainActivity : AppCompatActivity() {
 
         adviceViewModel = ViewModelProvider(
             this, AdviceViewModelFactory(getTotalAdvicesCountUseCase, getAdviceByIdUseCase)
-        ).get(AdviceViewModel::class.java)
+        )[AdviceViewModel::class.java]
+
+
+        // Medicine
+
+        val repository = MedicineRepositoryImpl(MedicineDataBase(this))
+
+        val getMedicinesUseCase = GetMedicinesUseCase(repository)
+        val upsertMedicineUseCase = UpsertMedicineUseCase(repository)
+        val deleteMedicineUseCase = DeleteMedicineUseCase(repository)
+        val getMedicineByIdUseCase = GetMedicineByIdUseCase(repository)
+        val getLastMedicineUseCase = GetLastMedicineUseCase(repository)
+        val setRemindersUseCase = SetRemindersUseCase(this)
+        val medicineUseCases = MedicineUseCases(
+            getMedicinesUseCase,
+            deleteMedicineUseCase,
+            upsertMedicineUseCase,
+            getMedicineByIdUseCase,
+            getLastMedicineUseCase,
+            setRemindersUseCase
+        )
+        medicineViewModel = MedicineViewModel(medicineUseCases)
 
 
     }
@@ -149,6 +191,11 @@ class MainActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.homeFragment -> {
                     navController.navigate(R.id.homeFragment)
+                    true
+                }
+
+                R.id.medicineListFragment -> {
+                    navController.navigate(R.id.medicineListFragment)
                     true
                 }
 

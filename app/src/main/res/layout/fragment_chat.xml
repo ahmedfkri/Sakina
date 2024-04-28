@@ -24,6 +24,7 @@
         android:text="@string/sakina"
         android:textSize="16sp"
         android:textStyle="bold"
+        android:textColor="@color/mainTextColor"
         app:layout_constraintStart_toEndOf="@id/imgAvatar"
         app:layout_constraintTop_toTopOf="@id/imgAvatar"
         app:layout_constraintBottom_toBottomOf="@id/imgAvatar"/>
