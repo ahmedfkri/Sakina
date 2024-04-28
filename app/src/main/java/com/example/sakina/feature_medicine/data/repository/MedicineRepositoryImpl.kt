@@ -23,5 +23,9 @@ class MedicineRepositoryImpl(private val db: MedicineDataBase) : MedicineReposit
         return db.getDao().getMedicineById(medicineId)
     }
 
+    override suspend fun getLastMedicine(): Medicine? {
+        return db.getDao().getLastMedicine()
+    }
+
 
 }

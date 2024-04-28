@@ -5,7 +5,6 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import androidx.room.Update
 import com.example.sakina.feature_medicine.domain.model.Medicine
 import kotlinx.coroutines.flow.Flow
 
@@ -23,5 +22,8 @@ interface MedicineDao {
 
     @Query("SELECT * FROM medicines WHERE id= :medicineId")
     suspend fun getMedicineById(medicineId: Long): Medicine?
+
+    @Query("SELECT * FROM medicines ORDER BY id DESC LIMIT 1")
+    suspend fun getLastMedicine(): Medicine?
 
 }

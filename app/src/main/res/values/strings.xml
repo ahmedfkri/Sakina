@@ -78,4 +78,6 @@
     <string name="details">Details</string>
     <string name="taken">Taken</string>
     <string name="skipped">Skipped</string>
+    <string name="medicine">Medicine</string>
+    <string name="last_time_updated">Last time updated :</string>
 </resources>

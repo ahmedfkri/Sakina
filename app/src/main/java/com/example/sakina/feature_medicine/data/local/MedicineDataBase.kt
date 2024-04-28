@@ -9,7 +9,7 @@ import com.example.sakina.feature_medicine.domain.model.Medicine
 
 
 @Database(
-    entities = [Medicine::class], version = 2
+    entities = [Medicine::class], version = 3
 )
 @TypeConverters(Converters::class)
 abstract class MedicineDataBase : RoomDatabase() {

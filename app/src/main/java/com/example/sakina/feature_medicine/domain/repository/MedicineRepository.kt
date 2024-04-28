@@ -13,6 +13,8 @@ interface MedicineRepository {
 
     suspend fun getMedicineById(medicineId: Long): Medicine?
 
+    suspend fun getLastMedicine(): Medicine?
+
 
 
 }

@@ -9,7 +9,9 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.sakina.MainActivity
+import com.example.sakina.R
 import com.example.sakina.core.util.Constant.PILL_1
 import com.example.sakina.core.util.Constant.PILL_2
 import com.example.sakina.core.util.Constant.TAG
@@ -18,6 +20,7 @@ import com.example.sakina.feature_medicine.domain.model.InvalidMedicineException
 import com.example.sakina.feature_medicine.domain.model.Medicine
 import com.example.sakina.feature_medicine.presentation.view_model.MedicineViewModel
 import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import kotlinx.coroutines.launch
@@ -28,9 +31,14 @@ class AddMedicineFragment : Fragment() {
 
     private lateinit var binding: FragmentAddMedicineBinding
     private lateinit var medicineViewModel: MedicineViewModel
+
+    lateinit var timeLayouts: List<TextInputLayout>
+
+    var selectedTimes = mutableListOf<Long>()
+
     private var imageId = PILL_1
     private var currentInputNumber = 1
-//    lateinit var picker: MaterialTimePicker
+
     private val sdf = SimpleDateFormat("hh:mm a", Locale.getDefault())
 
     override fun onCreateView(
@@ -46,12 +54,7 @@ class AddMedicineFragment : Fragment() {
 
         medicineViewModel = (activity as MainActivity).medicineViewModel
 
-        val picker = MaterialTimePicker.Builder()
-            .setTimeFormat(TimeFormat.CLOCK_12H)
-            .setHour(12)
-            .setMinute(0)
-            .setTitleText("Select reminder time")
-            .build()
+        val picker = buildTimePicker()
 
         var selectedEditText: TextInputEditText? = null
 
@@ -70,13 +73,34 @@ class AddMedicineFragment : Fragment() {
             }
         }
 
+
+        timeLayouts = listOf(
+            binding.loTime1,
+            binding.loTime2,
+            binding.loTime3,
+            binding.loTime4,
+            binding.loTime5
+        )
+
+
+
+        timeLayouts.forEach { lo ->
+            lo.setEndIconOnClickListener {
+                lo.isVisible = false
+                --currentInputNumber
+                binding.btnAddTime.isVisible = currentInputNumber <= timeLayouts.size
+            }
+        }
+
         picker.addOnPositiveButtonClickListener {
             selectedEditText?.let { editText ->
                 val hour = picker.hour
                 val minute = picker.minute
-                val selectedTime = Calendar.getInstance()
-                selectedTime.set(Calendar.HOUR_OF_DAY, hour)
-                selectedTime.set(Calendar.MINUTE, minute)
+                val selectedTime = Calendar.getInstance(TimeZone.getDefault())
+                selectedTime[Calendar.HOUR_OF_DAY] = hour
+                selectedTime[Calendar.MINUTE] = minute
+                selectedTimes.add(selectedTime.timeInMillis)
+                Log.d(TAG, "onViewCreated: " + selectedTime.time)
                 editText.setText(sdf.format(selectedTime.time))
             }
         }
@@ -91,22 +115,18 @@ class AddMedicineFragment : Fragment() {
 
 
 
+
         binding.btnConfirm.setOnClickListener {
             try {
                 val name = binding.edtMedicineName.text.toString()
                 val dosage = binding.edtDosage.text.toString().toInt()
 
-                val reminderTimes = timeEditTextList
-                    .filter { it.text!!.isNotBlank() }
-                    .map { editText ->
-                        parseTime(editText.text.toString())
-                    }
-
                 val medicine = Medicine(
                     name = name,
                     dosage = dosage,
                     isTaken = false,
-                    reminderTimes = reminderTimes,
+                    reminderTimes = selectedTimes,
+                    lastTimeUpdated = null,
                     imageId = imageId
                 )
 
@@ -114,11 +134,18 @@ class AddMedicineFragment : Fragment() {
                     medicineViewModel.upsertMedicine(medicine)
                     Toast.makeText(requireContext(), "Added Successfully", Toast.LENGTH_SHORT)
                         .show()
+                    if (selectedTimes.isNotEmpty()) {
+                        val insertedMedicine = medicineViewModel.getLastMedicine()
+                        medicineViewModel.setReminders(insertedMedicine!!)
+                        findNavController().navigateUp()
+                    }
+
+
                 }
             } catch (e: InvalidMedicineException) {
                 Toast.makeText(activity, e.message, Toast.LENGTH_SHORT).show()
             } catch (e: Exception) {
-                Toast.makeText(activity, "Unexpected error occurred", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, e.message, Toast.LENGTH_SHORT).show()
                 e.printStackTrace()
             }
         }
@@ -128,29 +155,26 @@ class AddMedicineFragment : Fragment() {
         }
 
         binding.btnAddTime.setOnClickListener {
-            showNextTextInput()
+            checkCurrentInputNumber()
         }
     }
 
 
-    private fun parseTime(timeText: String): Date {
-        return sdf.parse(timeText) ?: throw IllegalArgumentException("Invalid time format")
-    }
+    private fun buildTimePicker() = MaterialTimePicker.Builder()
+        .setTimeFormat(TimeFormat.CLOCK_12H)
+        .setHour(12)
+        .setMinute(0)
+        .setTitleText("Select reminder time")
+        .build()
 
-    private fun showNextTextInput() {
-        val timeLayoutList = listOf(
-            binding.loTime2,
-            binding.loTime3,
-            binding.loTime4,
-            binding.loTime5
-        )
 
-        if (currentInputNumber < timeLayoutList.size + 1) {
-            timeLayoutList[currentInputNumber - 1].isVisible = true
+    private fun checkCurrentInputNumber() {
+        if (currentInputNumber < timeLayouts.size + 1) {
+            timeLayouts[currentInputNumber].isVisible = true
             currentInputNumber++
         }
 
-        if (currentInputNumber == timeLayoutList.size + 1) {
+        if (currentInputNumber == timeLayouts.size) {
             binding.btnAddTime.isVisible = false
         }
     }

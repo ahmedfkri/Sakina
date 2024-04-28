@@ -55,20 +55,29 @@ class MedicineDetailsFragment : Fragment() {
                     else -> R.drawable.ic_pill2
                 }
 
+                val lastTimeUpdated = if (medicine!!.lastTimeUpdated != null) {
+                    DateTime().getCurrentDateTime(medicine!!.lastTimeUpdated!!)
+                } else {
+                    " "
+                }
+
+
+
                 binding.apply {
                     txtMedicineName.text = medicine?.name
-                    txtDate.text = DateTime().getCurrentDateTime(System.currentTimeMillis())
+                    txtDate.text = DateTime().getCurrentDate(System.currentTimeMillis())
                     if (medicine!!.isTaken) {
                         toggleIsTaken.check(btnTaken.id)
                     } else {
                         toggleIsTaken.check(btnSkipped.id)
                     }
+                    txtLastDate.text = lastTimeUpdated
 
                     Glide.with(requireActivity()).load(imageId).centerCrop().into(imgMedicine)
 
                 }
             } catch (e: Exception) {
-                Toast.makeText(requireContext(), e.message, Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), e.message.toString(), Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -77,7 +86,7 @@ class MedicineDetailsFragment : Fragment() {
         }
 
 
-        binding.toggleIsTaken.addOnButtonCheckedListener { group, checkedId, isChecked ->
+        binding.toggleIsTaken.addOnButtonCheckedListener { _, checkedId, isChecked ->
             if (isChecked) {
                 when (checkedId) {
                     binding.btnSkipped.id -> isTaken = false
@@ -95,11 +104,17 @@ class MedicineDetailsFragment : Fragment() {
                 try {
                     medicineViewModel.upsertMedicine(
                         Medicine(
-                            medicine!!.id, medicine!!.name, medicine!!.dosage,
-                            isTaken = isTaken, imageId = 1, reminderTimes = null
+                            medicine!!.id,
+                            medicine!!.name,
+                            medicine!!.dosage,
+                            isTaken = isTaken,
+                            imageId = medicine!!.imageId,
+                            reminderTimes = medicine!!.reminderTimes,
+                            lastTimeUpdated = System.currentTimeMillis()
                         )
                     )
                     Log.d(TAG, medicine.toString())
+                    findNavController().navigateUp()
                 } catch (e: Exception) {
                     Toast.makeText(requireContext(), e.message, Toast.LENGTH_SHORT).show()
                 }

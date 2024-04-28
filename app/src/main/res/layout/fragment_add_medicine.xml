@@ -16,19 +16,19 @@
         app:layout_constraintStart_toStartOf="@id/glStart"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <TextView
         android:id="@+id/txtAddMedicine"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="21dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
         android:text="@string/add_medicine"
-        android:textColor="@color/black"
+        android:textColor="@color/mainTextColor"
         android:textSize="23sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/btnBack"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/loMedicineName"
@@ -73,7 +73,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/reminders"
-        android:textColor="@color/black"
+        android:textColor="@color/mainTextColor"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@id/glStart"

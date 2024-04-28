@@ -26,4 +26,13 @@ class MedicineViewModel(
         return medicineUseCases.getMedicineById(medicineId)
     }
 
+    fun setReminders(medicine: Medicine) {
+        return medicineUseCases.setRemindersUseCase(medicine)
+    }
+
+    suspend fun getLastMedicine(): Medicine? {
+        return medicineUseCases.getLastMedicineUseCase()
+    }
+
+
 }

@@ -8,8 +8,9 @@
     <color name="appWhite">#F7F8FE</color>
     <color name="darkGray">#6B6B6B</color>
     <color name="lightBlue">#95AAAD</color>
-    <color name="mainTextColor">#FF000000</color>
-    <color name="windowBackground">#FFFFFFFF</color>
-    <color name="navigationBarBackground">#FFFFFFFF</color>
+    <color name="mainTextColor">#0165FC</color>
+    <color name="windowBackground">#0F0F0F</color>
+    <color name="navigationBarBackground">#0F0F0F</color>
+
 
 </resources>
