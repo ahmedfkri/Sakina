@@ -53,6 +53,8 @@ class MainActivity : AppCompatActivity() {
 
 
 
+
+
         Handler().postDelayed({
             navController = findNavController(R.id.fragmentContainerView)
             bottomNavigationView = binding.bottomNav

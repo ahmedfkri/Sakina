@@ -9,6 +9,17 @@ object MySharedPref {
     private const val MODE = Context.MODE_PRIVATE
     private lateinit var preferences: SharedPreferences
 
+
+    // Save the selected language
+    fun putLanguage(language: String) {
+        preferences.edit().putString("language", language).apply()
+    }
+
+    // Retrieve the selected language
+    fun getLanguage(default: String): String {
+        return preferences.getString("language", default) ?: default
+    }
+
     fun init(context: Context) {
         preferences = context.getSharedPreferences(NAME, MODE)
     }
