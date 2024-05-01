@@ -5,12 +5,12 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <uses-feature android:name="android.permission.WRITE_APN_SETTINGS" />
-
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
 
     <uses-permission android:name="android.permission.CAMERA" />
+
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
@@ -41,6 +41,10 @@
         <receiver
             android:name=".core.util.ReminderBroadcastReceiver"
             android:enabled="true" />
+        <activity
+            android:name=".SettingsViewActivity"
+            android:exported="false"
+            android:label="@string/title_activity_settings_view" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

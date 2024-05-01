@@ -8,7 +8,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.sakina.MainActivity
+import com.example.sakina.R
+import com.example.sakina.core.data.MySharedPref
+import com.example.sakina.core.util.Constant
 import com.example.sakina.core.util.Constant.TAG
 import com.example.sakina.core.util.Resource
 import com.example.sakina.databinding.FragmentChangePasswordBinding
@@ -34,13 +38,18 @@ class ChangePasswordFragment : Fragment() {
 
         viewModel = (activity as MainActivity).accountViewModel
 
+        showData()
+
         binding.confirmBtn.setOnClickListener {
 
             val oldPassword = binding.edtOldPass.text.toString()
             val newPassword = binding.edtNewPass.text.toString()
             val changePasswordRequest = ChangePasswordRequest(oldPassword, newPassword)
             changePassword(changePasswordRequest)
-
+            findNavController().navigate(R.id.action_changePasswordFragment_to_accountFragment)
+        }
+        binding.btnBack.setOnClickListener {
+            findNavController().navigate(R.id.action_changePasswordFragment_to_accountFragment)
         }
     }
 
@@ -56,7 +65,6 @@ class ChangePasswordFragment : Fragment() {
                                 "Password changed Successfully",
                                 Toast.LENGTH_SHORT
                             ).show()
-
                         }
 
                         is Resource.Error -> {
@@ -65,12 +73,15 @@ class ChangePasswordFragment : Fragment() {
                         }
 
                         else -> {
-
+                            Log.d(TAG, "changePassword: else branch")
                         }
                     }
 
                 }
         }
+    }
+    private fun showData() {
+        binding.edtOldPass.setText(MySharedPref.getString(Constant.CURRENT_PASSWORD,""))
     }
 
 }

@@ -9,8 +9,8 @@ object Constant {
     const val SIGNED_UP = "signed_up"
     const val LOGGED_IN = "logged_up"
 
-    const val MAIN_API_BASE_URL = "https://258a-197-35-50-248.ngrok-free.app/api/"
-    const val ADVICE_BASE_URL = "https://258a-197-35-50-248.ngrok-free.app/api/"
+    const val MAIN_API_BASE_URL = " https://1c2a-197-43-7-186.ngrok-free.app/api/"
+    const val ADVICE_BASE_URL = " https://1c2a-197-43-7-186.ngrok-free.app/api/"
 
     const val MODELS_API_BASE_URL = "https://5d6e-107-178-214-84.ngrok-free.app/"
 

@@ -47,7 +47,7 @@ class ChangeNameFragment : Fragment() {
             val lastName = binding.edtLastName.text.toString()
             val changeNameRequest = ChangeNameRequest(firstName, lastName)
             changeName(changeNameRequest)
-
+            findNavController().navigate(R.id.action_changeNameFragment_to_accountFragment)
 
         }
         binding.btnBack.setOnClickListener {

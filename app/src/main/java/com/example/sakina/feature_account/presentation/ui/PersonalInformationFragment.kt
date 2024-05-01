@@ -100,24 +100,6 @@ class PersonalInformationFragment : Fragment() {
             }
         }
     }
-
-   /* private fun getData() {
-        lifecycleScope.launch {
-            viewModel.getInformation().collect { resourse ->
-                when (resourse) {
-                    is Resource.Success -> {
-                        Log.d(Constant.TAG, "get: done")
-                        request = resourse.data!!
-                        showData()
-                    }
-
-                    is Resource.Error -> Log.d(Constant.TAG, "get:" + resourse.message.toString())
-                    else -> Log.d(Constant.TAG, "get: loading")
-                }
-            }
-        }
-    }*/
-
     private fun showData() {
 
         binding.apply {
