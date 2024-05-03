@@ -38,15 +38,21 @@ class ChangePasswordFragment : Fragment() {
 
         viewModel = (activity as MainActivity).accountViewModel
 
-        showData()
 
         binding.confirmBtn.setOnClickListener {
 
             val oldPassword = binding.edtOldPass.text.toString()
             val newPassword = binding.edtNewPass.text.toString()
-            val changePasswordRequest = ChangePasswordRequest(oldPassword, newPassword)
-            changePassword(changePasswordRequest)
-            findNavController().navigate(R.id.action_changePasswordFragment_to_accountFragment)
+
+            binding.loNewPass.error = validatePassword(newPassword)
+
+            if (validatePassword(newPassword) == null) {
+                val changePasswordRequest = ChangePasswordRequest(oldPassword, newPassword)
+                changePassword(changePasswordRequest)
+            } else {
+                Toast.makeText(requireContext(), "Error", Toast.LENGTH_SHORT).show()
+            }
+
         }
         binding.btnBack.setOnClickListener {
             findNavController().navigate(R.id.action_changePasswordFragment_to_accountFragment)
@@ -65,6 +71,8 @@ class ChangePasswordFragment : Fragment() {
                                 "Password changed Successfully",
                                 Toast.LENGTH_SHORT
                             ).show()
+
+                            findNavController().navigateUp()
                         }
 
                         is Resource.Error -> {
@@ -80,9 +88,20 @@ class ChangePasswordFragment : Fragment() {
                 }
         }
     }
-    private fun showData() {
-        binding.edtOldPass.setText(MySharedPref.getString(Constant.CURRENT_PASSWORD,""))
+
+    private fun validatePassword(password: String): String? {
+        return if (password.isEmpty()) Constant.EMPTY_PASS_ERROR
+        else if (!isPasswordValid(password)) Constant.WRONG_PASS_FORM_ERROR
+        else null
     }
+
+
+    private fun isPasswordValid(password: String): Boolean {
+        val pattern = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}\$"
+        return password.matches(pattern.toRegex())
+    }
+
+
 
 }
 

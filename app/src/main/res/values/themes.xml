@@ -3,9 +3,11 @@
     <style name="Base.Theme.Sakina" parent="Theme.Material3.DayNight.NoActionBar">
 
         <item name="colorPrimary">@color/appBlue</item>
-        <item name="android:windowBackground">@color/white</item>
+<!--
+        <item name="android:windowBackground">@color/appBlue</item>
+-->
         <item name="colorAccent">@color/appBlue</item>
-        <item name="fontFamily">@font/poppins</item>
+        <item name="fontFamily">@font/roboto_family</item>
         <item name="android:navigationBarColor">@color/white</item>
 
     </style>

@@ -4,10 +4,12 @@
         <item name="colorPrimary">@color/appBlue</item>
         <item name="colorAccent">@color/appBlue</item>
         <item name="colorOnBackground">@color/appBlue</item>
-        <item name="fontFamily">@font/poppins</item>
+        <item name="fontFamily">@font/roboto_family</item>
         <item name="android:navigationBarColor">@color/navigationBarBackground</item>
         <item name="colorOnPrimary">@color/appWhite</item>
+<!--
         <item name="android:windowBackground">@color/windowBackground</item>
+-->
     </style>
 
     <style name="Base.Widget.Material3.BottomNavigationView.myNav" >

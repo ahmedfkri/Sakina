@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+
     <uses-feature android:name="android.permission.WRITE_APN_SETTINGS" />
     <uses-feature
         android:name="android.hardware.camera"
@@ -41,10 +42,10 @@
         <receiver
             android:name=".core.util.ReminderBroadcastReceiver"
             android:enabled="true" />
-        <activity
+        <!--<activity
             android:name=".SettingsViewActivity"
             android:exported="false"
-            android:label="@string/title_activity_settings_view" />
+            android:label="@string/title_activity_settings_view" />-->
         <activity
             android:name=".MainActivity"
             android:exported="true">

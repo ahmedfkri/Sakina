@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.bumptech.glide.Glide
 import com.example.sakina.MainActivity
 import com.example.sakina.R
 import com.example.sakina.core.util.Constant.PILL_1
@@ -33,7 +32,7 @@ class MedicineDetailsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentMedicineDetailsBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -73,7 +72,7 @@ class MedicineDetailsFragment : Fragment() {
                     }
                     txtLastDate.text = lastTimeUpdated
 
-                    Glide.with(requireActivity()).load(imageId).centerCrop().into(imgMedicine)
+                    binding.imgMedicine.setImageResource(imageId)
 
                 }
             } catch (e: Exception) {

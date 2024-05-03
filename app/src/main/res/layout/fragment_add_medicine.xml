@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/windowBackground"
     tools:context=".feature_medicine.presentation.ui.AddMedicineFragment">
 
     <ImageView
@@ -11,10 +12,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
+        app:tint="@color/mainTextColor"
         android:layout_marginTop="24dp"
         android:src="@drawable/left_arrow"
         app:layout_constraintStart_toStartOf="@id/glStart"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:importantForAccessibility="no" />
 
 
     <TextView
@@ -24,8 +27,9 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
         android:text="@string/add_medicine"
+        app:layout_constraintBottom_toBottomOf="@id/btnBack"
         android:textColor="@color/mainTextColor"
-        android:textSize="23sp"
+        android:textSize="@dimen/dim_head_text"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/btnBack"
         app:layout_constraintTop_toTopOf="parent" />
@@ -232,8 +236,8 @@
         android:layout_marginBottom="48dp"
         android:paddingVertical="8dp"
         android:text="@string/confirm"
-        android:textSize="22sp"
-        android:textStyle="bold"
+        android:textSize="@dimen/dim_text_btn"
+        android:background="@drawable/btn_main_shape"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/glEnd"
         app:layout_constraintStart_toStartOf="@id/glStart" />
@@ -244,13 +248,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="16dp" />
+        app:layout_constraintGuide_begin="@dimen/margin_hor" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/glEnd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="16dp" />
+        app:layout_constraintGuide_end="@dimen/margin_hor" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

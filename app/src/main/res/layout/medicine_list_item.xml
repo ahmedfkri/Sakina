@@ -11,16 +11,17 @@
         android:id="@+id/imgMedicine"
         android:layout_width="56dp"
         android:layout_height="56dp"
-        android:layout_marginStart="24dp"
-        android:src="@drawable/ic_launcher_background" />
+        android:src="@drawable/ic_launcher_background"
+        android:importantForAccessibility="no" />
 
     <TextView
         android:id="@+id/txtMedicineName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="8dp"
         android:layout_weight="3"
-        android:textColor="@color/black"
+        android:textAlignment="viewStart"
+        android:textColor="@color/mainTextColor"
         android:textSize="18sp"
         android:textStyle="bold"
         tools:text="Melga" />
@@ -30,7 +31,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|center_vertical"
         android:layout_weight="1"
-        android:src="@drawable/arrow_forward_ios_24" />
+        android:src="@drawable/ic_right_arrow"
+        android:importantForAccessibility="no" />
 
 
 </LinearLayout>

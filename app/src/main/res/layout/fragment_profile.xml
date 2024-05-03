@@ -4,16 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/windowBackground"
     tools:context=".ProfileFragment">
 
     <TextView
         android:id="@+id/profile_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="@dimen/dim_head_text_margin_start"
         android:text="@string/profile"
-        android:textColor="@color/black"
-        android:textSize="22sp"
+        android:textColor="@color/mainTextColor"
+        android:textSize="@dimen/dim_head_text"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/btnBack"
         app:layout_constraintStart_toEndOf="@id/btnBack"
@@ -21,9 +22,10 @@
 
     <ImageView
         android:id="@+id/profile_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_marginTop="80dp"
+        android:importantForAccessibility="no"
         android:src="@drawable/ic_profile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="7dp"
         android:text="Username"
-        android:textColor="@color/black"
+        android:textColor="@color/mainTextColor"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -47,10 +49,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:background="@color/white"
         android:src="@drawable/left_arrow"
         app:layout_constraintStart_toStartOf="@id/glStart"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/mainTextColor" />
 
     <LinearLayout
         android:id="@+id/btn_personal_info"
@@ -58,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
         android:background="@drawable/bottom_nav_round_corners"
-        android:backgroundTint="@color/appWhite"
+        android:backgroundTint="@color/loMenuColor"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingVertical="16dp"
@@ -70,31 +72,43 @@
             android:id="@+id/profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingStart="10dp"
-            android:src="@drawable/ic_personal" />
+            android:layout_marginStart="24dp"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_personal"
+            app:tint="@color/smallIconColor" />
 
         <TextView
             android:id="@+id/txt_personal_info"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginStart="24dp"
-            android:gravity="center"
-            android:text="Personal information"
-            android:textColor="@color/black"
+            android:layout_weight="1"
+            android:text="@string/personal_information"
+            android:textColor="@color/mainTextColor"
             android:textSize="20sp" />
+
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="end"
+            android:gravity="center_vertical"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_right_arrow" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/btnMedicalInfo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/bottom_nav_round_corners"
-        android:backgroundTint="@color/appWhite"
+        android:backgroundTint="@color/loMenuColor"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingVertical="16dp"
         app:layout_constraintEnd_toEndOf="@id/glEnd"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/glStart"
         app:layout_constraintTop_toBottomOf="@+id/btn_personal_info">
 
@@ -102,20 +116,32 @@
             android:id="@+id/medical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="24dp"
+            android:importantForAccessibility="no"
             android:src="@drawable/ic_medical_info"
             app:layout_constraintEnd_toStartOf="@id/profile_icon"
-            app:layout_constraintTop_toTopOf="@id/profile_icon" />
+            app:layout_constraintTop_toTopOf="@id/profile_icon"
+            app:tint="@color/smallIconColor" />
 
         <TextView
             android:id="@+id/txt_medical_info"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="24dp"
+            android:layout_weight="1"
             android:text="@string/medical_information"
-            android:textColor="@color/black"
+            android:textColor="@color/mainTextColor"
             android:textSize="20sp" />
+
+
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="end"
+            android:gravity="center_vertical"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_right_arrow" />
     </LinearLayout>
 
     <LinearLayout
@@ -124,10 +150,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="@drawable/bottom_nav_round_corners"
-        android:backgroundTint="@color/appWhite"
+        android:backgroundTint="@color/loMenuColor"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingVertical="16dp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="@id/glEnd"
         app:layout_constraintStart_toStartOf="@id/glStart"
         app:layout_constraintTop_toBottomOf="@+id/btnMedicalInfo">
@@ -136,19 +163,30 @@
             android:id="@+id/history"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="24dp"
+            android:importantForAccessibility="no"
             android:src="@drawable/ic_diag_history"
             app:layout_constraintEnd_toStartOf="@id/profile_icon"
-            app:layout_constraintTop_toTopOf="@id/profile_icon" />
+            app:layout_constraintTop_toTopOf="@id/profile_icon"
+            app:tint="@color/smallIconColor" />
 
         <TextView
             android:id="@+id/history_btn"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
+            android:layout_weight="1"
             android:text="@string/diagnostic_history"
-            android:textColor="@color/black"
+            android:textColor="@color/mainTextColor"
             android:textSize="20sp" />
+
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="end"
+            android:gravity="center_vertical"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_right_arrow" />
     </LinearLayout>
 
     <androidx.constraintlayout.widget.Guideline
@@ -156,14 +194,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="16dp" />
+        app:layout_constraintGuide_begin="@dimen/margin_hor" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/glEnd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="16dp" />
+        app:layout_constraintGuide_end="@dimen/margin_hor" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

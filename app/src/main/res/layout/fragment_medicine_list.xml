@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/windowBackground"
     tools:context=".feature_medicine.presentation.ui.MedicineListFragment">
 
 
@@ -13,22 +14,24 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="24dp"
+        app:tint="@color/mainTextColor"
         android:src="@drawable/left_arrow"
         app:layout_constraintStart_toStartOf="@id/glStart"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:importantForAccessibility="no" />
 
     <TextView
         android:id="@+id/txtDoseReminder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="21dp"
+        android:layout_marginStart="@dimen/dim_head_text_margin_start"
         android:text="@string/dose_reminder"
-        android:textColor="@color/black"
-        android:textSize="23sp"
+        android:textColor="@color/mainTextColor"
+        android:textSize="@dimen/dim_head_text"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/btnBack"
         app:layout_constraintStart_toEndOf="@id/btnBack"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/btnBack" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvMedicine"
@@ -50,33 +53,37 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="88dp"
-        android:backgroundTint="@color/appWhite"
+        android:backgroundTint="@color/fabColor"
         android:src="@drawable/ic_add"
+        android:foregroundTint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:importantForAccessibility="no" />
 
     <ImageView
         android:id="@+id/imgNoMedicine"
         android:layout_width="300dp"
         android:layout_height="300dp"
+        android:visibility="gone"
         android:src="@drawable/medicine_placeholder"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/glEnd"
         app:layout_constraintStart_toStartOf="@id/glStart"
-        app:layout_constraintTop_toBottomOf="@id/txtDoseReminder" />
+        app:layout_constraintTop_toBottomOf="@id/txtDoseReminder"
+        android:importantForAccessibility="no" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/glStart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="16dp" />
+        app:layout_constraintGuide_begin="@dimen/margin_hor" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/glEnd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="16dp" />
+        app:layout_constraintGuide_end="@dimen/margin_hor" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

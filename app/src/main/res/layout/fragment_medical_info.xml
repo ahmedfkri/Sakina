@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/windowBackground"
     tools:context=".feature_account.presentation.ui.MedicalInfoFragment">
 
     <ImageView
@@ -12,17 +13,19 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:src="@drawable/left_arrow"
+        app:tint="@color/mainTextColor"
         app:layout_constraintStart_toStartOf="@id/gl_start"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:importantForAccessibility="no" />
 
     <TextView
         android:id="@+id/txtMedicalInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="@dimen/dim_head_text_margin_start"
         android:text="@string/medical_information"
-        android:textColor="@color/appBlue"
-        android:textSize="18sp"
+        android:textColor="@color/mainTextColor"
+        android:textSize="@dimen/dim_head_text"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/btnBack"
         app:layout_constraintStart_toEndOf="@id/btnBack"
@@ -76,7 +79,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="@string/hypertension_question"
+        android:text="@string/hypotension_question"
         app:layout_constraintEnd_toEndOf="@id/gl_end"
         app:layout_constraintStart_toStartOf="@id/gl_start"
         app:layout_constraintTop_toBottomOf="@id/toggleHypertension" />
@@ -202,7 +205,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="24dp" />
+        app:layout_constraintGuide_begin="@dimen/margin_hor" />
 
 
     <androidx.constraintlayout.widget.Guideline
@@ -210,6 +213,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="24dp" />
+        app:layout_constraintGuide_end="@dimen/margin_hor" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

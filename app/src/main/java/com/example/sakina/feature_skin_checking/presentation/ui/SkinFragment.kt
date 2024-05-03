@@ -7,7 +7,6 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,9 +15,9 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
-import com.example.sakina.core.util.Constant.TAG
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
+import com.bumptech.glide.request.RequestOptions
 import com.example.sakina.core.util.Resource
 import com.example.sakina.databinding.FragmentSkinBinding
 import com.example.sakina.feature_skin_checking.data.repository.SkinRepositoryImpl
@@ -26,7 +25,6 @@ import com.example.sakina.feature_skin_checking.domain.model.SkinResponse
 import com.example.sakina.feature_skin_checking.domain.use_case.UploadImageUseCase
 import com.example.sakina.feature_skin_checking.presentation.view_model.SkinCheckingViewModel
 import com.example.sakina.feature_skin_checking.presentation.view_model.SkinViewModelFactory
-import kotlinx.coroutines.launch
 import java.io.File
 
 
@@ -53,33 +51,44 @@ class SkinFragment : Fragment() {
 
         viewModel = ViewModelProvider(
             requireActivity(), SkinViewModelFactory(uploadImageUseCase)
-        ).get(SkinCheckingViewModel::class.java)
+        )[SkinCheckingViewModel::class.java]
 
         binding.imgSkin.setOnClickListener {
             hidePreviousDiagnosis()
             openImageChooser()
         }
 
-        binding.btnDiagnose.setOnClickListener {
-            if (this::imageFile.isInitialized) {
-                diagnose()
-            } else {
-                Toast.makeText(requireContext(), "Please Choose Image First", Toast.LENGTH_SHORT)
-                    .show()
-            }
+        binding.btnAddImage.setOnClickListener {
+            hidePreviousDiagnosis()
+            openImageChooser()
         }
     }
 
     private fun hidePreviousDiagnosis() {
         binding.apply {
             loText.isVisible = false
-            btnDiagnose.isVisible = true
-            fabSave.isVisible = false
+            btnAddImage.isVisible = true
         }
     }
 
     private fun diagnose() {
-        lifecycleScope.launch {
+
+        showResponse(
+            SkinResponse(
+                "Advice",
+                "Lorem Ipsum is simply dummy text of the printing and typesetting industry." +
+                        " Lorem Ipsum has been the industry's standard \ndummy text ever since the 1500s," +
+                        "\n when an unknown printer took a galley of type and scrambled it to make a type\n" +
+                        " specimen book. It has survived not only five centuries,\n" +
+                        " but also the leap into electronic typesetting,\n" +
+                        " remaining essentially unchanged. It was popularised in the 1960s\n" +
+                        " with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                "Label"
+            )
+        )
+
+
+        /*lifecycleScope.launch {
             viewModel.uploadSkinImage(imageFile).collect { resource ->
                 when (resource) {
                     is Resource.Success -> {
@@ -96,18 +105,25 @@ class SkinFragment : Fragment() {
                     }
                 }
             }
-        }
+        }*/
     }
 
     private fun showResponse(response: SkinResponse) {
         binding.apply {
             progressBa.isVisible = false
+            txtIntroduction.isVisible = false
+            btnAddImage.isVisible = false
+
+
             loText.isVisible = true
             txtLabel.text = response.label
             txtDescription.text = response.description
             txtAdvice.text = response.advice
-            btnDiagnose.isVisible = false
-            fabSave.isVisible = true
+
+            val params = binding.imgSkin.layoutParams as ViewGroup.MarginLayoutParams
+            params.topMargin = 32
+            binding.imgSkin.layoutParams = params
+
         }
     }
 
@@ -136,8 +152,22 @@ class SkinFragment : Fragment() {
             if (it.resultCode == Activity.RESULT_OK) {
                 val data = it.data
                 val imgUri = data?.data
-                Glide.with(this).load(imgUri).into(binding.imgSkin)
+                Glide.with(this).load(imgUri).apply(
+                    RequestOptions.bitmapTransform(CircleCrop())
+                ).into(binding.imgSkin)
                 imageFile = imgUri?.toFile(requireContext())!!
+
+                if (this::imageFile.isInitialized) {
+                    diagnose()
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        "Please Choose Image First",
+                        Toast.LENGTH_SHORT
+                    )
+                        .show()
+                }
+
             }
         }
 

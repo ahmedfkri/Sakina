@@ -12,11 +12,13 @@ import androidx.navigation.findNavController
 import com.example.sakina.core.data.MySharedPref
 import com.example.sakina.core.util.Constant.ADVICE
 import com.example.sakina.core.util.Constant.TAG
+import com.example.sakina.core.util.UIPrefrences
 import com.example.sakina.databinding.ActivityMainBinding
-import com.example.sakina.feature_account.data.repository.AccountRepo
-import com.example.sakina.feature_account.domain.use_case.AccountUseCase
+import com.example.sakina.feature_account.data.repository.AccountRepositoryImpl
+import com.example.sakina.feature_account.domain.use_case.AccountUseCases
 import com.example.sakina.feature_account.domain.use_case.ChangeAccountNameUseCase
 import com.example.sakina.feature_account.domain.use_case.ChangeAccountPasswordUseCase
+import com.example.sakina.feature_account.domain.use_case.GetAccountDataUseCase
 import com.example.sakina.feature_account.domain.use_case.GetInformationUseCase
 import com.example.sakina.feature_account.domain.use_case.PersonalInfoUseCase
 import com.example.sakina.feature_account.presentation.view_model.AccountViewModel
@@ -61,15 +63,12 @@ class MainActivity : AppCompatActivity() {
     lateinit var medicineViewModel: MedicineViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-
-
-
-
         Handler().postDelayed({
+
             navController = findNavController(R.id.fragmentContainerView)
             bottomNavigationView = binding.bottomNav
 
@@ -96,8 +95,13 @@ class MainActivity : AppCompatActivity() {
                 navController.navigate(R.id.medicineDetailsFragment, fragmentArgs)
             }
 
+        }, 10)
 
-        }, 100)
+        UIPrefrences().applyTheme(MySharedPref.getString("theme", "Light"))
+        UIPrefrences().changeLanguage(
+            this,
+            MySharedPref.getString("language", "English")
+        )
 
 
         //Authentication
@@ -121,17 +125,18 @@ class MainActivity : AppCompatActivity() {
         )[AuthViewModel::class.java]
 
 
-        val repo = AccountRepo()
+        val repo = AccountRepositoryImpl()
         val changeAccountNameUseCase = ChangeAccountNameUseCase(repo)
         val changeAccountPasswordUseCase = ChangeAccountPasswordUseCase(repo)
         val personalInfoUseCase = PersonalInfoUseCase(repo)
         val getInfoUseCase = GetInformationUseCase(repo)
-        val accountUseCase = AccountUseCase(
+        val getAccountData = GetAccountDataUseCase(repo)
+        val accountUseCase = AccountUseCases(
             changeNameUseCase = changeAccountNameUseCase,
             changePasswordUseCase = changeAccountPasswordUseCase,
             personalInfoUseCase = personalInfoUseCase,
-            getInformationUseCase = getInfoUseCase
-
+            getInformationUseCase = getInfoUseCase,
+            getAccountDataUseCase = getAccountData
         )
         accountViewModel = ViewModelProvider(
             this, AccountViewModelFactory(accountUseCase)

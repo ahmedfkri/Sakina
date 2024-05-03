@@ -24,7 +24,7 @@ class OnBoardingFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentOnBoardingBinding.inflate(inflater, container, false)
 
         return binding.root
@@ -37,7 +37,6 @@ class OnBoardingFragment : Fragment() {
             FirstScreenFragment(),
             SecondScreenFragment(),
             ThirdScreenFragment(),
-            FourthScreenFragment()
         )
 
         setupAdapter()
@@ -52,12 +51,8 @@ class OnBoardingFragment : Fragment() {
 
 
         binding.apply {
-            rightArrow.setOnClickListener {
+            btnNext.setOnClickListener {
                 binding.viewPager.currentItem++
-                updateView()
-            }
-            leftArrow.setOnClickListener {
-                viewPager.currentItem--
                 updateView()
             }
             btnGetStarted.setOnClickListener {
@@ -74,33 +69,21 @@ class OnBoardingFragment : Fragment() {
             0 -> displayFirstScreen()
             1 -> displaySecondScreen()
             2 -> displayThirdScreen()
-            3 -> displayFourthScreen()
         }
     }
 
-
-    private fun displayFourthScreen() {
-        binding.apply {
-            leftArrow.isVisible = false
-            rightArrow.isVisible = false
-            btnGetStarted.isVisible = true
-            indicator.setImageResource(R.drawable.ind_fourth)
-        }
-    }
 
     private fun displayThirdScreen() {
         binding.apply {
-            leftArrow.isVisible = true
-            rightArrow.isVisible = true
-            btnGetStarted.isVisible = false
+            btnNext.isVisible = false
+            btnGetStarted.isVisible = true
             indicator.setImageResource(R.drawable.ind_third)
         }
     }
 
     private fun displaySecondScreen() {
         binding.apply {
-            leftArrow.isVisible = true
-            rightArrow.isVisible = true
+            btnNext.isVisible = true
             btnGetStarted.isVisible = false
             indicator.setImageResource(R.drawable.ind_second)
         }
@@ -108,8 +91,7 @@ class OnBoardingFragment : Fragment() {
 
     private fun displayFirstScreen() {
         binding.apply {
-            leftArrow.isVisible = false
-            rightArrow.isVisible = true
+            btnNext.isVisible = true
             btnGetStarted.isVisible = false
             indicator.setImageResource(R.drawable.ind_first)
         }

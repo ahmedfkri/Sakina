@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/windowBackground"
     tools:context=".feature_skin_checking.presentation.ui.SkinFragment">
 
     <ProgressBar
@@ -17,40 +18,83 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:background="@color/appBlue"
-        android:elevation="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <com.google.android.material.circularreveal.cardview.CircularRevealCardView
-        android:id="@+id/cardImg"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="16dp"
+    <ImageView
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:backgroundTint="@color/white"
-        app:cardCornerRadius="100dp"
-        app:cardElevation="18dp"
-        app:layout_constraintBottom_toTopOf="@id/loText"
-        app:layout_constraintEnd_toEndOf="@id/glEnd"
+        android:importantForAccessibility="no"
+        android:src="@drawable/left_arrow"
         app:layout_constraintStart_toStartOf="@id/glStart"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_weight="1"
-        app:layout_goneMarginTop="64dp">
+        app:tint="@color/mainTextColor" />
 
-        <ImageView
-            android:id="@+id/imgSkin"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_add" />
+    <TextView
+        android:id="@+id/txtHeartDiagnose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dim_head_text_margin_start"
+        android:layout_marginTop="75dp"
+        android:text="@string/skin_diagnosis"
+        android:textColor="@color/mainTextColor"
+        android:textSize="@dimen/dim_head_text"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/btnBack"
+        app:layout_constraintStart_toEndOf="@id/btnBack" />
 
-    </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
 
+    <!--    <com.google.android.material.circularreveal.cardview.CircularRevealCardView
+            android:id="@+id/cardImg"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/white"
+            app:cardCornerRadius="100dp"
+            app:cardElevation="18dp"
+            app:layout_constraintBottom_toTopOf="@id/loText"
+            app:layout_constraintEnd_toEndOf="@id/glEnd"
+            app:layout_constraintStart_toStartOf="@id/glStart"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_weight="1"
+            app:layout_goneMarginTop="64dp">
+
+            <ImageView
+                android:id="@+id/imgSkin"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_add"
+                android:importantForAccessibility="no" />
+
+        </com.google.android.material.circularreveal.cardview.CircularRevealCardView>-->
+
+
+    <ImageView
+        android:id="@+id/imgSkin"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="80dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/il_mag"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtHeartDiagnose" />
+
+    <TextView
+        android:id="@+id/txtIntroduction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/diagnose_your_skin"
+        android:textAlignment="center"
+        android:textColor="@color/darkGray"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/glEnd"
+        app:layout_constraintStart_toStartOf="@id/glStart"
+        app:layout_constraintTop_toBottomOf="@id/imgSkin" />
 
     <LinearLayout
         android:id="@+id/loText"
@@ -59,10 +103,10 @@
         android:gravity="center_horizontal"
         android:orientation="vertical"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@id/btnDiagnose"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/glEnd"
         app:layout_constraintStart_toStartOf="@id/glStart"
-        app:layout_constraintTop_toBottomOf="@id/cardImg"
+        app:layout_constraintTop_toBottomOf="@id/imgSkin"
         app:layout_constraintVertical_weight="3">
 
         <TextView
@@ -73,7 +117,7 @@
             android:layout_marginTop="8dp"
             android:textAlignment="center"
             android:textColor="@color/appBlue"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             tools:text="Label" />
 
@@ -91,7 +135,7 @@
                     android:id="@+id/txtDescription"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/lightBlue"
+                    android:textColor="@color/mainTextColor"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -105,7 +149,6 @@
                     android:textColor="@color/appBlue"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    android:visibility="visible"
                     app:layout_constraintStart_toStartOf="@id/txtDescription"
                     app:layout_constraintTop_toBottomOf="@id/txtDescription"
                     tools:text="@tools:sample/lorem/random" />
@@ -116,33 +159,18 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/btnDiagnose"
+        android:id="@+id/btnAddImage"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:background="@drawable/oval"
-        android:text="@string/diagnose"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@drawable/btn_main_shape"
+        android:text="@string/add_image"
+        android:textSize="@dimen/dim_text_btn"
+        android:layout_marginTop="64dp"
         app:layout_constraintEnd_toEndOf="@id/glEnd"
         app:layout_constraintStart_toStartOf="@id/glStart"
-        app:layout_constraintTop_toBottomOf="@id/loText"
-        app:layout_constraintVertical_weight="1" />
+        app:layout_constraintTop_toBottomOf="@id/txtIntroduction"
+       />
 
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabSave"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
-        android:backgroundTint="@color/appBlue"
-        android:foregroundTint="@color/white"
-        android:src="@drawable/ic_save"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/glStart"

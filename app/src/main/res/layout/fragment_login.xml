@@ -4,14 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/windowBackground"
     tools:context=".feature_authentication.presentation.ui.LoginFragment">
 
 
     <ImageView
         android:id="@+id/imgReg"
-        android:layout_width="250dp"
-        android:layout_height="150dp"
+        android:layout_width="192dp"
+        android:layout_height="96dp"
         android:layout_marginTop="80dp"
+        android:importantForAccessibility="no"
         android:src="@drawable/logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,7 +23,7 @@
         android:id="@+id/txtWelcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:text="@string/welcome_back"
         android:textColor="@color/appBlue"
         android:textSize="24sp"
@@ -45,8 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="@string/enter_your_email"
-            android:inputType="textEmailAddress"
-            android:textStyle="italic" />
+            android:inputType="textEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -64,8 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="@string/enter_your_password"
-            android:inputType="textPassword"
-            android:textStyle="italic" />
+            android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -75,10 +75,9 @@
         android:layout_height="56dp"
         android:layout_marginTop="40dp"
         android:layout_marginBottom="64dp"
-        android:background="@drawable/oval"
+        android:background="@drawable/btn_main_shape"
         android:text="@string/login"
-        android:textSize="16sp"
-        android:textStyle="bold"
+        android:textSize="@dimen/dim_text_btn"
         app:layout_constraintEnd_toEndOf="@id/glEnd"
         app:layout_constraintStart_toStartOf="@id/glStart"
         app:layout_constraintTop_toBottomOf="@id/loPass" />
@@ -117,14 +116,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="16dp" />
+        app:layout_constraintGuide_begin="@dimen/margin_hor" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/glEnd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="16dp" />
+        app:layout_constraintGuide_end="@dimen/margin_hor" />
 
 
     <ImageView
@@ -141,6 +140,7 @@
         android:layout_marginTop="-20dp"
         android:src="@drawable/cool_circle_up_right"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:importantForAccessibility="no" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

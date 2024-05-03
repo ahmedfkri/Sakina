@@ -1,5 +1,6 @@
 package com.example.sakina.core.data.remote.main_api
 
+import com.example.sakina.feature_account.domain.model.AccountDataDTO
 import com.example.sakina.feature_account.domain.model.ChangeNameRequest
 import com.example.sakina.feature_account.domain.model.ChangePasswordRequest
 import com.example.sakina.feature_account.domain.model.PersonalInfoRequest
@@ -13,7 +14,6 @@ import com.example.sakina.feature_authentication.domain.model.RegisterRequest
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
-import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Path
@@ -22,8 +22,8 @@ interface MainAPI {
 
     //Authentication
 
-   /* @POST("account/requestJwt")
-    suspend fun requestJwt(@Body refreshToken: RefreshToken): Response<AuthenticateResponse>*/
+    /* @POST("account/requestJwt")
+     suspend fun requestJwt(@Body refreshToken: RefreshToken): Response<AuthenticateResponse>*/
 
     @POST("account/registerUser")
     suspend fun register(@Body request: RegisterRequest): Response<Unit>
@@ -47,10 +47,14 @@ interface MainAPI {
 
     //MedicalInformation
     @PUT("medicalInfos")
-    suspend fun personalInfo(@Body information:PersonalInfoRequest):Response<Unit>
+    suspend fun personalInfo(@Body information: PersonalInfoRequest): Response<Unit>
 
     @GET("medicalInfos")
     suspend fun getInformation(): PersonalInfoRequest
+
+
+    @GET("account")
+    suspend fun getAccountData(): AccountDataDTO
 
 
     //Advice

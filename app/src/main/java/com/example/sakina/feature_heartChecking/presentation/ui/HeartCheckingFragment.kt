@@ -1,12 +1,10 @@
 package com.example.sakina.feature_heartChecking.presentation.ui
 
 import android.app.Activity
-import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,22 +13,19 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.sakina.R
-import com.example.sakina.core.util.Resource
 import com.example.sakina.databinding.FragmentHeartCheckingBinding
 import com.example.sakina.feature_heartChecking.data.repository.HeartCheckingRepo
 import com.example.sakina.feature_heartChecking.domain.model.HeartResponse
 import com.example.sakina.feature_heartChecking.domain.useCase.HeartCheckingVoiceUseCase
 import com.example.sakina.feature_heartChecking.presentation.viewModel.HeartViewModel
 import com.example.sakina.feature_heartChecking.presentation.viewModel.HeartViewModelFactory
-import kotlinx.coroutines.launch
 import java.io.File
 
 class HeartCheckingFragment : Fragment() {
     private lateinit var binding: FragmentHeartCheckingBinding
-    private lateinit var voiceFile: File
+    private lateinit var soundFile: File
     private lateinit var viewModel: HeartViewModel
 
 
@@ -51,23 +46,29 @@ class HeartCheckingFragment : Fragment() {
             requireActivity(), HeartViewModelFactory(heartVoiceUseCase)
         )[HeartViewModel::class.java]
 
-        binding.addVoice.setOnClickListener {
+        binding.loAddSound.setOnClickListener {
             val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
                 addCategory(Intent.CATEGORY_OPENABLE)
                 type = "audio/*"
             }
             pickSoundFileContract.launch(intent)
         }
-        binding.check.setOnClickListener {
-            if (this::voiceFile.isInitialized) {
-                check()
-            } else {
-                Toast.makeText(requireContext(), "Please Add File ", Toast.LENGTH_LONG)
-                    .show()
-            }
-        }
+
         binding.btnBack.setOnClickListener {
             findNavController().navigate(R.id.action_heartCheckingFragment_to_homeFragment)
+        }
+
+        var toggle = false
+
+        binding.loResponse.setOnClickListener {
+            if (toggle) {
+                binding.loResponse.elevation = 10F
+                toggle = !toggle
+            } else {
+                binding.loResponse.elevation = 0F
+                toggle = !toggle
+            }
+
         }
     }
 
@@ -75,7 +76,13 @@ class HeartCheckingFragment : Fragment() {
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
                 result.data?.data?.let { uri ->
-                    voiceFile = uri.toFile(requireContext())!!
+                    soundFile = uri.toFile(requireContext())!!
+                    if (this::soundFile.isInitialized) {
+                        check()
+                    } else {
+                        Toast.makeText(requireContext(), "Please Add File ", Toast.LENGTH_LONG)
+                            .show()
+                    }
                 }
             }
         }
@@ -113,28 +120,42 @@ class HeartCheckingFragment : Fragment() {
      */
 
     private fun check() {
-        lifecycleScope.launch {
-            viewModel.heartVoice(voiceFile).collect { resource ->
-                when (resource) {
-                    is Resource.Success -> {
-                        Log.d(TAG, "Check:" + resource.data!!.description)
-                        activateResponse(resource.data)
+
+        activateResponse(
+            HeartResponse(
+                "label",
+                "Lorem Ipsum is simply dummy text of the printing and typesetting industry." +
+                        " Lorem Ipsum has been the industry's standard \ndummy text ever since the 1500s," +
+                        "\n when an unknown printer took a galley of type and scrambled it to make a type\n" +
+                        " specimen book. It has survived not only five centuries,\n" +
+                        " but also the leap into electronic typesetting,\n" +
+                        " remaining essentially unchanged. It was popularised in the 1960s\n" +
+                        " with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                "OK?"
+            )
+        )
+
+        /*        lifecycleScope.launch {
+                    viewModel.heartVoice(voiceFile).collect { resource ->
+                        when (resource) {
+                            is Resource.Success -> {
+                                Log.d(TAG, "Check:" + resource.data!!.description)
+                                activateResponse(resource.data)
+                            }
+
+                            is Resource.Error -> {
+                                binding.progressBar.isVisible = false
+                                Log.d(TAG, "error: " + resource.message)
+                            }
+
+                            else -> {
+                                binding.progressBar.isVisible = true
+
+                            }
+                        }
                     }
 
-                    is Resource.Error -> {
-                        binding.progressBar.isVisible = false
-                        //activateResponse2()
-                        Log.d(TAG, "error: " + resource.message)
-                    }
-
-                    else -> {
-                        binding.progressBar.isVisible = true
-
-                    }
-                }
-            }
-
-        }
+                }*/
     }
 
     private fun Uri.toFile(context: Context): File? {
@@ -154,24 +175,19 @@ class HeartCheckingFragment : Fragment() {
 
     private fun activateResponse(response: HeartResponse) {
         binding.apply {
-            descTv.isVisible = false
-            addVoice.isVisible = false
-            check.isVisible = false
+            txtIntroduction.isVisible = false
             progressBar.isVisible = false
-            responseLine.visibility = View.VISIBLE
+            loResponse.isVisible = true
             imgHeart.isVisible = false
-            labelTv.text = response.label
-            descTv.text = response.description
-            adviceTv.text = response.advice
+            imgSakina.isVisible = true
+            txtResponseLabel.text = response.label
+            txtResponseDesc.text = response.description
+            txtResponseAdvice.text = response.advice
+            txtAddSound.text = soundFile.path
+            txtAddSound.textSize = 8f
+
         }
     }
 
-//    private fun activateResponse2() {
-//        binding.apply {
-//            txtDiagDesc.isVisible = false
-//            check.isVisible = false
-//            addVoice.isVisible = false
-//            progressBar.isVisible = false
-//            responseLine.isVisible = true
-//        }
+
 }

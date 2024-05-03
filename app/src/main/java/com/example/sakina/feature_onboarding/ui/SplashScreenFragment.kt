@@ -35,6 +35,12 @@ class SplashScreenFragment : Fragment() {
     lateinit var bundle: Bundle
     //private var count = 1
 
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -44,34 +50,60 @@ class SplashScreenFragment : Fragment() {
         return binding.root
     }
 
+    /*    override fun onAttach(context: Context) {
+            super.onAttach(context)
+
+            authViewModel = (activity as MainActivity).authViewModel
+            adviceViewModel = (activity as MainActivity).adviceViewModel
+
+            setUpNavigation()
+
+        }*/
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         authViewModel = (activity as MainActivity).authViewModel
         adviceViewModel = (activity as MainActivity).adviceViewModel
 
+        setUpNavigation()
+
+
+    }
+
+    private fun setUpNavigation() {
         Handler().postDelayed({
-            getRandomAdviceData(12)
             if (isOnBoardingFinished()) {
                 if (isUserSignedUp()) {
                     if (isUserLoggedIn()) {
-                        findNavController().navigate(
-                            R.id.action_splashScreenFragment_to_homeFragment
-                        )
+                        view?.post {
+                            findNavController().navigate(
+                                R.id.action_splashScreenFragment_to_homeFragment
+                            )
+                        }
+
                     } else {
-                        findNavController().navigate(
-                            R.id.action_splashScreenFragment_to_loginFragment
-                        )
+                        view?.post {
+                            findNavController().navigate(
+                                R.id.action_splashScreenFragment_to_loginFragment
+                            )
+                        }
+
                     }
                 } else {
-                    findNavController().navigate(R.id.action_splashScreenFragment_to_signUpFragment)
+                    view?.post {
+                        findNavController().navigate(R.id.action_splashScreenFragment_to_signUpFragment)
+                    }
                 }
             } else {
-                findNavController().navigate(R.id.action_splashScreenFragment_to_onBoardingFragment)
+                view?.post {
+                    findNavController().navigate(R.id.action_splashScreenFragment_to_onBoardingFragment)
+                }
             }
+
+            getRandomAdviceData(12)
+
         }, 2000)
-
-
     }
 
     private fun getRandomAdviceData(count: Int) {
@@ -87,7 +119,7 @@ class SplashScreenFragment : Fragment() {
                     }
 
                     is Resource.Error -> {
-                        Toast.makeText(requireContext(), resource.message, Toast.LENGTH_SHORT)
+                        Toast.makeText(requireActivity(), resource.message, Toast.LENGTH_SHORT)
                             .show()
                         Log.d(TAG, "error: ${resource.message} ")
                     }
@@ -100,34 +132,6 @@ class SplashScreenFragment : Fragment() {
         }
     }
 
-
-/*
-    private fun getAdvicesCount() {
-        lifecycleScope.launch {
-            adviceViewModel.getTotalAdvicesCount().collect { resource ->
-                when (resource) {
-                    is Resource.Success -> {
-                        count = resource.data ?: 1
-                        getRandomAdviceData(count)
-
-                    }
-
-                    is Resource.Error -> {
-                        Toast.makeText(requireContext(), resource.message, Toast.LENGTH_SHORT)
-                            .show()
-                        Log.d("Advices test", "getAdvice: ${resource.message} ")
-                    }
-
-                    else -> {
-
-                    }
-
-                }
-
-            }
-        }
-    }
-*/
 
     private fun isUserSignedUp() = MySharedPref.getBool(SIGNED_UP, false)
     private fun isUserLoggedIn() = MySharedPref.getBool(LOGGED_IN, false)

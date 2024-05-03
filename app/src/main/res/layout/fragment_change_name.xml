@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/windowBackground"
     android:layout_height="match_parent"
     tools:context=".feature_account.presentation.ui.ChangeNameFragment">
 
@@ -12,9 +13,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="24dp"
+        app:tint="@color/mainTextColor"
         android:src="@drawable/left_arrow"
         app:layout_constraintStart_toStartOf="@id/glStart"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:importantForAccessibility="no" />
 
     <TextView
         android:id="@+id/txtChangeName"
@@ -23,7 +26,7 @@
         android:layout_marginStart="10dp"
         android:text="@string/change_name"
         android:textColor="@color/mainTextColor"
-        android:textSize="20sp"
+        android:textSize="@dimen/dim_head_text"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/btnBack"
         app:layout_constraintStart_toEndOf="@id/btnBack"
@@ -67,15 +70,14 @@
 
     <Button
         android:id="@+id/confirm_btn"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_marginStart="20dp"
         android:layout_marginTop="48dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/oval"
+        android:background="@drawable/btn_main_shape"
         android:text="@string/confirm"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        android:textSize="@dimen/dim_text_btn"
+        app:layout_constraintEnd_toEndOf="@id/glEnd"
+        app:layout_constraintStart_toStartOf="@id/glStart"
         app:layout_constraintTop_toBottomOf="@id/loLastName" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -83,12 +85,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="16dp" />
+        app:layout_constraintGuide_begin="@dimen/margin_hor" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/glEnd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="16dp" />
+        app:layout_constraintGuide_end="@dimen/margin_hor" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.sakina.R
 import com.example.sakina.databinding.FragmentChatWithSakinaBinding
-import com.example.sakina.databinding.FragmentProfileBinding
 
 
 class ChatWithSakinaFragment : Fragment() {
@@ -24,7 +23,7 @@ class ChatWithSakinaFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.click.setOnClickListener {
+        binding.btnBack.setOnClickListener {
             findNavController().navigate(R.id.action_chatWithSakinaFragment_to_homeFragment)
         }
         binding.startBtn.setOnClickListener {

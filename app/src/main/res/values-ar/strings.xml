@@ -1,9 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <string name="app_name">سكينة</string>
+
     <string name="language">اللغة</string>
     <string name="theme">الاضاءة</string>
     <string name="contact_us">تواصل معنا</string>
     <string name="log_out">خروج</string>
     <string name="account">الصفحة الشخصية</string>
+
+    <string name="get_started">لنبدأ</string>
+    <string name="what_s_your_name">ما إسمك؟</string>
+    <string name="join_us">انضم لنا</string>
+    <string name="register_with_us">سجل معنا !</string>
+    <string name="your_information_is_safe_with_us">بياناتك في أمان معنا</string>
+    <string name="enter_your_name">أخل إسمك</string>
+    <string name="enter_your_email">أدخل بريدك الأليكتروني</string>
+    <string name="enter_your_password">كلمة السر</string>
+    <string name="already_have_an_account">تمتلك حساب بالفعل؟</string>
+    <string name="log_in">قم بتسجيل الدخول</string>
+    <string name="sakina_intro">طبيبك المخلص, أعمل بتقنية الذكاء الاصطناعي المتقدم، أنا هنا لمساعدتك في السيطرة على صحتك.</string>
+    <string name="welcome_i_m_sakina">مرحبا بك.. أنا سكينة.</string>
+    <string name="disease_diagnoses_with_sakina">تشخيص الأمراض مع سكينة.</string>
+    <string name="sakina_analysis_desc">يمكنني تحليل أعراضك وتقديم تشخيصات دقيقة للأمراض. فقط اشرح كيف تشعر الآن.</string>
+    <string name="stay_on_track_with_medications">.قم بتسجيل ومتابعة أدويتك</string>
+    <string name="sakina_med_desc">سأقوم بتتبع الأدوية الموصوفة لك وتذكيرك عندما يحين وقت تناولها. قل وداعًا للجرعات المفقودة ومرحبًا بك أنت الأكثر صحة!</string>
+    <string name="your_health_journey_all_in_one_place">رحلتك الصحية في مكان واحد.</string>
+    <string name="sakina_med_history_desc">يمكنني أيضًا تتبع أعراضك، وتخزين المعلومات الطبية، وبناء تاريخ طبي شامل لك.
+
+
+
+
+
+</string>
+    <string name="sign_up">تسجيل حساب جديد</string>
+    <string name="welcome_back">مرحباً</string>
+    <string name="login">تسجيل الدخول</string>
+    <string name="don_t_have_an_account">لا تمتلك حساب؟</string>
+    <string name="profile">الصفحة الشخصية</string>
+    <string name="home">الصفحة الرئيسية</string>
+    <string name="settings">الإعدادات</string>
+    <string name="welcome">مرحبا,</string>
+    <string name="diagnosis">التشاخيص</string>
+    <string name="do_you_have_anything_worrying_you">هناك عرض ما يقلقك ؟</string>
+    <string name="skin_diagnosis">تشخيصات الجلدية</string>
+    <string name="heart_diagnosis">تشخيصات القلب</string>
+    <string name="today_s_health_tip">نصيحة اليوم</string>
+    <string name="find_sakina">لنحصل على السكينة</string>
+    <string name="diagnose">قم بالتشخيص</string>
+    <string name="sakina">سكينة</string>
+    <string name="today">اليوم</string>
+    <string name="how_are_you_feeling">كيف حالك ؟</string>
+    <string name="hypertension_question">هل تم تشخيصك بالضغط العالي من قبل ؟</string>
+    <string name="hypotension_question">هل تم تشخيصك بالضغط الواطي من قبل ؟</string>
+    <string name="medical_information">البيانات الطبية</string>
+    <string name="yes">نعم</string>
+    <string name="no">لا</string>
+    <string name="do_you_have_diabetes">هل عندك مرض السكر؟</string>
+    <string name="are_you_smoker">هل أنت مدخن؟</string>
+    <string name="personal_information">البيانات الشخصية</string>
+    <string name="save">قم بالحفظ</string>
+    <string name="height">الطول</string>
+    <string name="weight">الوزن</string>
+    <string name="age">العمر</string>
+    <string name="diagnostic_history">تاريخ التشخيصات</string>
+    <string name="name">الإسم</string>
+    <string name="password">كلمة السر</string>
+    <string name="change_name">قم بتغيير الإسم</string>
+    <string name="confirm">أكد</string>
+    <string name="first_name">الإسم الأول</string>
+    <string name="last_name">اسم العائلة</string>
+    <string name="change_password">قم بتغيير كلمة السر</string>
+    <string name="to_set_a_new_password">من أجل تغيير كلمة السر  n\ من فضلك ادخل كلمة السر القديمة</string>
+    <string name="current_password">كلمة السر الحالية</string>
+    <string name="new_password">كلمة السر الجديدة</string>
+
+    <string name="dose_reminder">تنبيهات الأدوية</string>
+    <string name="add_medicine">أضف دواء</string>
+    <string name="medicine_name">اسم الدواء</string>
+    <string name="dosage">الجرعة</string>
+    <string name="daily">يوميا</string>
+    <string name="time">الوقت</string>
+    <string name="add_time">أضف منبه</string>
+    <string name="reminders">المنبهات</string>
+    <string name="details">التفاصيل</string>
+    <string name="taken">أخذت</string>
+    <string name="skipped">تخطيت</string>
+    <string name="medicine">الدواء</string>
+    <string name="last_time_updated">وقت اخر تعديل :</string>
+
+
+    <string name="dark_mode">الوضع الليلي</string>
+    <string name="next">التالي</string>
+    <string name="start">لنبدأ</string>
+    <string name="check_your_mail_box">قم بفحص بريدك الوارد</string>
+    <string name="let_s_find_sakina">لنجد السكينة</string>
+    <string name="email_adress">البريد الإليكتروني</string>
+    <string name="chat">قم بمحادثة</string>
+    <string name="make_a_conversation_with_sakina">دعنا نتحدث لتجد السكينة بخصوص ما يقلقك</string>
+    <string name="add_heart_beat_sound">أضف صوت دقات القلب</string>
+    <string name="check">قم بالفحص</string>
+    <string name="diagnose_your_heart_by_adding_an_audio">أضف صوت دقات قلبك لنقم بفحصهn\ليطمئن قلبك</string>
+    <string name="add_your_skin_image">أضف صورة جلدك</string>
+    <string name="add_image">أضف صورة</string>
+    <string name="diagnose_your_skin">أضف صورة للمنطقة المراد فحصها</string>
+    <string name="add_sound">أضف صوت</string>
 
 </resources>

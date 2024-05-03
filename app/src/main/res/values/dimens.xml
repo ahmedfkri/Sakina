@@ -3,4 +3,7 @@
     <dimen name="button_height">56dp</dimen>
     <dimen name="margin_hor">16dp</dimen>
     <dimen name="margin_top_s">24dp</dimen>
+    <dimen name="dim_head_text">20sp</dimen>
+    <dimen name="dim_text_btn">22sp</dimen>
+    <dimen name="dim_head_text_margin_start">8dp</dimen>
 </resources>

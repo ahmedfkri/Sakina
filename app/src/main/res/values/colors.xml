@@ -7,9 +7,16 @@
     <color name="appGray">#858C94</color>
     <color name="appWhite">#F7F8FE</color>
     <color name="darkGray">#6B6B6B</color>
+    <color name="darkerGray">#292424</color>
     <color name="lightBlue">#95AAAD</color>
     <color name="mainTextColor">#FF000000</color>
     <color name="windowBackground">#FFFFFFFF</color>
     <color name="navigationBarBackground">#FFFFFFFF</color>
+    <color name="fabColor">#04F140</color>
+    <color name="loMenuColor">#F7F8FE</color>
+
+
+    <color name="smallIconColor">#6B6B6B</color>
+    <color name="messageInputBG">#F7F8FE</color>
 
 </resources>

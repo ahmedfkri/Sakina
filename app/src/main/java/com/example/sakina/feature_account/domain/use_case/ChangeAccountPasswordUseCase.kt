@@ -1,7 +1,5 @@
 package com.example.sakina.feature_account.domain.use_case
 
-import com.example.sakina.core.data.MySharedPref
-import com.example.sakina.core.util.Constant
 import com.example.sakina.core.util.Resource
 import com.example.sakina.feature_account.domain.model.ChangePasswordRequest
 import com.example.sakina.feature_account.domain.repositoy.AccountRepository
@@ -16,8 +14,6 @@ class ChangeAccountPasswordUseCase (private val repo:AccountRepository){
         try {
             emit(Resource.Loading())
             repo.changePassword(password)
-            MySharedPref.putString(Constant.CURRENT_PASSWORD, password.oldPassword)
-            MySharedPref.putString(Constant.NEW_PASSWORD, password.newPassword)
             emit(Resource.Success(null))
 
         } catch (e: HttpException) {

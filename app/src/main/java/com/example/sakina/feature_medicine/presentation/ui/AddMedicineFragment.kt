@@ -105,13 +105,13 @@ class AddMedicineFragment : Fragment() {
             }
         }
 
-        binding.rgImage.setOnCheckedChangeListener { _, checkedId ->
+    /*    binding.rgImage.setOnCheckedChangeListener { _, checkedId ->
             imageId = when (checkedId) {
                 binding.rbPill1.id -> PILL_1
                 binding.rbPill2.id -> PILL_2
                 else -> PILL_1
             }
-        }
+        }*/
 
 
 
@@ -120,6 +120,12 @@ class AddMedicineFragment : Fragment() {
             try {
                 val name = binding.edtMedicineName.text.toString()
                 val dosage = binding.edtDosage.text.toString().toInt()
+
+                imageId = when (binding.rgImage.checkedRadioButtonId) {
+                    R.id.rb_pill1 -> PILL_1
+                    R.id.rb_pill2 -> PILL_2
+                    else -> PILL_1
+                }
 
                 val medicine = Medicine(
                     name = name,

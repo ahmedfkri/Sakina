@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.sakina.R
 import com.example.sakina.core.util.Constant
 import com.example.sakina.databinding.MedicineListItemBinding
@@ -34,10 +33,11 @@ class MedicineAdapter : RecyclerView.Adapter<MedicineAdapter.MedicineViewHolder>
 
                 val imageId = when (medicine.imageId) {
                     Constant.PILL_1 -> R.drawable.ic_pill1
-                    else -> R.drawable.ic_pill2
+                    Constant.PILL_2 -> R.drawable.ic_pill2
+                    else -> R.drawable.ic_pill1
                 }
 
-                Glide.with(root).load(imageId).into(imgMedicine)
+                binding.imgMedicine.setImageResource(imageId)
 
                 root.setOnClickListener {
                     onItemClickListener?.invoke(medicine)

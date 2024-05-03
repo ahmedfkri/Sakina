@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/windowBackground"
     tools:context=".feature_heartChecking.presentation.ui.HeartCheckingFragment">
 
     <ProgressBar
@@ -16,134 +17,110 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/btnBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="24dp"
         android:backgroundTint="@color/white"
-        android:contentDescription="heart"
+        android:importantForAccessibility="no"
         android:src="@drawable/left_arrow"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="@id/glStart"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/mainTextColor" />
 
     <TextView
-        android:id="@+id/tv1"
+        android:id="@+id/txtHeartDiagnose"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dim_head_text_margin_start"
         android:layout_marginTop="75dp"
         android:text="@string/heart_diagnosis"
-        android:textColor="@color/appBlue"
-        android:textSize="20sp"
+        android:textColor="@color/mainTextColor"
+        android:textSize="@dimen/dim_head_text"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@id/btnBack"
+        app:layout_constraintStart_toEndOf="@id/btnBack" />
 
     <ImageView
         android:id="@+id/img_heart"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="80dp"
+        android:importantForAccessibility="no"
         android:src="@drawable/il_heart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tv1" />
+        app:layout_constraintTop_toBottomOf="@id/txtHeartDiagnose" />
 
     <TextView
-        android:id="@+id/tv_sentence1"
+        android:id="@+id/txtIntroduction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Diagnosis your heart by adding an audio"
+        android:text="@string/diagnose_your_heart_by_adding_an_audio"
+        android:textAlignment="center"
         android:textColor="@color/darkGray"
         android:textSize="15sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/glEnd"
+        app:layout_constraintStart_toStartOf="@id/glStart"
         app:layout_constraintTop_toBottomOf="@id/img_heart" />
 
-    <TextView
-        android:id="@+id/tv_sentence2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="recording of heartbeat"
-        android:textColor="@color/darkGray"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_sentence1" />
-
     <LinearLayout
-        android:id="@+id/line"
-        android:layout_width="match_parent"
+        android:id="@+id/loAddSound"
+        android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="15dp"
-        android:background="@drawable/oval"
+        android:layout_marginTop="64dp"
+        android:background="@drawable/btn_main_shape"
         android:backgroundTint="@color/appBlue"
-        android:gravity="center_vertical"
+        android:gravity="center"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_sentence2">
+        app:layout_constraintEnd_toEndOf="@id/glEnd"
+        app:layout_constraintStart_toStartOf="@id/glStart"
+        app:layout_constraintTop_toBottomOf="@id/txtIntroduction">
 
         <ImageView
             android:id="@+id/icon"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:paddingStart="10dp"
-            android:src="@drawable/ic_mic_24" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_mice" />
 
         <TextView
-            android:id="@+id/add_voice"
-            android:layout_width="match_parent"
+            android:id="@+id/txtAddSound"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="Add Voice"
+            android:maxLines="1"
+            android:paddingHorizontal="4dp"
+            android:text="@string/add_sound"
             android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textSize="@dimen/dim_text_btn"
+            />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/check"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="15dp"
-        android:background="@drawable/oval"
-        android:text="Diagnosis"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/line" />
 
     <LinearLayout
-        android:id="@+id/response_line"
+        android:id="@+id/loResponse"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center_vertical"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/check">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/glEnd"
+        app:layout_constraintStart_toStartOf="@id/glStart"
+        app:layout_constraintTop_toBottomOf="@id/loAddSound">
 
         <TextView
-            android:id="@+id/label_tv"
+            android:id="@+id/txtResponseLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:textAlignment="center"
             android:textColor="@color/appBlue"
-            android:textSize="20sp"
+            android:textSize="@dimen/dim_head_text"
             android:textStyle="bold"
             tools:text="label" />
 
@@ -158,29 +135,53 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/desc_tv"
+                    android:id="@+id/txtResponseDesc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
-                    android:textColor="@color/lightGray"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:textColor="@color/mainTextColor"
+                    android:textSize="16sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="descreption" />
 
                 <TextView
-                    android:id="@+id/advice_tv"
+                    android:id="@+id/txtResponseAdvice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
-                    android:textColor="@color/lightGray"
-                    android:textSize="20sp"
+                    android:textColor="@color/appBlue"
+                    android:textSize="16sp"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/desc_tv"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txtResponseDesc"
                     tools:text="Advice" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imgSakina"
+        android:layout_width="125dp"
+        android:layout_height="200dp"
+        android:importantForAccessibility="no"
+        android:scaleType="fitEnd"
+        android:src="@drawable/sakina_report"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="@dimen/margin_hor" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="@dimen/margin_hor" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,53 +4,108 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/windowBackground"
     tools:context=".SettingsFragment">
 
     <ImageView
         android:id="@+id/btnBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
         android:layout_marginTop="24dp"
+        app:tint="@color/mainTextColor"
         android:src="@drawable/left_arrow"
         app:layout_constraintStart_toStartOf="@id/glStart"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:importantForAccessibility="no" />
+
 
     <TextView
+        android:id="@+id/txtSettings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="@dimen/dim_head_text_margin_start"
         android:text="@string/settings"
-        android:textColor="@color/black"
-        android:textSize="24sp"
+        android:textColor="@color/mainTextColor"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/btnBack"
         app:layout_constraintStart_toEndOf="@id/btnBack"
         app:layout_constraintTop_toTopOf="@id/btnBack" />
 
+
     <LinearLayout
-        android:id="@+id/loAccount"
+        android:id="@+id/loMode"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="104dp"
+        android:layout_marginTop="24dp"
         android:gravity="center_vertical"
-        android:paddingVertical="16dp"
+        android:paddingVertical="8dp"
         app:layout_constraintEnd_toEndOf="@id/glEnd"
         app:layout_constraintStart_toStartOf="@id/glStart"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/txtSettings">
 
         <ImageView
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:src="@drawable/ic_account" />
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            app:tint="@color/smallIconColor"
+            android:layout_marginStart="24dp"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_dark_mode" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
+            android:layout_marginStart="48dp"
+            android:textColor="@color/mainTextColor"
+            android:text="@string/dark_mode"
+            android:textSize="20sp" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switchMode"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            app:track="@drawable/custom_track" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/loAccount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:paddingVertical="8dp"
+        app:layout_constraintEnd_toEndOf="@id/glEnd"
+        app:layout_constraintStart_toStartOf="@id/glStart"
+        app:layout_constraintTop_toBottomOf="@id/loMode">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="24dp"
+            app:tint="@color/smallIconColor"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_account" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_weight="1"
+            android:textColor="@color/mainTextColor"
             android:text="@string/account"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textSize="20sp" />
+
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="end"
+            android:gravity="center_vertical"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_right_arrow" />
+
 
     </LinearLayout>
 
@@ -58,51 +113,38 @@
         android:id="@+id/loLanguage"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:gravity="center_vertical"
-        android:paddingVertical="16dp"
+        android:paddingVertical="8dp"
         app:layout_constraintEnd_toEndOf="@id/glEnd"
         app:layout_constraintStart_toStartOf="@id/glStart"
         app:layout_constraintTop_toBottomOf="@id/loAccount">
 
         <ImageView
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="24dp"
+            app:tint="@color/smallIconColor"
+            android:importantForAccessibility="no"
             android:src="@drawable/ic_language" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
+            android:layout_marginStart="48dp"
+            android:layout_weight="1"
+            android:textColor="@color/mainTextColor"
+
             android:text="@string/language"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/loTheme"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:gravity="center_vertical"
-        android:paddingVertical="16dp"
-        app:layout_constraintEnd_toEndOf="@id/glEnd"
-        app:layout_constraintStart_toStartOf="@id/glStart"
-        app:layout_constraintTop_toBottomOf="@id/loLanguage">
+            android:textSize="20sp" />
 
         <ImageView
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:src="@drawable/ic_theme" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
-            android:text="@string/theme"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="end"
+            android:gravity="center_vertical"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_right_arrow" />
 
     </LinearLayout>
 
@@ -110,25 +152,37 @@
         android:id="@+id/loContact"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:gravity="center_vertical"
-        android:paddingVertical="16dp"
+        android:paddingVertical="8dp"
         app:layout_constraintEnd_toEndOf="@id/glEnd"
         app:layout_constraintStart_toStartOf="@id/glStart"
-        app:layout_constraintTop_toBottomOf="@id/loTheme">
+        app:layout_constraintTop_toBottomOf="@id/loLanguage">
 
         <ImageView
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            app:tint="@color/smallIconColor"
+            android:layout_marginStart="24dp"
+            android:importantForAccessibility="no"
             android:src="@drawable/ic_contact" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
+            android:layout_marginStart="48dp"
+            android:layout_weight="1"
+            android:textColor="@color/mainTextColor"
             android:text="@string/contact_us"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textSize="20sp" />
+
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="end"
+            android:gravity="center_vertical"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_right_arrow" />
 
     </LinearLayout>
 
@@ -137,24 +191,29 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="88dp"
         android:gravity="center_vertical"
         android:paddingVertical="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/glEnd"
-        app:layout_constraintStart_toStartOf="@id/glStart"
-        app:layout_constraintTop_toBottomOf="@id/loContact">
+        app:layout_constraintStart_toStartOf="@id/glStart">
 
         <ImageView
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:src="@drawable/ic_log_out" />
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            app:tint="@color/smallIconColor"
+
+            android:layout_marginStart="24dp"
+            android:src="@drawable/ic_log_out"
+            android:importantForAccessibility="no" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
+            android:layout_marginStart="48dp"
             android:text="@string/log_out"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textColor="@color/mainTextColor"
+            android:textSize="20sp" />
 
     </LinearLayout>
 
@@ -163,14 +222,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="16dp" />
+        app:layout_constraintGuide_begin="@dimen/margin_hor" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/glEnd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="16dp" />
+        app:layout_constraintGuide_end="@dimen/margin_hor" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

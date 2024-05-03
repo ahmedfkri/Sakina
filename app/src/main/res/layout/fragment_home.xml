@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/windowBackground"
     tools:context=".HomeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,17 +21,12 @@
             app:layout_constraintStart_toStartOf="@id/gl_start"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:elevation="10dp"
-                android:src="@drawable/ic_user" />
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/welcome"
-                android:textColor="@color/appBlue"
+                android:textColor="@color/mainTextColor"
+                android:textSize="@dimen/dim_head_text"
                 android:textStyle="bold" />
 
             <TextView
@@ -38,7 +34,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
-                android:textColor="@color/appBlue"
+                android:textColor="@color/mainTextColor"
+                android:textSize="@dimen/dim_head_text"
                 android:textStyle="bold"
                 tools:text="Ahmed" />
 
@@ -46,7 +43,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:src="@drawable/ic_wave" />
+                android:importantForAccessibility="no"
+                android:src="@drawable/ic_wave"
+                app:tint="@color/mainTextColor" />
 
 
         </LinearLayout>
@@ -91,7 +90,7 @@
                     android:layout_marginEnd="32dp"
                     android:layout_marginBottom="32dp"
                     android:text="@string/today_s_health_tip"
-                    android:textColor="@color/white"
+                    android:textColor="@color/mainTextColor"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -112,7 +111,7 @@
                     android:layout_alignStart="@id/txtHealthTip"
                     android:layout_alignTop="@id/txtHealthTip"
                     android:layout_marginTop="32dp"
-                    android:textColor="@color/white"
+                    android:textColor="@color/mainTextColor"
                     android:textSize="16sp"
                     tools:text="Title title title title" />
 
@@ -127,7 +126,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_top_s"
             android:text="@string/diagnosis"
-            android:textColor="@color/appBlue"
+            android:textColor="@color/mainTextColor"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/gl_start"
@@ -136,10 +135,11 @@
 
         <ImageView
             android:id="@+id/imgSakina"
-            android:layout_width="200dp"
+            android:layout_width="120dp"
             android:layout_height="200dp"
             android:layout_marginBottom="2dp"
             android:elevation="30dp"
+            android:importantForAccessibility="no"
             android:scaleType="fitEnd"
             android:src="@drawable/sakina_reg"
             app:layout_constraintBottom_toBottomOf="@id/cardSakina"
@@ -159,9 +159,9 @@
             app:strokeWidth="2dp">
 
             <LinearLayout
-                android:background="@color/windowBackground"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@color/windowBackground"
                 android:orientation="vertical">
 
                 <TextView
@@ -170,18 +170,21 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:text="@string/do_you_have_anything_worrying_you"
-                    android:textColor="@color/appBlue"
+                    android:textColor="@color/mainTextColor"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
-                <Button
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginHorizontal="24dp"
-                    android:layout_marginTop="16dp"
-                    android:text="@string/find_sakina"
-                    android:textStyle="bold" />
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:drawablePadding="8dp"
+                    android:text="@string/let_s_find_sakina"
+                    android:textColor="@color/mainTextColor"
+                    app:drawableEndCompat="@drawable/ic_righarrow_2"
+                    app:drawableTint="@color/mainTextColor" />
+
 
             </LinearLayout>
 
@@ -194,14 +197,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_begin="24dp" />
+            app:layout_constraintGuide_begin="@dimen/margin_hor" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/gl_end"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_end="24dp" />
+            app:layout_constraintGuide_end="@dimen/margin_hor" />
 
 
         <LinearLayout
@@ -220,7 +223,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="140dp"
                 android:layout_gravity="start"
-                android:layout_marginEnd="32dp"
+                android:layout_marginEnd="48dp"
                 android:backgroundTint="@color/windowBackground"
                 app:cardElevation="5dp"
                 app:strokeColor="@color/appBlue"
@@ -229,15 +232,17 @@
                 <ImageView
                     android:layout_width="150dp"
                     android:layout_height="100dp"
+                    android:importantForAccessibility="no"
                     android:src="@drawable/il_heart" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|center"
+                    android:layout_marginBottom="8dp"
                     android:gravity="start"
                     android:text="@string/heart_diagnosis"
-                    android:textColor="@color/appBlue"
+                    android:textColor="@color/mainTextColor"
                     android:textSize="16sp"
                     android:textStyle="bold" />
             </com.google.android.material.card.MaterialCardView>
@@ -256,6 +261,7 @@
                 <ImageView
                     android:layout_width="150dp"
                     android:layout_height="100dp"
+                    android:importantForAccessibility="no"
                     android:scaleType="centerCrop"
                     android:src="@drawable/il_mag" />
 
@@ -263,8 +269,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|center"
+                    android:layout_marginBottom="8dp"
                     android:text="@string/skin_diagnosis"
-                    android:textColor="@color/appBlue"
+                    android:textColor="@color/mainTextColor"
+
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
